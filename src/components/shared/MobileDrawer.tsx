@@ -1,10 +1,42 @@
 "use client";
 
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { X, User, MapPin, Heart, Info, Phone, MessageCircle } from 'lucide-react';
+import { User, MapPin, Heart, Info, Phone, MessageCircle, ChevronDown } from 'lucide-react';
 import { AllImages } from '../../../public/images/AllImages';
+import ReusableSheet from '@/components/ui/CustomUi/ReuseableSheet';
+
+const PROMO_LINKS = [
+    { name: "Combo", href: "/products/combos" },
+    { name: "Offer Zone", href: "/products/offers" },
+    { name: "New Arrivals", href: "/products/new-arrivals" },
+    { name: "Featured Products", href: "/products/featured" },
+];
+
+const DUMMY_CATEGORIES = [
+    {
+        name: "Spices",
+        hasSub: true,
+        subCategories: ["Whole Spices", "Powder Spices", "Mixed Spices"]
+    },
+    { name: "Pickles", hasSub: false },
+    {
+        name: "Dry Foods",
+        hasSub: true,
+        subCategories: ["Dates", "Raisins", "Apricots"]
+    },
+    {
+        name: "Nuts",
+        hasSub: true,
+        subCategories: ["Almonds", "Cashews", "Walnuts", "Pistachios"]
+    },
+    {
+        name: "Honey & Oil",
+        hasSub: true,
+        subCategories: ["Natural Honey", "Mustard Oil", "Ghee"]
+    },
+];
 
 interface MobileDrawerProps {
     isOpen: boolean;
@@ -12,124 +44,198 @@ interface MobileDrawerProps {
 }
 
 const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
-    // Prevent body scroll when drawer is open
-    useEffect(() => {
-        if (isOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }, [isOpen]);
+    const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
 
-    if (!isOpen) return null;
+    const toggleCategory = (categoryName: string) => {
+        setExpandedCategory(prev => prev === categoryName ? null : categoryName);
+    };
 
     return (
-        <>
-            {/* Backdrop */}
-            <div
-                className="fixed inset-0 bg-black/50 z-[60] md:hidden transition-opacity"
-                onClick={onClose}
-            />
-
-            {/* Drawer */}
-            <div className={`fixed top-0 left-0 bottom-0 w-4/5 max-w-sm bg-background z-[70] transform transition-transform duration-300 md:hidden flex flex-col ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-                {/* Header */}
-                <div className="flex items-center justify-between p-4 border-b border-border bg-secondary">
-                    <Image
-                        src={AllImages.logo}
-                        alt="ECommerce"
-                        width={100}
-                        height={30}
-                        className="h-8 w-auto object-contain brightness-0 invert"
-                    />
-                    <button onClick={onClose} className="p-1 text-secondary-foreground hover:text-primary transition-colors">
-                        <X size={24} />
-                    </button>
+        <ReusableSheet
+            open={isOpen}
+            onOpenChange={(open) => {
+                if (!open) {
+                    onClose();
+                    setTimeout(() => setExpandedCategory(null), 300);
+                }
+            }}
+            side="left"
+            width="w-[85vw] sm:max-w-sm"
+            title={
+                <Image
+                    src={AllImages.logo}
+                    alt="ECommerce"
+                    width={100}
+                    height={30}
+                    className="h-8 w-auto object-contain"
+                />
+            }
+        >
+            <div className="-mx-6 -my-5 h-screen">
+                {/* Guest Section */}
+                <div className="p-4 bg-muted/30 border-b border-border flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                        <User size={20} />
+                    </div>
+                    <div>
+                        <p className="text-sm font-medium text-foreground">Welcome Guest</p>
+                        <div className="flex gap-2 text-xs text-primary font-semibold mt-1">
+                            <Link href="/sign-in" onClick={onClose}>Login</Link>
+                            <span>|</span>
+                            <Link href="/sign-up" onClick={onClose}>Register</Link>
+                        </div>
+                    </div>
                 </div>
 
-                <div className="flex-grow overflow-y-auto pb-6">
-                    {/* Guest Section */}
-                    <div className="p-4 bg-muted/30 border-b border-border flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                            <User size={20} />
-                        </div>
-                        <div>
-                            <p className="text-sm font-medium text-foreground">Welcome Guest</p>
-                            <div className="flex gap-2 text-xs text-primary font-semibold mt-1">
-                                <Link href="/sign-in" onClick={onClose}>Login</Link>
-                                <span>|</span>
-                                <Link href="/sign-up" onClick={onClose}>Register</Link>
-                            </div>
-                        </div>
-                    </div>
+                {/* Navigation Links */}
+                <div className="p-2 border-b border-border">
+                    <ul className="flex flex-col">
+                        <li>
+                            <Link
+                                href="/"
+                                className="block p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors"
+                                onClick={onClose}
+                            >
+                                Home
+                            </Link>
+                        </li>
 
-                    {/* Navigation Links */}
-                    <div className="p-2 border-b border-border">
-                        <ul className="flex flex-col">
-                            <li>
-                                <Link href="/" className="block p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>Home</Link>
+                        {/* Promo Links */}
+                        {PROMO_LINKS.map((promo, idx) => (
+                            <li key={`promo-${idx}`}>
+                                <Link
+                                    href={promo.href}
+                                    className="block p-3 text-sm font-medium text-primary hover:bg-muted rounded transition-colors"
+                                    onClick={onClose}
+                                >
+                                    {promo.name}
+                                </Link>
                             </li>
-                            <li>
-                                <Link href="/shop" className="block p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>Shop</Link>
-                            </li>
-                            <li>
-                                <Link href="/categories" className="block p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>All Categories</Link>
-                            </li>
-                            <li>
-                                <Link href="/offers" className="block p-3 text-sm font-medium text-primary hover:bg-muted rounded transition-colors" onClick={onClose}>Offer Zone</Link>
-                            </li>
-                        </ul>
-                    </div>
+                        ))}
 
-                    {/* Quick Links */}
-                    <div className="p-2 border-b border-border">
-                        <p className="px-3 py-2 text-xs font-semibold text-text-secondary uppercase tracking-wider">Quick Links</p>
-                        <ul className="flex flex-col">
-                            <li>
-                                <Link href="/track-order" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
-                                    <MapPin size={18} className="text-text-secondary" /> Track Order
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/wishlist" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
-                                    <Heart size={18} className="text-text-secondary" /> Wishlist
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/account" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
-                                    <User size={18} className="text-text-secondary" /> My Account
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
+                        <li className="my-2 border-t border-border" />
+                        <li className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                            Categories
+                        </li>
 
-                    {/* Info Links */}
-                    <div className="p-2 border-b border-border">
-                        <p className="px-3 py-2 text-xs font-semibold text-text-secondary uppercase tracking-wider">Information</p>
-                        <ul className="flex flex-col">
-                            <li>
-                                <Link href="/about" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
-                                    <Info size={18} className="text-text-secondary" /> About Us
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/contact" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
-                                    <Phone size={18} className="text-text-secondary" /> Contact Us
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/faq" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
-                                    <MessageCircle size={18} className="text-text-secondary" /> FAQ
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
+                        {/* Category Accordion */}
+                        {DUMMY_CATEGORIES.map((category, idx) => {
+                            const categorySlug = category.name
+                                .toLowerCase()
+                                .replace(/ & /g, '-')
+                                .replace(/ /g, '-');
+                            const isExpanded = expandedCategory === category.name;
+
+                            return (
+                                <li key={`cat-${idx}`} className="flex flex-col">
+                                    {category.hasSub ? (
+                                        <>
+                                            <button
+                                                onClick={() => toggleCategory(category.name)}
+                                                className="flex items-center justify-between w-full p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors"
+                                            >
+                                                {category.name}
+                                                <ChevronDown
+                                                    size={16}
+                                                    className={`transition-transform duration-300 ${isExpanded ? 'rotate-180 text-primary' : ''}`}
+                                                />
+                                            </button>
+
+                                            {/* Animated accordion content */}
+                                            <div
+                                                className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                                                    }`}
+                                            >
+                                                <ul className="pl-4 pb-2 flex flex-col border-l-2 border-muted ml-3 mt-1">
+                                                    {category.subCategories?.map((sub, subIdx) => {
+                                                        const subSlug = sub
+                                                            .toLowerCase()
+                                                            .replace(/ & /g, '-')
+                                                            .replace(/ /g, '-');
+                                                        return (
+                                                            <li key={`sub-${subIdx}`}>
+                                                                <Link
+                                                                    href={`/products/category/${categorySlug}/${subSlug}`}
+                                                                    className="block py-2 px-3 text-sm text-muted-foreground hover:text-primary transition-colors"
+                                                                    onClick={onClose}
+                                                                >
+                                                                    {sub}
+                                                                </Link>
+                                                            </li>
+                                                        );
+                                                    })}
+                                                    <li>
+                                                        <Link
+                                                            href={`/products/category/${categorySlug}`}
+                                                            className="block py-2 px-3 text-sm font-semibold text-primary hover:bg-muted rounded transition-colors mt-1"
+                                                            onClick={onClose}
+                                                        >
+                                                            View All {category.name}
+                                                        </Link>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <Link
+                                            href={`/products/category/${categorySlug}`}
+                                            className="block p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors"
+                                            onClick={onClose}
+                                        >
+                                            {category.name}
+                                        </Link>
+                                    )}
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
+
+                {/* Quick Links */}
+                <div className="p-2 border-b border-border">
+                    <p className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Quick Links</p>
+                    <ul className="flex flex-col">
+                        <li>
+                            <Link href="/track-order" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
+                                <MapPin size={18} className="text-muted-foreground" /> Track Order
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/wishlist" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
+                                <Heart size={18} className="text-muted-foreground" /> Wishlist
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/account" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
+                                <User size={18} className="text-muted-foreground" /> My Account
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+
+                {/* Info Links */}
+                <div className="p-2">
+                    <p className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Information</p>
+                    <ul className="flex flex-col">
+                        <li>
+                            <Link href="/about" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
+                                <Info size={18} className="text-muted-foreground" /> About Us
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/contact" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
+                                <Phone size={18} className="text-muted-foreground" /> Contact Us
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/faq" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
+                                <MessageCircle size={18} className="text-muted-foreground" /> FAQ
+                            </Link>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </>
+        </ReusableSheet>
     );
 };
 

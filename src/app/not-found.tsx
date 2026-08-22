@@ -32,7 +32,7 @@ const NotFound = () => {
           margin: 0;
           font-size: 14px;
           line-height: 1;
-          background: #10B981;
+          background: #ff5014;
           position: relative;
         }
 
@@ -54,7 +54,7 @@ const NotFound = () => {
           left: 0;
           width: 100%;
           height: 100%;
-          background: linear-gradient(to bottom, #10B981, #10B981);
+          background: linear-gradient(to bottom, #ff5014, #ff5014);
           z-index: 0;
         }
 
@@ -160,7 +160,7 @@ const NotFound = () => {
         .in-cover .bulb {
           width: 50px;
           height: 50px;
-          background-color: #10B981;
+          background-color: #ff5014;
           border-radius: 50%;
           position: absolute;
           left: 0px;

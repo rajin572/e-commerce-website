@@ -29,7 +29,7 @@ const MobileAppBar: React.FC<MobileAppBarProps> = ({ onMenuClick, onCartClick })
                                 alt="ECommerce"
                                 width={100}
                                 height={30}
-                                className="h-8 w-auto object-contain brightness-0 invert"
+                                className="h-8 w-auto object-contain"
                             />
                         </Link>
                     </div>
@@ -55,7 +55,7 @@ const MobileAppBar: React.FC<MobileAppBarProps> = ({ onMenuClick, onCartClick })
                         placeholder="Search for products..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="flex-grow h-10 bg-transparent outline-none text-foreground text-base"
+                        className="grow h-10 bg-transparent outline-none text-foreground text-base"
                     />
                     <button className="p-2 text-primary">
                         <Search size={20} />
