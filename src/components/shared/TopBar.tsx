@@ -33,7 +33,7 @@ const TopBar = ({ onCartClick }: { onCartClick?: () => void }) => {
                         alt="ECommerce"
                         width={120}
                         height={40}
-                        className="h-10 w-auto object-contain brightness-0 invert"
+                        className="h-10 w-auto object-contain"
                     />
                 </Link>
 

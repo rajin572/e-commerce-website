@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Hind_Siliguri } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
+import LenisSmoothScroll from "@/components/ui/animation/LenisSmoothScroll";
 
 const hindSiliguri = Hind_Siliguri({
   variable: "--font-hind-siliguri",
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="bn"
       className={`${hindSiliguri.variable} h-full antialiased`}
     >
+      <LenisSmoothScroll />
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground">
         {children}
         {/* tryCatchWrapper drives every mutation toast through sonner. */}
