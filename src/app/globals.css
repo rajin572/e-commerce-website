@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 @theme default {
   --color-primary-color: #ffffff;
-  --color-background-color: #f2f4f7;
+  --color-background-color: #fbf9f5;
   --color-secondary-color: #ff5014;
   --color-base-color: #333333;
   --color-anchor-color: #ff5014;
@@ -68,7 +68,7 @@
 }
 
 :root {
-  --background: #ffffff;
+  --background: #fbf9f5;
   --foreground: #111827;
   --card: #f9fafb;
   --card-foreground: #111827;

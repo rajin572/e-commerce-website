@@ -1,7 +1,7 @@
 "use client";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
-import CircularBadge from "@/component/Home/CircleBadge";
+
 
 const DaynamicCursor = () => {
     const cursorRef = useRef<HTMLDivElement>(null);
@@ -171,7 +171,7 @@ const DaynamicCursor = () => {
                 ref={badgeRef}
                 className="fixed top-0 left-0 pointer-events-none z-9999"
             >
-                <CircularBadge />
+                {/* <CircularBadge /> */}
             </div>
         </>
     );

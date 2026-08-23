@@ -3,8 +3,10 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, Search, ShoppingCart, ArrowLeft } from 'lucide-react';
+import { Menu, Search, ShoppingCart, ArrowLeft, MoreVertical, Contact, Heart, FileQuestion, PhoneCall } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 import { AllImages } from '../../../public/images/AllImages';
+import { NavDropdown, DropdownItem } from './NavDropdown';
 
 interface MobileAppBarProps {
     onMenuClick: () => void;
@@ -14,6 +16,14 @@ interface MobileAppBarProps {
 const MobileAppBar: React.FC<MobileAppBarProps> = ({ onMenuClick, onCartClick }) => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+
+    const moreDropdownItems: DropdownItem[] = [
+        { label: 'About Us', href: '/about', icon: <Contact size={18} className="text-[#102a3a]" /> },
+        { label: 'Wishlists', href: '/wishlist', icon: <Heart size={18} className="text-[#102a3a]" /> },
+        { label: 'Faqs', href: '/faqs', icon: <FileQuestion size={18} className="text-[#102a3a]" /> },
+        { label: 'Call Us', href: 'tel:+8801700000000', icon: <PhoneCall size={18} className="text-[#102a3a]" /> },
+        { label: 'WhatsApp', href: 'https://wa.me/8801700000000', icon: <FaWhatsapp size={18} className="text-[#4FCE5D]" />, labelClassName: 'text-[#ea7f12]' },
+    ];
 
     return (
         <div className="bg-secondary text-secondary-foreground h-14 relative">
@@ -34,7 +44,7 @@ const MobileAppBar: React.FC<MobileAppBarProps> = ({ onMenuClick, onCartClick })
                         </Link>
                     </div>
 
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2">
                         <button onClick={() => setIsSearchOpen(true)} className="p-1">
                             <Search size={22} />
                         </button>
@@ -42,6 +52,16 @@ const MobileAppBar: React.FC<MobileAppBarProps> = ({ onMenuClick, onCartClick })
                             <ShoppingCart size={22} />
                             <span className="absolute top-0 right-0 bg-primary text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
                         </button>
+                        <div className="flex items-center">
+                            <NavDropdown
+                                trigger={
+                                    <button className="p-1 outline-none text-foreground flex items-center justify-center">
+                                        <MoreVertical className="text-white" size={22} />
+                                    </button>
+                                }
+                                items={moreDropdownItems}
+                            />
+                        </div>
                     </div>
                 </div>
             ) : (

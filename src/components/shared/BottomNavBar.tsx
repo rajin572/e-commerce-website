@@ -17,17 +17,16 @@ const BottomNavBar = () => {
     ];
 
     return (
-        <div className="md:hidden fixed bottom-0 left-0 right-0 h-[60px] bg-background border-t border-border z-40 pb-safe">
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 h-[60px] bg-background border-t border-border z-40 pb-safe">
             <div className="flex items-center justify-around h-full px-2">
                 {tabs.map((tab, index) => {
                     const isActive = pathname === tab.route;
                     return (
-                        <Link 
+                        <Link
                             key={index}
                             href={tab.route}
-                            className={`flex flex-col items-center justify-center w-full h-full space-y-1 relative transition-colors ${
-                                isActive ? 'text-primary' : 'text-text-secondary hover:text-foreground'
-                            }`}
+                            className={`flex flex-col items-center justify-center w-full h-full space-y-1 relative transition-colors ${isActive ? 'text-primary' : 'text-text-secondary hover:text-foreground'
+                                }`}
                         >
                             <div className="relative">
                                 {tab.icon}

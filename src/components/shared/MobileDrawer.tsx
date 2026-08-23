@@ -10,8 +10,6 @@ import ReusableSheet from '@/components/ui/CustomUi/ReuseableSheet';
 const PROMO_LINKS = [
     { name: "Combo", href: "/products/combos" },
     { name: "Offer Zone", href: "/products/offers" },
-    { name: "New Arrivals", href: "/products/new-arrivals" },
-    { name: "Featured Products", href: "/products/featured" },
 ];
 
 const DUMMY_CATEGORIES = [
