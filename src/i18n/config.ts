@@ -12,7 +12,7 @@ export const LOCALES = ["bn", "en"] as const;
 export type Locale = (typeof LOCALES)[number];
 
 /** Bengali-first: the storefront's primary market. */
-export const DEFAULT_LOCALE: Locale = "bn";
+export const DEFAULT_LOCALE: Locale = "en";
 
 /** Remembers the visitor's choice so `/` redirects them correctly next time. */
 export const LOCALE_COOKIE = "NEXT_LOCALE";

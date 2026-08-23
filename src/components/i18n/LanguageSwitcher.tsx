@@ -37,24 +37,24 @@ const LanguageSwitcher = ({ className = "" }: { className?: string }) => {
   };
 
   return (
-    <div className={`flex items-center gap-1 ${className}`}>
+    <div className={`flex items-center gap-2 ${className}`}>
       <Globe size={14} className="text-text-secondary" aria-hidden="true" />
-      {LOCALES.map((locale, index) => (
-        <React.Fragment key={locale}>
-          {index > 0 && <span className="text-text-muted text-xs">/</span>}
+      <div className="flex bg-muted rounded-full p-0.5">
+        {LOCALES.map((locale) => (
           <button
+            key={locale}
             onClick={() => switchTo(locale)}
             aria-current={locale === current ? "true" : undefined}
-            className={`text-xs font-medium transition-colors ${
+            className={`px-2.5 py-1 text-xs font-medium rounded-full transition-all duration-200 ${
               locale === current
-                ? "text-primary"
-                : "text-text-secondary hover:text-primary"
+                ? "bg-background text-primary shadow-sm"
+                : "text-text-secondary hover:text-foreground"
             }`}
           >
             {LOCALE_LABELS[locale]}
           </button>
-        </React.Fragment>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
