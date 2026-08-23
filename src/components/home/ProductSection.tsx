@@ -11,53 +11,7 @@ interface ProductSectionProps {
     products: ProductProps[];
 }
 
-export const DUMMY_PRODUCTS: ProductProps[] = [
-    {
-        id: "1",
-        name: "Pure Sundarban Honey",
-        slug: "pure-sundarban-honey",
-        image: "https://images.unsplash.com/photo-1587049352847-4d45543cc7c7?auto=format&fit=crop&w=600&q=80",
-        price: 850,
-        oldPrice: 1000,
-        rating: 4.8,
-        reviewCount: 124,
-        badge: 'bestsell',
-        stock: 50
-    },
-    {
-        id: "2",
-        name: "Premium Ghee (গাওয়া ঘি)",
-        slug: "premium-ghee",
-        image: "https://images.unsplash.com/photo-1589131922572-c276f0fa0402?auto=format&fit=crop&w=600&q=80",
-        price: 1200,
-        rating: 4.9,
-        reviewCount: 89,
-        badge: 'new',
-        stock: 30
-    },
-    {
-        id: "3",
-        name: "Mustard Oil (সরিষার তেল)",
-        slug: "mustard-oil",
-        image: "https://images.unsplash.com/photo-1474625121024-7595bfbc57ac?auto=format&fit=crop&w=600&q=80",
-        price: 280,
-        oldPrice: 320,
-        rating: 4.5,
-        reviewCount: 45,
-        badge: 'sale',
-        stock: 100
-    },
-    {
-        id: "4",
-        name: "Special Mixed Dry Fruits",
-        slug: "special-mixed-dry-fruits",
-        image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80",
-        price: 950,
-        rating: 4.7,
-        reviewCount: 210,
-        stock: 0 // Out of stock example
-    }
-];
+
 
 const ProductSection: React.FC<ProductSectionProps> = ({ title, viewAllLink, products }) => {
     return (

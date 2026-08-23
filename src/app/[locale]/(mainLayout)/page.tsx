@@ -11,7 +11,7 @@ const DUMMY_PRODUCTS: ProductProps[] = [
         id: "1",
         name: "প্রিমিয়াম কোয়ালিটি সুন্দরবনের খাঁটি মধু",
         slug: "sundarban-honey-premium",
-        image: "https://placehold.co/400x400/F9FAFB/F97316?text=Honey",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Runny_hunny.jpg/500px-Runny_hunny.jpg",
         price: 850,
         oldPrice: 1000,
         rating: 4.8,
@@ -23,7 +23,7 @@ const DUMMY_PRODUCTS: ProductProps[] = [
         id: "2",
         name: "গাওয়া ঘি (খাঁটি গাওয়া ঘি)",
         slug: "pure-gawa-ghee",
-        image: "https://placehold.co/400x400/F9FAFB/F97316?text=Ghee",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Butterschmalz-2.jpg/500px-Butterschmalz-2.jpg",
         price: 1200,
         rating: 4.9,
         reviewCount: 89,
@@ -34,7 +34,7 @@ const DUMMY_PRODUCTS: ProductProps[] = [
         id: "3",
         name: "সরিষার তেল (১ লিটার)",
         slug: "mustard-oil-1l",
-        image: "https://placehold.co/400x400/F9FAFB/F97316?text=Mustard+Oil",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Mustard_Oil_%26_Seeds_-_Kolkata_2003-10-31_00537.JPG/500px-Mustard_Oil_%26_Seeds_-_Kolkata_2003-10-31_00537.JPG",
         price: 280,
         oldPrice: 320,
         rating: 4.5,
@@ -46,7 +46,7 @@ const DUMMY_PRODUCTS: ProductProps[] = [
         id: "4",
         name: "স্পেশাল মিক্সড ড্রাই ফ্রুটস",
         slug: "special-mixed-dry-fruits",
-        image: "https://placehold.co/400x400/F9FAFB/F97316?text=Dry+Fruits",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/DriedfruitS.jpg/500px-DriedfruitS.jpg",
         price: 950,
         rating: 4.7,
         reviewCount: 210,
@@ -62,7 +62,7 @@ const HomePage = () => {
             <FeaturedCategories />
             
             <ProductSection 
-                title="Top Selling Products" 
+                title="Best Selling Products" 
                 viewAllLink="/shop?sort=bestselling" 
                 products={DUMMY_PRODUCTS} 
             />

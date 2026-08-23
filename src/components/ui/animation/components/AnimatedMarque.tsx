@@ -1,7 +1,7 @@
 "use client";
 import gsap from "gsap";
 import Image, { StaticImageData } from "next/image";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -16,10 +16,10 @@ export type TextItem = {
     mod?: "" | "--accent" | "--outline" | "sep";
 };
 
-type MarqueeItem = string | StaticImageData | TextItem;
+type MarqueeItem = string | StaticImageData | TextItem | React.ReactNode;
 
 const isTextItem = (item: MarqueeItem): item is TextItem =>
-    typeof item === "object" && item !== null && "text" in item;
+    typeof item === "object" && item !== null && "text" in item && !("type" in item && "props" in item);
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -284,6 +284,12 @@ const ParallaxMarquee = ({
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
+            onClickCapture={(e) => {
+                if (draggable && Math.abs(lastDragX.current - dragStartX.current) > 3) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            }}
         >
             <div
                 ref={trackRef}
@@ -308,6 +314,18 @@ const ParallaxMarquee = ({
                                 >
                                     {item.text}
                                 </span>
+                            </div>
+                        );
+                    }
+
+                    if (typeof item !== 'string' && !(item && typeof item === 'object' && 'src' in item)) {
+                        return (
+                            <div
+                                key={i}
+                                className="shrink-0 bg-transparent! flex justify-center items-center"
+                                style={{ width: itemWidth }}
+                            >
+                                {item as React.ReactNode}
                             </div>
                         );
                     }
