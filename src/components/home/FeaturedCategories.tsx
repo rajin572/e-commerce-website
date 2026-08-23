@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import LocaleLink from '@/components/i18n/LocaleLink';
 
 const FEATURED_CATEGORIES = [
     { name: "মধু", image: "https://placehold.co/100x100/F9FAFB/F97316?text=Honey", slug: "honey" },
@@ -23,7 +23,7 @@ const FeaturedCategories = () => {
                 
                 <div className="flex overflow-x-auto pb-4 scrollbar-none gap-4 md:gap-6 justify-start md:justify-center">
                     {FEATURED_CATEGORIES.map((cat, idx) => (
-                        <Link 
+                        <LocaleLink 
                             key={idx} 
                             href={`/category/${cat.slug}`}
                             className="flex flex-col items-center gap-2 min-w-[80px] md:min-w-[100px] group"
@@ -40,7 +40,7 @@ const FeaturedCategories = () => {
                             <span className="text-sm font-medium text-center text-text-secondary group-hover:text-primary transition-colors">
                                 {cat.name}
                             </span>
-                        </Link>
+                        </LocaleLink>
                     ))}
                 </div>
             </div>

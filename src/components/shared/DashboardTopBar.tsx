@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/link';
+import LocaleLink from '@/components/i18n/LocaleLink';
 import { Bell, Search, User } from 'lucide-react';
 import { SidebarTrigger } from "@/components/ui/sidebar";
 
@@ -28,13 +28,13 @@ const DashboardTopBar = () => {
                 
                 <div className="h-5 w-px bg-border mx-1"></div>
                 
-                <Link href="/dashboard/profile" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <LocaleLink href="/dashboard/profile" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                     <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold overflow-hidden border border-primary/20">
                         {/* You can replace this with an actual Image component if user has avatar */}
                         <User size={16} />
                     </div>
                     <span className="text-sm font-semibold text-foreground hidden sm:block">Rahim Uddin</span>
-                </Link>
+                </LocaleLink>
             </div>
         </header>
     );

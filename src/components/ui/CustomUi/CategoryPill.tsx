@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import LocaleLink from '@/components/i18n/LocaleLink';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
@@ -18,7 +18,7 @@ export const CategoryPill = ({
   className,
 }: CategoryPillProps) => {
   return (
-    <Link
+    <LocaleLink
       href={href}
       className={cn(
         'group flex items-center gap-2 rounded-full border px-4 py-2 transition-all hover:border-primary hover:shadow-sm',
@@ -37,6 +37,6 @@ export const CategoryPill = ({
         </div>
       )}
       <span className="text-sm whitespace-nowrap">{label}</span>
-    </Link>
+    </LocaleLink>
   );
 };

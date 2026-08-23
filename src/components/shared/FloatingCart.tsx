@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { ShoppingCart } from 'lucide-react';
-import Link from 'next/link';
+import LocaleLink from '@/components/i18n/LocaleLink';
 
 const FloatingCart = ({ onClick }: { onClick: () => void }) => {
     return (

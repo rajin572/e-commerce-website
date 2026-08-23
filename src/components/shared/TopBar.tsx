@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState } from 'react';
-import Link from 'next/link';
+import LocaleLink from '@/components/i18n/LocaleLink';
+import LanguageSwitcher from '@/components/i18n/LanguageSwitcher';
+import { useT } from '@/components/i18n/DictionaryProvider';
 import Image from 'next/image';
 import { Search, MapPin, User, Heart, ShoppingCart, Menu, Contact, FileQuestion, PhoneCall } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
@@ -11,6 +13,7 @@ import Container from '../ui/CustomUi/Container';
 import { NavDropdown, DropdownItem } from './NavDropdown';
 
 const TopBar = ({ onCartClick }: { onCartClick?: () => void }) => {
+    const t = useT();
     const [searchQuery, setSearchQuery] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -27,9 +30,9 @@ const TopBar = ({ onCartClick }: { onCartClick?: () => void }) => {
     };
 
     const moreDropdownItems: DropdownItem[] = [
-        { label: 'About Us', href: '/about', icon: <Contact size={18} className="text-[#102a3a]" /> },
+        { label: t.footer.aboutUs, href: '/about', icon: <Contact size={18} className="text-[#102a3a]" /> },
         { label: 'Wishlists', href: '/wishlist', icon: <Heart size={18} className="text-[#102a3a]" /> },
-        { label: 'Faqs', href: '/faqs', icon: <FileQuestion size={18} className="text-[#102a3a]" /> },
+        { label: t.footer.faq, href: '/faqs', icon: <FileQuestion size={18} className="text-[#102a3a]" /> },
         { label: 'Call Us', href: 'tel:+8801700000000', icon: <PhoneCall size={18} className="text-[#102a3a]" /> },
         { label: 'WhatsApp', href: 'https://wa.me/8801700000000', icon: <FaWhatsapp size={18} className="text-[#4FCE5D]" />, labelClassName: 'text-[#ea7f12]' },
     ];
@@ -39,7 +42,7 @@ const TopBar = ({ onCartClick }: { onCartClick?: () => void }) => {
             <Container>
                 <div className=" h-16 flex items-center justify-between gap-4">
                     {/* Logo */}
-                    <Link href="/" className="flex-shrink-0">
+                    <LocaleLink href="/" className="flex-shrink-0">
                         <Image
                             src={AllImages.logo}
                             alt="ECommerce"
@@ -47,13 +50,13 @@ const TopBar = ({ onCartClick }: { onCartClick?: () => void }) => {
                             height={40}
                             className="h-10 w-auto object-contain"
                         />
-                    </Link>
+                    </LocaleLink>
 
                     {/* Search Bar */}
                     <div className="flex-grow max-w-2xl relative hidden lg:block">
                         <input
                             type="text"
-                            placeholder="Search for products (e.g. holud, yellow mustard)..."
+                            placeholder={t.common.search}
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             className="w-full h-10 pl-4 pr-10 rounded text-foreground bg-[#F5F5F5] outline-none border focus:border-primary"
@@ -65,27 +68,29 @@ const TopBar = ({ onCartClick }: { onCartClick?: () => void }) => {
 
                     {/* Right Actions */}
                     <div className="flex items-center gap-6 flex-shrink-0 text-sm font-medium">
-                        <Link href="/track-order" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                        <LanguageSwitcher />
+
+                        <LocaleLink href="/track-order" className="flex items-center gap-1.5 hover:text-primary transition-colors">
                             <MapPin size={18} />
-                            <span>Track Order</span>
-                        </Link>
+                            <span>{t.nav.trackOrder}</span>
+                        </LocaleLink>
 
                         {isLoggedIn ? (
                             <button onClick={handleLogout} className="flex items-center gap-1.5 hover:text-primary transition-colors">
                                 <User size={18} />
-                                <span>Logout</span>
+                                <span>{t.nav.signOut}</span>
                             </button>
                         ) : (
-                            <Link href="/sign-in" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                            <LocaleLink href="/sign-in" className="flex items-center gap-1.5 hover:text-primary transition-colors">
                                 <User size={18} />
-                                <span>Sign In</span>
-                            </Link>
+                                <span>{t.nav.signIn}</span>
+                            </LocaleLink>
                         )}
 
-                        <Link href="/wishlist" className="flex items-center gap-1.5 hover:text-primary transition-colors relative">
+                        <LocaleLink href="/wishlist" className="flex items-center gap-1.5 hover:text-primary transition-colors relative">
                             <Heart size={18} />
                             <span className="absolute -top-2 -right-2 bg-primary text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
-                        </Link>
+                        </LocaleLink>
 
                         <button onClick={onCartClick} className="flex items-center gap-1.5 hover:text-primary transition-colors relative">
                             <ShoppingCart size={18} />
@@ -97,7 +102,7 @@ const TopBar = ({ onCartClick }: { onCartClick?: () => void }) => {
                                 trigger={
                                     <button className="flex items-center gap-1.5 hover:text-primary transition-colors outline-none">
                                         <Menu size={18} />
-                                        <span>More</span>
+                                        <span>{t.nav.more}</span>
                                     </button>
                                 }
                                 items={moreDropdownItems}

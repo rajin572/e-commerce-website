@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Link from 'next/link';
+import LocaleLink from '@/components/i18n/LocaleLink';
 
 export interface DropdownItem {
   label: string;
@@ -60,7 +60,7 @@ export function NavDropdown({ trigger, items, align = "end", contentClassName }:
           {items.map((item, index) => (
             <React.Fragment key={index}>
               <DropdownMenuItem
-                render={item.href ? <Link href={item.href} /> : <div />}
+                render={item.href ? <LocaleLink href={item.href} /> : <div />}
                 onClick={item.onClick}
                 className={`cursor-pointer py-2.5 px-3 rounded-none flex items-center gap-3 w-full ${item.className || ''}`}
               >

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import Link from 'next/link';
+import LocaleLink from '@/components/i18n/LocaleLink';
 import Image from 'next/image';
 import { Menu, Search, ShoppingCart, ArrowLeft, MoreVertical, Contact, Heart, FileQuestion, PhoneCall } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
@@ -33,7 +33,7 @@ const MobileAppBar: React.FC<MobileAppBarProps> = ({ onMenuClick, onCartClick })
                         <button onClick={onMenuClick} className="p-1 -ml-1">
                             <Menu size={24} />
                         </button>
-                        <Link href="/">
+                        <LocaleLink href="/">
                             <Image
                                 src={AllImages.logo}
                                 alt="ECommerce"
@@ -41,7 +41,7 @@ const MobileAppBar: React.FC<MobileAppBarProps> = ({ onMenuClick, onCartClick })
                                 height={30}
                                 className="h-8 w-auto object-contain"
                             />
-                        </Link>
+                        </LocaleLink>
                     </div>
 
                     <div className="flex items-center gap-2">

@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import Link from "next/link";
+import LocaleLink from '@/components/i18n/LocaleLink';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -83,7 +83,7 @@ export default function HorizontalScroll() {
                 style={{ willChange: "transform" }}
             >
                 {IMAGES.map((src, i) => (
-                    <Link
+                    <LocaleLink
                         href={src}
                         target="_blank"
                         data-cursor-label={`Visit site `}
@@ -103,7 +103,7 @@ export default function HorizontalScroll() {
                             fetchPriority="high"
                             priority
                         />
-                    </Link>
+                    </LocaleLink>
                 ))}
             </div>
         </section>

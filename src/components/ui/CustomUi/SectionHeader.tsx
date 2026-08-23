@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import LocaleLink from '@/components/i18n/LocaleLink';
 
 interface SectionHeaderProps {
   title: string;
@@ -32,13 +32,13 @@ export const SectionHeader = ({
         <div className="flex items-center gap-4">
           {children}
           {action && (
-            <Link 
+            <LocaleLink 
               href={action.href}
               className="text-primary hover:text-primary/80 text-sm font-medium flex items-center gap-1 group transition-colors"
             >
               {action.label}
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+            </LocaleLink>
           )}
         </div>
       )}

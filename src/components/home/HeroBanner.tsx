@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import LocaleLink from '@/components/i18n/LocaleLink';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Container from '@/components/ui/CustomUi/Container';
 
@@ -152,7 +152,7 @@ const HeroBanner = () => {
                                     : `transition-opacity duration-700 ease-in-out ${isActive ? '' : 'delay-700'}`;
 
                                 return (
-                                    <Link
+                                    <LocaleLink
                                         key={slide.id}
                                         href={slide.ctaLink}
                                         className={`absolute inset-0 block ${isActive ? '' : 'pointer-events-none'} ${transitionClass}`}
@@ -179,7 +179,7 @@ const HeroBanner = () => {
                                             className="object-cover pointer-events-none"
                                             draggable={false}
                                         />
-                                    </Link>
+                                    </LocaleLink>
                                 );
                             })}
                         </div>
@@ -217,7 +217,7 @@ const HeroBanner = () => {
                     </div>
 
                     {/* Right: Static Promo Banner */}
-                    <Link
+                    <LocaleLink
                         href="/products/offers"
                         className="relative w-full lg:w-[34%] bg-muted overflow-hidden rounded-xl shadow-sm group block shrink-0 aspect-square"
                     >
@@ -229,7 +229,7 @@ const HeroBanner = () => {
                             priority
                             className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105 aspect-square"
                         />
-                    </Link>
+                    </LocaleLink>
                 </div>
             </Container>
         </div>

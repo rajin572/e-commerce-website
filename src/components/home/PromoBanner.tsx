@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import LocaleLink from '@/components/i18n/LocaleLink';
 
 interface PromoBannerProps {
     imageUrl: string;
@@ -26,12 +26,12 @@ const PromoBanner: React.FC<PromoBannerProps> = ({ imageUrl, title, subtitle, li
                     <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex flex-col justify-center px-8 md:px-16 text-white">
                         <h3 className="text-2xl md:text-4xl font-bold mb-2">{title}</h3>
                         {subtitle && <p className="text-sm md:text-lg mb-6 opacity-90">{subtitle}</p>}
-                        <Link 
+                        <LocaleLink 
                             href={link}
                             className="bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-md font-semibold transition-colors w-max"
                         >
                             {buttonText}
-                        </Link>
+                        </LocaleLink>
                     </div>
                 </div>
             </div>

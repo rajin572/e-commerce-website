@@ -7,7 +7,7 @@ import {
   useSidebar,
 } from "../ui/sidebar";
 import { Button } from "../ui/button";
-import Link from "next/link";
+import LocaleLink from '@/components/i18n/LocaleLink';
 
 export function AppTitle() {
   const { setOpenMobile } = useSidebar();
@@ -19,14 +19,14 @@ export function AppTitle() {
           className="gap-0 py-0 hover:bg-transparent active:bg-transparent"
           render={<div />}
         >
-          <Link
+          <LocaleLink
             href="/"
             onClick={() => setOpenMobile(false)}
             className="grid flex-1 text-start text-sm leading-tight"
           >
             <span className="truncate font-bold">Shadcn-Admin</span>
             <span className="truncate text-xs">Vite + ShadcnUI</span>
-          </Link>
+          </LocaleLink>
           <ToggleSidebar />
         </SidebarMenuButton>
       </SidebarMenuItem>

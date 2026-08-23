@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/link';
+import LocaleLink from '@/components/i18n/LocaleLink';
 import Image from 'next/image';
 import { Trash2, Plus, Minus, ShoppingCart } from 'lucide-react';
 import ReusableSheet from '@/components/ui/CustomUi/ReuseableSheet';
@@ -35,20 +35,20 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose }) => {
                         <span className="text-xl font-bold text-primary">৳1450</span>
                     </div>
                     <div className="flex flex-col gap-2">
-                        <Link 
+                        <LocaleLink 
                             href="/cart" 
                             onClick={onClose}
                             className="w-full py-2.5 rounded-md border-2 border-primary text-primary font-semibold text-center hover:bg-primary/5 transition-colors"
                         >
                             View Cart
-                        </Link>
-                        <Link 
+                        </LocaleLink>
+                        <LocaleLink 
                             href="/checkout" 
                             onClick={onClose}
                             className="w-full py-2.5 rounded-md bg-primary text-white font-semibold text-center hover:bg-primary-dark transition-colors"
                         >
                             Checkout
-                        </Link>
+                        </LocaleLink>
                     </div>
                 </div>
             }

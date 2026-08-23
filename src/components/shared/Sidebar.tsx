@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import LocaleLink from '@/components/i18n/LocaleLink';
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
@@ -36,7 +36,7 @@ export function Sidebar() {
   return (
     <SidebarPrimitive collapsible="icon">
       <SidebarHeader className="items-center py-4">
-        <Link href="/" className="flex items-center justify-center">
+        <LocaleLink href="/" className="flex items-center justify-center">
           <Image
             src={AllImages.logo}
             alt="ECommerce"
@@ -49,7 +49,7 @@ export function Sidebar() {
             className="hidden h-auto w-7 shrink-0 group-data-[collapsible=icon]:block object-cover object-left"
             priority
           />
-        </Link>
+        </LocaleLink>
       </SidebarHeader>
 
       <SidebarContent className="px-2">
@@ -59,7 +59,7 @@ export function Sidebar() {
             return (
               <SidebarMenuItem key={label}>
                 <SidebarMenuButton
-                  render={<Link href={href} />}
+                  render={<LocaleLink href={href} />}
                   isActive={isActive}
                   tooltip={label}
                   size="lg"
@@ -79,13 +79,13 @@ export function Sidebar() {
       </SidebarContent>
 
       <SidebarFooter className="pb-4">
-        <Link
+        <LocaleLink
           href="/sign-in"
           className="flex items-center justify-center gap-2 rounded-xl bg-destructive/10 px-4 py-3 text-[15px] font-semibold text-destructive transition-colors hover:bg-destructive hover:text-white group-data-[collapsible=icon]:size-8 group-data-[collapsible=icon]:rounded-md group-data-[collapsible=icon]:p-0 mx-2"
         >
           <LogOut className="size-5" />
           <span className="group-data-[collapsible=icon]:hidden">Logout</span>
-        </Link>
+        </LocaleLink>
       </SidebarFooter>
     </SidebarPrimitive>
   );

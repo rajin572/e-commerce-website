@@ -1,0 +1,99 @@
+{
+  "meta": {
+    "siteName": "ECommerce",
+    "tagline": "Pure and natural products, delivered",
+    "description": "Pure honey, ghee, mustard oil, spices and dry fruits — sourced directly and delivered nationwide with cash on delivery."
+  },
+  "common": {
+    "home": "Home",
+    "shop": "Shop",
+    "search": "Search for products (e.g. holud, yellow mustard)...",
+    "addToCart": "Add To Cart",
+    "buyNow": "Buy Now",
+    "outOfStock": "Out of Stock",
+    "inStock": "In Stock",
+    "viewAll": "View All",
+    "filters": "Filters",
+    "next": "Next",
+    "loading": "Loading...",
+    "currency": "৳"
+  },
+  "nav": {
+    "trackOrder": "Track Order",
+    "signIn": "Sign In",
+    "signOut": "Logout",
+    "more": "More",
+    "combo": "Combo",
+    "offerZone": "Offer Zone",
+    "categories": "Categories",
+    "language": "Language"
+  },
+  "badge": {
+    "new": "New Arrival",
+    "sale": "Sale",
+    "bestsell": "Best Seller",
+    "combo": "Combo Offer",
+    "outOfStock": "Out of Stock"
+  },
+  "shop": {
+    "title": "All Products",
+    "showingResults": "Showing {first}–{last} of {total} results",
+    "sortBy": "Sort by:",
+    "categories": "Categories",
+    "allProducts": "All Products",
+    "filterByPrice": "Filter by Price",
+    "availability": "Availability",
+    "price": "Price",
+    "apply": "Filter",
+    "noProducts": "No products match these filters.",
+    "clearFilters": "Clear filters",
+    "gridView": "Grid view",
+    "listView": "List view",
+    "sort": {
+      "default": "Default sorting",
+      "popularity": "Popularity",
+      "latest": "Latest",
+      "priceAsc": "Price: low to high",
+      "priceDesc": "Price: high to low"
+    }
+  },
+  "product": {
+    "reviews": "Reviews",
+    "reviewCount": "({count} Reviews)",
+    "save": "Save",
+    "weight": "Weight",
+    "quantity": "Quantity",
+    "sku": "SKU:",
+    "category": "Category:",
+    "availability": "Availability:",
+    "unitsInStock": "{count} in Stock",
+    "share": "Share:",
+    "orderOnWhatsapp": "Order On WhatsApp",
+    "description": "Description",
+    "productOverview": "Product Overview",
+    "relatedProducts": "Related Products",
+    "writeReview": "Write a Review",
+    "basedOnReviews": "Based on {count} reviews",
+    "verifiedPurchase": "Verified Purchase",
+    "stars": "Stars",
+    "addToWishlist": "Add to wishlist"
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout",
+    "continueShopping": "Continue Shopping",
+    "remove": "Remove"
+  },
+  "footer": {
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "returnPolicy": "Return Policy",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved."
+  }
+}

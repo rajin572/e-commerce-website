@@ -33,7 +33,7 @@ import {
   type NavGroup as NavGroupProps,
 } from "./types";
 import { usePathname } from "next/navigation";
-import Link from "next/link";
+import LocaleLink from '@/components/i18n/LocaleLink';
 
 export function NavGroup({ title, items }: NavGroupProps) {
   const { state, isMobile } = useSidebar();
@@ -69,7 +69,7 @@ function SidebarMenuLink({ item, href }: { item: NavLink; href: string }) {
   return (
     <SidebarMenuItem>
       <SidebarMenuButton
-        render={<Link href={item.url} onClick={() => setOpenMobile(false)} />}
+        render={<LocaleLink href={item.url} onClick={() => setOpenMobile(false)} />}
         isActive={checkIsActive(href, item)}
         tooltip={item.title}
       >
@@ -107,7 +107,7 @@ function SidebarMenuCollapsible({
             <SidebarMenuSubItem key={subItem.title}>
               <SidebarMenuSubButton
                 render={
-                  <Link href={subItem.url} onClick={() => setOpenMobile(false)} />
+                  <LocaleLink href={subItem.url} onClick={() => setOpenMobile(false)} />
                 }
                 isActive={checkIsActive(href, subItem)}
               >
@@ -155,7 +155,7 @@ function SidebarMenuCollapsedDropdown({
             <DropdownMenuItem
               key={`${sub.title}-${sub.url}`}
               render={
-                <Link
+                <LocaleLink
                   href={sub.url}
                   className={`${checkIsActive(href, sub) ? "bg-secondary" : ""}`}
                 />

@@ -1,0 +1,99 @@
+{
+  "meta": {
+    "siteName": "ECommerce",
+    "tagline": "খাঁটি ও প্রাকৃতিক পণ্যের অনলাইন বাজার",
+    "description": "খাঁটি মধু, ঘি, সরিষার তেল, মশলা ও ড্রাই ফ্রুটস — সরাসরি উৎস থেকে সংগ্রহ করা প্রাকৃতিক পণ্য, ক্যাশ অন ডেলিভারিতে সারা দেশে।"
+  },
+  "common": {
+    "home": "হোম",
+    "shop": "শপ",
+    "search": "পণ্য খুঁজুন (যেমন: হলুদ, সরিষা)...",
+    "addToCart": "কার্টে যোগ করুন",
+    "buyNow": "এখনই কিনুন",
+    "outOfStock": "স্টক শেষ",
+    "inStock": "স্টকে আছে",
+    "viewAll": "সব দেখুন",
+    "filters": "ফিল্টার",
+    "next": "পরবর্তী",
+    "loading": "লোড হচ্ছে...",
+    "currency": "৳"
+  },
+  "nav": {
+    "trackOrder": "অর্ডার ট্র্যাক করুন",
+    "signIn": "সাইন ইন",
+    "signOut": "লগ আউট",
+    "more": "আরও",
+    "combo": "কম্বো",
+    "offerZone": "অফার জোন",
+    "categories": "ক্যাটাগরি",
+    "language": "ভাষা"
+  },
+  "badge": {
+    "new": "নতুন এসেছে",
+    "sale": "ছাড়",
+    "bestsell": "বেস্ট সেলার",
+    "combo": "কম্বো অফার",
+    "outOfStock": "স্টক শেষ"
+  },
+  "shop": {
+    "title": "সব পণ্য",
+    "showingResults": "{total} টি পণ্যের মধ্যে {first}–{last} দেখানো হচ্ছে",
+    "sortBy": "সাজান:",
+    "categories": "ক্যাটাগরি",
+    "allProducts": "সব পণ্য",
+    "filterByPrice": "দাম অনুযায়ী ফিল্টার",
+    "availability": "স্টক",
+    "price": "দাম",
+    "apply": "ফিল্টার",
+    "noProducts": "এই ফিল্টারে কোনো পণ্য পাওয়া যায়নি।",
+    "clearFilters": "ফিল্টার মুছে ফেলুন",
+    "gridView": "গ্রিড ভিউ",
+    "listView": "লিস্ট ভিউ",
+    "sort": {
+      "default": "ডিফল্ট",
+      "popularity": "জনপ্রিয়তা",
+      "latest": "নতুন",
+      "priceAsc": "দাম: কম থেকে বেশি",
+      "priceDesc": "দাম: বেশি থেকে কম"
+    }
+  },
+  "product": {
+    "reviews": "রিভিউ",
+    "reviewCount": "({count} টি রিভিউ)",
+    "save": "সাশ্রয়",
+    "weight": "ওজন",
+    "quantity": "পরিমাণ",
+    "sku": "এসকেইউ:",
+    "category": "ক্যাটাগরি:",
+    "availability": "স্টক:",
+    "unitsInStock": "{count} টি স্টকে আছে",
+    "share": "শেয়ার:",
+    "orderOnWhatsapp": "হোয়াটসঅ্যাপে অর্ডার করুন",
+    "description": "বিবরণ",
+    "productOverview": "পণ্য পরিচিতি",
+    "relatedProducts": "সম্পর্কিত পণ্য",
+    "writeReview": "রিভিউ লিখুন",
+    "basedOnReviews": "{count} টি রিভিউর ভিত্তিতে",
+    "verifiedPurchase": "ভেরিফায়েড ক্রয়",
+    "stars": "স্টার",
+    "addToWishlist": "উইশলিস্টে যোগ করুন"
+  },
+  "cart": {
+    "title": "আপনার কার্ট",
+    "empty": "আপনার কার্ট খালি",
+    "subtotal": "সাবটোটাল",
+    "checkout": "চেকআউট",
+    "continueShopping": "কেনাকাটা চালিয়ে যান",
+    "remove": "সরিয়ে ফেলুন"
+  },
+  "footer": {
+    "aboutUs": "আমাদের সম্পর্কে",
+    "contact": "যোগাযোগ",
+    "faq": "সচরাচর জিজ্ঞাসা",
+    "privacy": "প্রাইভেসি পলিসি",
+    "terms": "শর্তাবলী",
+    "returnPolicy": "রিটার্ন পলিসি",
+    "followUs": "আমাদের ফলো করুন",
+    "rights": "সর্বস্বত্ব সংরক্ষিত।"
+  }
+}

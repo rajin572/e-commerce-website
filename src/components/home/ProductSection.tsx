@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/link';
+import LocaleLink from '@/components/i18n/LocaleLink';
 import { ArrowRight } from 'lucide-react';
 import ProductCard, { ProductProps } from '../shared/ProductCard';
 
@@ -70,9 +70,9 @@ const ProductSection: React.FC<ProductSectionProps> = ({ title, viewAllLink, pro
                     </h2>
                     
                     {viewAllLink && (
-                        <Link href={viewAllLink} className="text-sm font-semibold text-primary hover:text-primary-dark flex items-center gap-1">
+                        <LocaleLink href={viewAllLink} className="text-sm font-semibold text-primary hover:text-primary-dark flex items-center gap-1">
                             View All <ArrowRight size={16} />
-                        </Link>
+                        </LocaleLink>
                     )}
                 </div>
 

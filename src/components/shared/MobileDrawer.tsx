@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import Link from 'next/link';
+import LocaleLink from '@/components/i18n/LocaleLink';
 import Image from 'next/image';
 import { User, MapPin, Heart, Info, Phone, MessageCircle, ChevronDown } from 'lucide-react';
 import { AllImages } from '../../../public/images/AllImages';
@@ -78,9 +78,9 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
                     <div>
                         <p className="text-sm font-medium text-foreground">Welcome Guest</p>
                         <div className="flex gap-2 text-xs text-primary font-semibold mt-1">
-                            <Link href="/sign-in" onClick={onClose}>Login</Link>
+                            <LocaleLink href="/sign-in" onClick={onClose}>Login</LocaleLink>
                             <span>|</span>
-                            <Link href="/sign-up" onClick={onClose}>Register</Link>
+                            <LocaleLink href="/sign-up" onClick={onClose}>Register</LocaleLink>
                         </div>
                     </div>
                 </div>
@@ -89,25 +89,25 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
                 <div className="p-2 border-b border-border">
                     <ul className="flex flex-col">
                         <li>
-                            <Link
+                            <LocaleLink
                                 href="/"
                                 className="block p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors"
                                 onClick={onClose}
                             >
                                 Home
-                            </Link>
+                            </LocaleLink>
                         </li>
 
                         {/* Promo Links */}
                         {PROMO_LINKS.map((promo, idx) => (
                             <li key={`promo-${idx}`}>
-                                <Link
+                                <LocaleLink
                                     href={promo.href}
                                     className="block p-3 text-sm font-medium text-primary hover:bg-muted rounded transition-colors"
                                     onClick={onClose}
                                 >
                                     {promo.name}
-                                </Link>
+                                </LocaleLink>
                             </li>
                         ))}
 
@@ -152,36 +152,36 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
                                                             .replace(/ /g, '-');
                                                         return (
                                                             <li key={`sub-${subIdx}`}>
-                                                                <Link
+                                                                <LocaleLink
                                                                     href={`/products/category/${categorySlug}/${subSlug}`}
                                                                     className="block py-2 px-3 text-sm text-muted-foreground hover:text-primary transition-colors"
                                                                     onClick={onClose}
                                                                 >
                                                                     {sub}
-                                                                </Link>
+                                                                </LocaleLink>
                                                             </li>
                                                         );
                                                     })}
                                                     <li>
-                                                        <Link
+                                                        <LocaleLink
                                                             href={`/products/category/${categorySlug}`}
                                                             className="block py-2 px-3 text-sm font-semibold text-primary hover:bg-muted rounded transition-colors mt-1"
                                                             onClick={onClose}
                                                         >
                                                             View All {category.name}
-                                                        </Link>
+                                                        </LocaleLink>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </>
                                     ) : (
-                                        <Link
+                                        <LocaleLink
                                             href={`/products/category/${categorySlug}`}
                                             className="block p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors"
                                             onClick={onClose}
                                         >
                                             {category.name}
-                                        </Link>
+                                        </LocaleLink>
                                     )}
                                 </li>
                             );
@@ -194,19 +194,19 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
                     <p className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Quick Links</p>
                     <ul className="flex flex-col">
                         <li>
-                            <Link href="/track-order" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
+                            <LocaleLink href="/track-order" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
                                 <MapPin size={18} className="text-muted-foreground" /> Track Order
-                            </Link>
+                            </LocaleLink>
                         </li>
                         <li>
-                            <Link href="/wishlist" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
+                            <LocaleLink href="/wishlist" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
                                 <Heart size={18} className="text-muted-foreground" /> Wishlist
-                            </Link>
+                            </LocaleLink>
                         </li>
                         <li>
-                            <Link href="/account" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
+                            <LocaleLink href="/account" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
                                 <User size={18} className="text-muted-foreground" /> My Account
-                            </Link>
+                            </LocaleLink>
                         </li>
                     </ul>
                 </div>
@@ -216,19 +216,19 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
                     <p className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Information</p>
                     <ul className="flex flex-col">
                         <li>
-                            <Link href="/about" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
+                            <LocaleLink href="/about" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
                                 <Info size={18} className="text-muted-foreground" /> About Us
-                            </Link>
+                            </LocaleLink>
                         </li>
                         <li>
-                            <Link href="/contact" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
+                            <LocaleLink href="/contact" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
                                 <Phone size={18} className="text-muted-foreground" /> Contact Us
-                            </Link>
+                            </LocaleLink>
                         </li>
                         <li>
-                            <Link href="/faq" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
+                            <LocaleLink href="/faq" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
                                 <MessageCircle size={18} className="text-muted-foreground" /> FAQ
-                            </Link>
+                            </LocaleLink>
                         </li>
                     </ul>
                 </div>

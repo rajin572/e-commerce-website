@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import LocaleLink from '@/components/i18n/LocaleLink';
 import { Heart, ShoppingCart, Star } from 'lucide-react';
 
 export interface ProductProps {
@@ -46,19 +46,19 @@ const ProductCard: React.FC<{ product: ProductProps }> = ({ product }) => {
                 <Heart size={16} />
             </button>
 
-            <Link href={`/product/${product.slug}`} className="block relative aspect-square overflow-hidden bg-white">
+            <LocaleLink href={`/product/${product.slug}`} className="block relative aspect-square overflow-hidden bg-white">
                 <Image 
                     src={product.image} 
                     alt={product.name} 
                     fill 
                     className={`object-contain p-4 group-hover:scale-105 transition-transform duration-300 ${isOutOfStock ? 'opacity-50 grayscale' : ''}`}
                 />
-            </Link>
+            </LocaleLink>
 
             <div className="p-3 flex flex-col flex-grow">
-                <Link href={`/product/${product.slug}`} className="text-sm md:text-base font-medium text-foreground line-clamp-2 hover:text-primary transition-colors mb-1">
+                <LocaleLink href={`/product/${product.slug}`} className="text-sm md:text-base font-medium text-foreground line-clamp-2 hover:text-primary transition-colors mb-1">
                     {product.name}
-                </Link>
+                </LocaleLink>
 
                 <div className="flex items-center gap-1 mb-2 mt-auto">
                     <div className="flex text-[#F59F0A]">

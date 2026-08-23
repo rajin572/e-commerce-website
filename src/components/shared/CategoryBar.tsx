@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/link';
+import LocaleLink from '@/components/i18n/LocaleLink';
 import { ChevronDown } from 'lucide-react';
 import Container from '../ui/CustomUi/Container';
 
@@ -47,12 +47,12 @@ const CategoryBar = () => {
                         {/* Promotional Links */}
                         {PROMO_LINKS.map((promo, idx) => (
                             <li key={`promo-${idx}`} className="h-12 flex items-center">
-                                <Link
+                                <LocaleLink
                                     href={promo.href}
                                     className="flex items-center gap-1 hover:text-primary transition-colors h-full"
                                 >
                                     {promo.name}
-                                </Link>
+                                </LocaleLink>
                             </li>
                         ))}
 
@@ -64,13 +64,13 @@ const CategoryBar = () => {
 
                             return (
                                 <li key={`cat-${idx}`} className="group relative h-12 flex items-center">
-                                    <Link
+                                    <LocaleLink
                                         href={`/products/category/${categorySlug}`}
                                         className="flex items-center gap-1 hover:text-primary transition-colors h-full"
                                     >
                                         {category.name}
                                         {category.hasSub && <ChevronDown size={14} className="mt-0.5 group-hover:rotate-180 transition-transform duration-200" />}
-                                    </Link>
+                                    </LocaleLink>
 
                                     {/* Dropdown for subcategories (Mega menu template) */}
                                     {category.hasSub && category.subCategories && (
@@ -79,18 +79,18 @@ const CategoryBar = () => {
                                                 {category.subCategories.map((sub, subIdx) => {
                                                     const subSlug = sub.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
                                                     return (
-                                                        <Link
+                                                        <LocaleLink
                                                             key={`sub-${subIdx}`}
                                                             href={`/products/category/${categorySlug}/${subSlug}`}
                                                             className="p-2 hover:bg-muted text-text-secondary hover:text-primary rounded text-sm transition-colors"
                                                         >
                                                             {sub}
-                                                        </Link>
+                                                        </LocaleLink>
                                                     );
                                                 })}
-                                                <Link href={`/products/category/${categorySlug}`} className="p-2 hover:bg-muted hover:text-primary rounded text-sm transition-colors text-primary font-semibold mt-2 border-t border-border">
+                                                <LocaleLink href={`/products/category/${categorySlug}`} className="p-2 hover:bg-muted hover:text-primary rounded text-sm transition-colors text-primary font-semibold mt-2 border-t border-border">
                                                     View All {category.name}
-                                                </Link>
+                                                </LocaleLink>
                                             </div>
                                         </div>
                                     )}

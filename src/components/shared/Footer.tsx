@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/link';
+import LocaleLink from '@/components/i18n/LocaleLink';
 import Image from 'next/image';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
@@ -14,7 +14,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
                     {/* Brand Info */}
                     <div className="col-span-1 md:col-span-2 lg:col-span-1">
-                        <Link href="/" className="inline-block mb-4">
+                        <LocaleLink href="/" className="inline-block mb-4">
                             <Image
                                 src={AllImages.logo}
                                 alt="ECommerce"
@@ -22,7 +22,7 @@ const Footer = () => {
                                 height={40}
                                 className="h-10 w-auto object-contain brightness-0 invert"
                             />
-                        </Link>
+                        </LocaleLink>
                         <p className="text-sm text-gray-300 mb-6 leading-relaxed">
                             ১০০% প্রাকৃতিক ও স্বাস্থ্যকর খাবার পৌঁছে দেওয়াই আমাদের লক্ষ্য। আমাদের প্রতিটি পণ্য যত্ন সহকারে প্রক্রিয়াজাত করা হয়।
                         </p>
@@ -46,10 +46,10 @@ const Footer = () => {
                     <div>
                         <h4 className="text-lg font-bold mb-4 text-white">Information</h4>
                         <ul className="flex flex-col gap-2 text-sm text-gray-300">
-                            <li><Link href="/about" className="hover:text-primary transition-colors">About Us</Link></li>
-                            <li><Link href="/contact" className="hover:text-primary transition-colors">Contact Us</Link></li>
-                            <li><Link href="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
-                            <li><Link href="/careers" className="hover:text-primary transition-colors">Careers</Link></li>
+                            <li><LocaleLink href="/about" className="hover:text-primary transition-colors">About Us</LocaleLink></li>
+                            <li><LocaleLink href="/contact" className="hover:text-primary transition-colors">Contact Us</LocaleLink></li>
+                            <li><LocaleLink href="/blog" className="hover:text-primary transition-colors">Blog</LocaleLink></li>
+                            <li><LocaleLink href="/careers" className="hover:text-primary transition-colors">Careers</LocaleLink></li>
                         </ul>
                     </div>
 
@@ -57,10 +57,10 @@ const Footer = () => {
                     <div>
                         <h4 className="text-lg font-bold mb-4 text-white">Shop By</h4>
                         <ul className="flex flex-col gap-2 text-sm text-gray-300">
-                            <li><Link href="/category/honey" className="hover:text-primary transition-colors">Honey</Link></li>
-                            <li><Link href="/category/ghee" className="hover:text-primary transition-colors">Ghee</Link></li>
-                            <li><Link href="/category/spices" className="hover:text-primary transition-colors">Spices</Link></li>
-                            <li><Link href="/category/combos" className="hover:text-primary transition-colors">Combo Offers</Link></li>
+                            <li><LocaleLink href="/category/honey" className="hover:text-primary transition-colors">Honey</LocaleLink></li>
+                            <li><LocaleLink href="/category/ghee" className="hover:text-primary transition-colors">Ghee</LocaleLink></li>
+                            <li><LocaleLink href="/category/spices" className="hover:text-primary transition-colors">Spices</LocaleLink></li>
+                            <li><LocaleLink href="/category/combos" className="hover:text-primary transition-colors">Combo Offers</LocaleLink></li>
                         </ul>
                     </div>
 
@@ -68,11 +68,11 @@ const Footer = () => {
                     <div>
                         <h4 className="text-lg font-bold mb-4 text-white">Support</h4>
                         <ul className="flex flex-col gap-2 text-sm text-gray-300">
-                            <li><Link href="/track-order" className="hover:text-primary transition-colors">Track Order</Link></li>
-                            <li><Link href="/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
-                            <li><Link href="/return-policy" className="hover:text-primary transition-colors">Return Policy</Link></li>
-                            <li><Link href="/terms" className="hover:text-primary transition-colors">Terms & Conditions</Link></li>
-                            <li><Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
+                            <li><LocaleLink href="/track-order" className="hover:text-primary transition-colors">Track Order</LocaleLink></li>
+                            <li><LocaleLink href="/faq" className="hover:text-primary transition-colors">FAQ</LocaleLink></li>
+                            <li><LocaleLink href="/return-policy" className="hover:text-primary transition-colors">Return Policy</LocaleLink></li>
+                            <li><LocaleLink href="/terms" className="hover:text-primary transition-colors">Terms & Conditions</LocaleLink></li>
+                            <li><LocaleLink href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</LocaleLink></li>
                         </ul>
                     </div>
 

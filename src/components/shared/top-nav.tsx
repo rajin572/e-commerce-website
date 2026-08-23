@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
-import Link from "next/link";
+import LocaleLink from '@/components/i18n/LocaleLink';
 
 type TopNavProps = React.HTMLAttributes<HTMLElement> & {
   links: {
@@ -36,7 +36,7 @@ export function TopNav({ className, links, ...props }: TopNavProps) {
                 key={`${title}-${href}`}
                 disabled={disabled}
                 render={
-                  <Link
+                  <LocaleLink
                     href={href}
                     className={!isActive ? "text-muted-foreground" : ""}
                   />
@@ -57,14 +57,14 @@ export function TopNav({ className, links, ...props }: TopNavProps) {
         {...props}
       >
         {links.map(({ title, href, isActive, disabled }) => (
-          <Link
+          <LocaleLink
             key={`${title}-${href}`}
             href={href}
             className={`text-sm font-medium transition-colors hover:text-primary ${isActive ? "" : "text-muted-foreground"
               } ${disabled ? "pointer-events-none opacity-50" : ""}`}
           >
             {title}
-          </Link>
+          </LocaleLink>
         ))}
       </nav>
     </>

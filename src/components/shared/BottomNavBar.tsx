@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/link';
+import LocaleLink from '@/components/i18n/LocaleLink';
 import { usePathname } from 'next/navigation';
 import { Home, Search, Package, Heart, User } from 'lucide-react';
 
@@ -22,7 +22,7 @@ const BottomNavBar = () => {
                 {tabs.map((tab, index) => {
                     const isActive = pathname === tab.route;
                     return (
-                        <Link
+                        <LocaleLink
                             key={index}
                             href={tab.route}
                             className={`flex flex-col items-center justify-center w-full h-full space-y-1 relative transition-colors ${isActive ? 'text-primary' : 'text-text-secondary hover:text-foreground'
@@ -37,7 +37,7 @@ const BottomNavBar = () => {
                                 )}
                             </div>
                             <span className="text-[10px] font-medium">{tab.name}</span>
-                        </Link>
+                        </LocaleLink>
                     );
                 })}
             </div>
