@@ -9,9 +9,10 @@ import ProductCard, { ProductProps } from '@/components/shared/ProductCard';
 const DUMMY_PRODUCTS: ProductProps[] = [
     {
         id: "1",
-        name: "Pure Sundarban Honey",
-        slug: "pure-sundarban-honey",
-        image: "https://images.unsplash.com/photo-1587049352847-4d45543cc7c7?auto=format&fit=crop&w=600&q=80",
+        name: "প্রিমিয়াম কোয়ালিটি সুন্দরবনের খাঁটি মধু",
+        slug: "sundarban-honey-premium",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Runny_hunny.jpg/500px-Runny_hunny.jpg",
+        secondaryImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/DriedfruitS.jpg/500px-DriedfruitS.jpg",
         price: 850,
         oldPrice: 1000,
         rating: 4.8,

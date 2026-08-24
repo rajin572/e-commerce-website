@@ -1,15 +1,16 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import LocaleLink from '@/components/i18n/LocaleLink';
-import { Heart, ShoppingCart, Star } from 'lucide-react';
+import { Heart, ShoppingCart, Star, Eye, Minus, Plus, ShoppingBag } from 'lucide-react';
 
 export interface ProductProps {
     id: string;
     name: string;
     slug: string;
     image: string;
+    secondaryImage?: string;
     price: number;
     oldPrice?: number;
     rating: number;
@@ -18,21 +19,26 @@ export interface ProductProps {
     stock: number;
 }
 
-const ProductCard: React.FC<{ product: ProductProps }> = ({ product }) => {
+const ProductCard: React.FC<{ product: ProductProps; showBadge?: boolean }> = ({ product, showBadge = false }) => {
     const isOutOfStock = product.stock <= 0;
+    const [quantity, setQuantity] = useState(1);
 
     const renderBadge = () => {
-        if (isOutOfStock) return <span className="absolute top-2 left-2 bg-destructive text-white text-[10px] font-bold px-2 py-1 rounded">Out of Stock</span>;
-        
+        if (!showBadge) return null;
+
+        const baseBadgeClasses = "absolute top-2 left-2 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm z-10";
+
+        if (isOutOfStock) return <span className={`${baseBadgeClasses} bg-destructive`}>Out Of Stock</span>;
+
         switch (product.badge) {
             case 'new':
-                return <span className="absolute top-2 left-2 bg-[#3B82F6] text-white text-[10px] font-bold px-2 py-1 rounded">New Arrival</span>;
+                return <span className={`${baseBadgeClasses} bg-blue-500`}>New Arrival</span>;
             case 'sale':
-                return <span className="absolute top-2 left-2 bg-[#10B981] text-white text-[10px] font-bold px-2 py-1 rounded">Sale</span>;
+                return <span className={`${baseBadgeClasses} bg-emerald-500`}>Sale</span>;
             case 'bestsell':
-                return <span className="absolute top-2 left-2 bg-[#F97316] text-white text-[10px] font-bold px-2 py-1 rounded">Best Seller</span>;
+                return <span className={`${baseBadgeClasses} bg-orange-500`}>Best Seller</span>;
             case 'combo':
-                return <span className="absolute top-2 left-2 bg-[#8B5CF6] text-white text-[10px] font-bold px-2 py-1 rounded">Combo Offer</span>;
+                return <span className={`${baseBadgeClasses} bg-violet-500`}>Combo Offer</span>;
             default:
                 return null;
         }
@@ -41,18 +47,31 @@ const ProductCard: React.FC<{ product: ProductProps }> = ({ product }) => {
     return (
         <div className="bg-surface border border-border rounded-lg overflow-hidden group hover:shadow-md transition-shadow relative flex flex-col h-full">
             {renderBadge()}
-            
-            <button className="absolute top-2 right-2 p-1.5 bg-white/80 hover:bg-white rounded-full text-text-secondary hover:text-primary transition-colors z-10">
-                <Heart size={16} />
-            </button>
+
+            <div className="absolute top-2 right-2 flex flex-col gap-2 z-10 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                <LocaleLink href={`/product/${product.slug}`} className="p-2 bg-white border border-border hover:border-primary rounded-full text-text-secondary hover:text-primary transition-colors flex items-center justify-center shadow-sm">
+                    <Eye size={16} />
+                </LocaleLink>
+                <button className="p-2 bg-white border border-border hover:border-primary rounded-full text-text-secondary hover:text-primary transition-colors flex items-center justify-center shadow-sm">
+                    <Heart size={16} />
+                </button>
+            </div>
 
             <LocaleLink href={`/product/${product.slug}`} className="block relative aspect-square overflow-hidden bg-white">
-                <Image 
-                    src={product.image} 
-                    alt={product.name} 
-                    fill 
-                    className={`object-contain p-4 group-hover:scale-105 transition-transform duration-300 ${isOutOfStock ? 'opacity-50 grayscale' : ''}`}
+                <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    className={`object-cover transition-all duration-500 ${product.secondaryImage ? 'group-hover:opacity-0 group-hover:scale-95' : 'group-hover:scale-105'} ${isOutOfStock ? 'opacity-50 grayscale' : ''}`}
                 />
+                {product.secondaryImage && (
+                    <Image
+                        src={product.secondaryImage}
+                        alt={`${product.name} alternate view`}
+                        fill
+                        className={`object-cover absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 scale-95 group-hover:scale-100 ${isOutOfStock ? 'opacity-50 grayscale' : ''}`}
+                    />
+                )}
             </LocaleLink>
 
             <div className="p-3 flex flex-col flex-grow">
@@ -76,17 +95,40 @@ const ProductCard: React.FC<{ product: ProductProps }> = ({ product }) => {
                     )}
                 </div>
 
-                <button 
-                    disabled={isOutOfStock}
-                    className={`w-full py-2 rounded-md font-semibold text-sm flex items-center justify-center gap-2 transition-colors ${
-                        isOutOfStock 
-                        ? 'bg-muted text-text-muted cursor-not-allowed' 
-                        : 'bg-primary text-white hover:bg-primary-dark'
-                    }`}
-                >
-                    <ShoppingCart size={16} />
-                    {isOutOfStock ? 'Out of Stock' : 'Add To Cart'}
-                </button>
+                {isOutOfStock ? (
+                    <button
+                        disabled
+                        className="w-full py-2 rounded-full font-semibold text-sm flex items-center justify-center gap-2 bg-muted text-text-muted cursor-not-allowed border border-border mt-3"
+                    >
+                        <ShoppingCart size={16} />
+                        Out of Stock
+                    </button>
+                ) : (
+                    <div className="flex items-center gap-2 mt-3 w-full">
+                        <div className="flex items-center justify-between border border-border rounded-full px-3 py-1.5 flex-1 max-w-[100px] bg-background h-9">
+                            <button
+                                onClick={(e) => { e.preventDefault(); setQuantity(Math.max(1, quantity - 1)); }}
+                                className="text-foreground hover:text-primary transition-colors focus:outline-none"
+                            >
+                                <Minus size={14} />
+                            </button>
+                            <span className="text-sm font-semibold">{quantity}</span>
+                            <button
+                                onClick={(e) => { e.preventDefault(); setQuantity(quantity + 1); }}
+                                className="text-foreground hover:text-primary transition-colors focus:outline-none"
+                            >
+                                <Plus size={14} />
+                            </button>
+                        </div>
+                        <button
+                            onClick={(e) => { e.preventDefault(); /* Add logic */ }}
+                            className="flex flex-1 items-center justify-center gap-1.5 border border-primary text-primary hover:bg-primary hover:text-white rounded-full px-4 py-1.5 h-9 transition-colors font-bold text-sm bg-transparent"
+                        >
+                            <ShoppingBag size={14} />
+                            ADD
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );

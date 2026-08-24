@@ -64,3 +64,5 @@ export async function formatNumber(value: number): Promise<string> {
   const locale = await getLocale();
   return new Intl.NumberFormat(INTL_LOCALES[locale]).format(value);
 }
+
+// Force rebuild

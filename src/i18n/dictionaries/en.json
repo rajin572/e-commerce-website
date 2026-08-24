@@ -1,4 +1,10 @@
 {
+  "home": {
+    "shopByCategory": "Shop by category",
+    "bestSellingProducts": "Best Selling Products",
+    "newArrivals": "New Arrivals",
+    "exclusiveComboDeals": "Exclusive Combo Deals"
+  },
   "meta": {
     "siteName": "ECommerce",
     "tagline": "Pure and natural products, delivered",

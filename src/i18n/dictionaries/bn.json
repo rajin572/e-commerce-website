@@ -1,4 +1,10 @@
 {
+  "home": {
+    "shopByCategory": "ক্যাটাগরি অনুযায়ী কেনাকাটা",
+    "bestSellingProducts": "সর্বাধিক বিক্রিত পণ্য",
+    "newArrivals": "নতুন কালেকশন",
+    "exclusiveComboDeals": "এক্সক্লুসিভ কম্বো অফার"
+  },
   "meta": {
     "siteName": "ECommerce",
     "tagline": "খাঁটি ও প্রাকৃতিক পণ্যের অনলাইন বাজার",

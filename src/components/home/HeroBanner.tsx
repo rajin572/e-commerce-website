@@ -219,7 +219,7 @@ const HeroBanner = () => {
                     {/* Right: Static Promo Banner */}
                     <LocaleLink
                         href="/products/offers"
-                        className="relative w-full lg:w-[34%] bg-muted overflow-hidden rounded-xl shadow-sm group block shrink-0 aspect-square"
+                        className="hidden lg:block relative w-full lg:w-[34%] bg-muted overflow-hidden rounded-xl shadow-sm group shrink-0 aspect-square"
                     >
                         <Image
                             src="https://img.magnific.com/free-vector/flat-design-indian-restaurant-poster-template_23-2149447260.jpg?semt=ais_hybrid&w=740&q=80"

@@ -10,6 +10,7 @@ const DUMMY_PRODUCTS = [
         name: "Pure Sundarban Honey",
         slug: "pure-sundarban-honey",
         image: "https://images.unsplash.com/photo-1587049352847-4d45543cc7c7?auto=format&fit=crop&w=600&q=80",
+        secondaryImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/DriedfruitS.jpg/500px-DriedfruitS.jpg",
         price: 850,
         oldPrice: 1000,
         rating: 4.8,

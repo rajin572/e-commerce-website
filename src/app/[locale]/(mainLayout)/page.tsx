@@ -4,6 +4,7 @@ import FeaturedCategories from '@/components/home/FeaturedCategories';
 import ProductSection from '@/components/home/ProductSection';
 import PromoBanner from '@/components/home/PromoBanner';
 import { ProductProps } from '@/components/shared/ProductCard';
+import { getDictionary } from '@/i18n/dictionaries';
 
 // Dummy Data
 const DUMMY_PRODUCTS: ProductProps[] = [
@@ -12,6 +13,7 @@ const DUMMY_PRODUCTS: ProductProps[] = [
         name: "প্রিমিয়াম কোয়ালিটি সুন্দরবনের খাঁটি মধু",
         slug: "sundarban-honey-premium",
         image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Runny_hunny.jpg/500px-Runny_hunny.jpg",
+        secondaryImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/DriedfruitS.jpg/500px-DriedfruitS.jpg",
         price: 850,
         oldPrice: 1000,
         rating: 4.8,
@@ -55,14 +57,16 @@ const DUMMY_PRODUCTS: ProductProps[] = [
     }
 ];
 
-const HomePage = () => {
+const HomePage = async () => {
+    const t = await getDictionary();
+
     return (
         <div className="flex flex-col gap-4 pb-10">
             <HeroBanner />
             <FeaturedCategories />
             
             <ProductSection 
-                title="Best Selling Products" 
+                title={t.home.bestSellingProducts} 
                 viewAllLink="/shop?sort=bestselling" 
                 products={DUMMY_PRODUCTS} 
             />
@@ -75,13 +79,13 @@ const HomePage = () => {
             />
 
             <ProductSection 
-                title="New Arrivals" 
+                title={t.home.newArrivals} 
                 viewAllLink="/shop?sort=newest" 
                 products={[...DUMMY_PRODUCTS].reverse()} 
             />
 
             <ProductSection 
-                title="Exclusive Combo Deals" 
+                title={t.home.exclusiveComboDeals} 
                 viewAllLink="/category/combos" 
                 products={DUMMY_PRODUCTS.map(p => ({ ...p, badge: 'combo' as const }))} 
             />

@@ -5,6 +5,8 @@ import Image from 'next/image';
 import LocaleLink from '@/components/i18n/LocaleLink';
 import ParallaxMarquee from '@/components/ui/animation/components/AnimatedMarque';
 import Container from '../ui/CustomUi/Container';
+import { useT } from '@/components/i18n/DictionaryProvider';
+import { GradientSectionTitle } from '../ui/CustomUi/GradientSectionTitle';
 
 const FEATURED_CATEGORIES = [
     { name: "মধু", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Runny_hunny.jpg/500px-Runny_hunny.jpg", slug: "honey" },
@@ -18,45 +20,54 @@ const FEATURED_CATEGORIES = [
 ];
 
 const FeaturedCategories = () => {
+    const t = useT();
+
+    const titleText = t.home.shopByCategory;
+    const words = titleText.split(' ');
+    const lastWord = words.pop();
+    const firstPart = words.join(' ');
+
     const marqueeItems = FEATURED_CATEGORIES.map((cat, idx) => (
         <LocaleLink
             key={idx}
             href={`/category/${cat.slug}`}
-            className="flex flex-col items-center gap-2 group w-full"
+            className="flex flex-col items-center justify-center gap-2 w-full h-[100px] bg-surface border border-border rounded-xl shadow-sm hover:shadow-md hover:border-primary/50 transition-all duration-300 group"
             draggable={false}
         >
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-border p-1 overflow-hidden group-hover:border-primary transition-colors bg-surface shrink-0">
+            <div className="relative w-14 h-14 rounded-full overflow-hidden bg-background">
                 <Image
                     src={cat.image}
                     alt={cat.name}
-                    width={80}
-                    height={80}
-                    className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-300"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                    sizes="48px"
                     draggable={false}
                 />
             </div>
-            <span className="text-sm font-medium text-center text-text-secondary group-hover:text-primary transition-colors whitespace-nowrap">
+            <span className="text-sm font-bold text-foreground text-center">
                 {cat.name}
             </span>
         </LocaleLink>
     ));
 
     return (
-        <section className="py-8 bg-white">
-            <Container>
-                <h2 className="text-xl md:text-2xl font-bold mb-6 text-center text-foreground">Featured Categories</h2>
-
-                <div className="w-full overflow-hidden">
-                    <ParallaxMarquee
-                        items={marqueeItems}
-                        baseVelocity={-1}
-                        itemWidth={100}
-                        gap={24}
-                        playMode="hover-pause"
-                        draggable={true}
-                    />
-                </div>
+        <section className="py-8 md:py-12 bg-background relative overflow-hidden">
+            <Container className="relative z-10">
+                <GradientSectionTitle title={t.home.shopByCategory} />
             </Container>
+
+            <div className="w-full relative z-10 mt-10">
+                <ParallaxMarquee
+                    items={marqueeItems}
+                    baseVelocity={-0.5}
+                    itemWidth={150}
+                    gap={16}
+                    playMode="hover-pause"
+                    draggable={true}
+                />
+                <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div>
+                <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div>
+            </div>
         </section>
     );
 };
