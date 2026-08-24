@@ -8,21 +8,22 @@ import Container from '../ui/CustomUi/Container';
 interface ProductSectionProps {
     title: string;
     viewAllLink?: string;
+    viewAllText?: string;
     products: ProductProps[];
 }
 
 
 
-const ProductSection: React.FC<ProductSectionProps> = ({ title, viewAllLink, products }) => {
+const ProductSection: React.FC<ProductSectionProps> = ({ title, viewAllLink, viewAllText, products }) => {
     return (
         <section className="py-8">
             <Container>
                 <GradientSectionTitle
                     title={title}
-                    action={viewAllLink ? { label: "View All", href: viewAllLink } : undefined}
+                    action={viewAllLink ? { label: viewAllText || "View All", href: viewAllLink } : undefined}
                 />
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-6">
                     {products.map((product) => (
                         <ProductCard key={product.id} product={product} />
                     ))}
