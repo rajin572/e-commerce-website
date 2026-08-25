@@ -8,8 +8,8 @@ import { AllImages } from '../../../public/images/AllImages';
 import ReusableSheet from '@/components/ui/CustomUi/ReuseableSheet';
 
 const PROMO_LINKS = [
-    { name: "Combo", href: "/products/combos" },
-    { name: "Offer Zone", href: "/products/offers" },
+    { name: "Combo", href: "/collections/combos" },
+    { name: "Offer Zone", href: "/collections/offers" },
 ];
 
 const DUMMY_CATEGORIES = [
@@ -153,7 +153,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
                                                         return (
                                                             <li key={`sub-${subIdx}`}>
                                                                 <LocaleLink
-                                                                    href={`/products/category/${categorySlug}/${subSlug}`}
+                                                                    href={`/category/${categorySlug}/${subSlug}`}
                                                                     className="block py-2 px-3 text-sm text-muted-foreground hover:text-primary transition-colors"
                                                                     onClick={onClose}
                                                                 >
@@ -164,7 +164,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
                                                     })}
                                                     <li>
                                                         <LocaleLink
-                                                            href={`/products/category/${categorySlug}`}
+                                                            href={`/category/${categorySlug}`}
                                                             className="block py-2 px-3 text-sm font-semibold text-primary hover:bg-muted rounded transition-colors mt-1"
                                                             onClick={onClose}
                                                         >
@@ -176,7 +176,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
                                         </>
                                     ) : (
                                         <LocaleLink
-                                            href={`/products/category/${categorySlug}`}
+                                            href={`/category/${categorySlug}`}
                                             className="block p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors"
                                             onClick={onClose}
                                         >

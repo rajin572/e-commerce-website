@@ -218,7 +218,7 @@ const HeroBanner = () => {
 
                     {/* Right: Static Promo Banner */}
                     <LocaleLink
-                        href="/products/offers"
+                        href="/collections/offers"
                         className="hidden lg:block relative w-full lg:w-[34%] bg-muted overflow-hidden rounded-xl shadow-sm group shrink-0 aspect-square"
                     >
                         <Image

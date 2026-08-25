@@ -13,7 +13,7 @@ interface GradientSectionTitleProps {
 }
 
 export const GradientSectionTitle = ({ title, action, className }: GradientSectionTitleProps) => {
-    const words = title.split(' ');
+    const words = (title || "").split(' ');
     const lastWord = words.length > 1 ? words.pop() : '';
     const firstPart = words.join(' ') || title;
 

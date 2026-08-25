@@ -140,32 +140,40 @@ const HomePage = async () => {
             <HeroBanner />
             <FeaturedCategories />
 
+            {/* Best Selling */}
             <ProductSection
                 title={t.home.bestSellingProducts}
-                viewAllLink="/shop?sort=bestselling"
+                viewAllLink="/collections/best-sales"
                 viewAllText={t.common.viewAll}
                 products={DUMMY_PRODUCTS}
             />
 
-            <PromoBanner
-                title="১০০% খাঁটি সরিষার তেল"
-                subtitle="গ্রামের ঘানিতে ভাঙানো খাঁটি সরিষার তেল"
-                imageUrl="https://placehold.co/1200x400/10B981/FFFFFF?text=Mustard+Oil+Promo"
-                link="/category/oil"
-            />
-
+            {/* New Arrivals */}
             <ProductSection
                 title={t.home.newArrivals}
-                viewAllLink="/shop?sort=newest"
+                viewAllLink="/collections/new-arrivals"
                 viewAllText={t.common.viewAll}
                 products={[...DUMMY_PRODUCTS].reverse()}
             />
 
+            <PromoBanner
+                imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1Ml-n2M2ENkGkCbZ9ietzOuIYgUTYByTB6y8UmfhGyysSRy5uOPIow-4I&s=10"
+                link="/category/oil"
+            />
+
             <ProductSection
                 title={t.home.exclusiveComboDeals}
-                viewAllLink="/category/combos"
+                viewAllLink="/collections/combos"
                 viewAllText={t.common.viewAll}
                 products={DUMMY_PRODUCTS.map(p => ({ ...p, badge: 'combo' as const }))}
+            />
+
+            <ProductSection
+                title={t.home.featuredProducts}
+                viewAllLink="/collections/featured-products"
+                viewAllText={t.common.viewAll}
+                products={[...DUMMY_PRODUCTS].reverse().slice(0, 6)}
+                showBadge={true}
             />
         </div>
     );

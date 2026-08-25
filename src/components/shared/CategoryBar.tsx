@@ -1,13 +1,13 @@
 "use client";
 
-import React from 'react';
+
 import LocaleLink from '@/components/i18n/LocaleLink';
 import { ChevronDown } from 'lucide-react';
 import Container from '../ui/CustomUi/Container';
 
 const PROMO_LINKS = [
-    { name: "Combo", href: "/products/combos" },
-    { name: "Offer Zone", href: "/products/offers" },
+    { name: "Combo", href: "/collections/combos" },
+    { name: "Offer Zone", href: "/collections/offers" },
 ];
 
 // TODO: wire to category endpoint once it exists.
@@ -65,7 +65,7 @@ const CategoryBar = () => {
                             return (
                                 <li key={`cat-${idx}`} className="group relative h-12 flex items-center">
                                     <LocaleLink
-                                        href={`/products/category/${categorySlug}`}
+                                        href={`/category/${categorySlug}`}
                                         className="flex items-center gap-1 hover:text-primary transition-colors h-full"
                                     >
                                         {category.name}
@@ -81,14 +81,14 @@ const CategoryBar = () => {
                                                     return (
                                                         <LocaleLink
                                                             key={`sub-${subIdx}`}
-                                                            href={`/products/category/${categorySlug}/${subSlug}`}
+                                                            href={`/category/${categorySlug}/${subSlug}`}
                                                             className="p-2 hover:bg-muted text-text-secondary hover:text-primary rounded text-sm transition-colors"
                                                         >
                                                             {sub}
                                                         </LocaleLink>
                                                     );
                                                 })}
-                                                <LocaleLink href={`/products/category/${categorySlug}`} className="p-2 hover:bg-muted hover:text-primary rounded text-sm transition-colors text-primary font-semibold mt-2 border-t border-border">
+                                                <LocaleLink href={`/category/${categorySlug}`} className="p-2 hover:bg-muted hover:text-primary rounded text-sm transition-colors text-primary font-semibold mt-2 border-t border-border">
                                                     View All {category.name}
                                                 </LocaleLink>
                                             </div>
