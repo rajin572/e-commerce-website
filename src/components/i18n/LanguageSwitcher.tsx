@@ -26,6 +26,7 @@ const LanguageSwitcher = ({ className = "" }: { className?: string }) => {
     if (locale === current) return;
 
     // One year, root path — read by proxy.ts on locale-less requests.
+    // eslint-disable-next-line react-hooks/immutability -- writing to document.cookie is the intended side effect of this click, not shared render state.
     document.cookie = `${LOCALE_COOKIE}=${locale}; path=/; max-age=31536000; samesite=lax`;
 
     // Read from `window` rather than `useSearchParams()`: this switcher sits in

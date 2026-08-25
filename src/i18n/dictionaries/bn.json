@@ -13,17 +13,19 @@
   },
   "common": {
     "home": "হোম",
-    "shop": "শপ",
     "search": "পণ্য খুঁজুন (যেমন: হলুদ, সরিষা)...",
+    "add": "যোগ",
     "addToCart": "কার্টে যোগ করুন",
     "buyNow": "এখনই কিনুন",
     "outOfStock": "স্টক শেষ",
     "inStock": "স্টকে আছে",
     "viewAll": "সব দেখুন",
     "filters": "ফিল্টার",
+    "previous": "পূর্ববর্তী",
     "next": "পরবর্তী",
     "loading": "লোড হচ্ছে...",
-    "currency": "৳"
+    "currency": "৳",
+    "breadcrumb": "ব্রেডক্রাম্ব"
   },
   "nav": {
     "trackOrder": "অর্ডার ট্র্যাক করুন",
@@ -33,6 +35,13 @@
     "combo": "কম্বো",
     "offerZone": "অফার জোন",
     "categories": "ক্যাটাগরি",
+    "viewAllCategory": "সব {category} দেখুন",
+    "welcomeGuest": "স্বাগতম, অতিথি",
+    "register": "রেজিস্টার",
+    "myAccount": "আমার অ্যাকাউন্ট",
+    "wishlist": "উইশলিস্ট",
+    "quickLinks": "কুইক লিংক",
+    "information": "তথ্য",
     "language": "ভাষা"
   },
   "badge": {
@@ -42,40 +51,72 @@
     "combo": "কম্বো অফার",
     "outOfStock": "স্টক শেষ"
   },
-  "shop": {
-    "title": "সব পণ্য",
+  "catalog": {
     "showingResults": "{total} টি পণ্যের মধ্যে {first}–{last} দেখানো হচ্ছে",
+    "productCount": "{count} টি পণ্য",
     "sortBy": "সাজান:",
-    "categories": "ক্যাটাগরি",
-    "allProducts": "সব পণ্য",
-    "filterByPrice": "দাম অনুযায়ী ফিল্টার",
-    "availability": "স্টক",
-    "price": "দাম",
-    "apply": "ফিল্টার",
-    "noProducts": "এই ফিল্টারে কোনো পণ্য পাওয়া যায়নি।",
-    "clearFilters": "ফিল্টার মুছে ফেলুন",
-    "gridView": "গ্রিড ভিউ",
-    "listView": "লিস্ট ভিউ",
     "sort": {
       "default": "ডিফল্ট",
       "popularity": "জনপ্রিয়তা",
       "latest": "নতুন",
       "priceAsc": "দাম: কম থেকে বেশি",
       "priceDesc": "দাম: বেশি থেকে কম"
+    },
+    "gridView": "গ্রিড ভিউ",
+    "listView": "লিস্ট ভিউ",
+    "categories": "ক্যাটাগরি",
+    "collectionsNav": "কালেকশন",
+    "allProducts": "সব",
+    "filterByPrice": "দাম অনুযায়ী ফিল্টার",
+    "priceUpTo": "{price} পর্যন্ত",
+    "availability": "স্টক",
+    "clearFilters": "ফিল্টার মুছে ফেলুন",
+    "noProducts": "কোনো পণ্য পাওয়া যায়নি",
+    "noProductsHint": "ফিল্টার একটু বদলে দেখুন, অথবা অন্য ক্যাটাগরি ঘুরে আসুন।",
+    "collections": {
+      "combos": {
+        "title": "এক্সক্লুসিভ কম্বো অফার",
+        "description": "একসাথে কিনলে বেশি সাশ্রয় — আমাদের বাছাই করা সব কম্বো প্যাক এক জায়গায়।"
+      },
+      "bestSales": {
+        "title": "সর্বাধিক বিক্রিত পণ্য",
+        "description": "যে পণ্যগুলো আমাদের ক্রেতারা সবচেয়ে বেশি অর্ডার করছেন।"
+      },
+      "newArrivals": {
+        "title": "নতুন কালেকশন",
+        "description": "সদ্য যুক্ত হওয়া পণ্যগুলো সবার আগে দেখে নিন।"
+      },
+      "featuredProducts": {
+        "title": "বাছাইকৃত পণ্য",
+        "description": "আমাদের হাতে বাছাই করা সেরা মানের পণ্যের তালিকা।"
+      },
+      "offers": {
+        "title": "অফার জোন",
+        "description": "চলমান ছাড় ও বিশেষ মূল্যের সব পণ্য এক জায়গায়।"
+      }
     }
   },
   "product": {
     "reviews": "রিভিউ",
+    "reviewsWithCount": "রিভিউ ({count})",
     "reviewCount": "({count} টি রিভিউ)",
     "save": "সাশ্রয়",
     "weight": "ওজন",
     "quantity": "পরিমাণ",
+    "decreaseQuantity": "পরিমাণ কমান",
+    "increaseQuantity": "পরিমাণ বাড়ান",
     "sku": "এসকেইউ:",
     "category": "ক্যাটাগরি:",
     "availability": "স্টক:",
     "unitsInStock": "{count} টি স্টকে আছে",
     "share": "শেয়ার:",
+    "shareOnFacebook": "ফেসবুকে শেয়ার করুন",
+    "shareOnTwitter": "টুইটারে শেয়ার করুন",
+    "copyLink": "লিংক কপি করুন",
+    "linkCopied": "লিংক কপি হয়েছে",
+    "shareVia": "শেয়ার করুন",
     "orderOnWhatsapp": "হোয়াটসঅ্যাপে অর্ডার করুন",
+    "whatsappMessage": "আসসালামু আলাইকুম, আমি {name} ({variant}) — দাম {price} — অর্ডার করতে চাই।",
     "description": "বিবরণ",
     "productOverview": "পণ্য পরিচিতি",
     "relatedProducts": "সম্পর্কিত পণ্য",
@@ -83,7 +124,17 @@
     "basedOnReviews": "{count} টি রিভিউর ভিত্তিতে",
     "verifiedPurchase": "ভেরিফায়েড ক্রয়",
     "stars": "স্টার",
-    "addToWishlist": "উইশলিস্টে যোগ করুন"
+    "quickView": "দ্রুত দেখুন",
+    "addToWishlist": "উইশলিস্টে যোগ করুন",
+    "wishlistEmpty": "আপনার উইশলিস্ট খালি",
+    "wishlistEmptyHint": "পছন্দের পণ্যে হার্ট আইকনে চাপ দিলে সেটি এখানে জমা হবে।",
+    "viewImage": "{index} নম্বর ছবি দেখুন"
+  },
+  "notFound": {
+    "title": "পেজটি খুঁজে পাওয়া যায়নি",
+    "description": "আপনি যে ঠিকানায় এসেছেন সেটি আর নেই, অথবা কখনো ছিল না। নিচের লিংক থেকে কেনাকাটা চালিয়ে যান।",
+    "backHome": "হোমে ফিরে যান",
+    "browseCollections": "কালেকশন দেখুন"
   },
   "cart": {
     "title": "আপনার কার্ট",

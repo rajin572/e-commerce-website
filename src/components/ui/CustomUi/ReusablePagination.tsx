@@ -14,10 +14,24 @@ interface ReusablePaginationProps {
     setCurrentPage: (page: number) => void;
     limit: number;
     total: number;
+    /** `t.common.previous` / `t.common.next` — defaults keep older call sites working. */
+    previousText?: string;
+    nextText?: string;
+    /** Locale-aware digits for the page numbers (Bengali renders ১২৩). */
+    formatNumber?: (value: number) => string;
 }
 
-const ReusablePagination = ({ currentPage, setCurrentPage, limit, total }: ReusablePaginationProps): ReactNode => {
+const ReusablePagination = ({
+    currentPage,
+    setCurrentPage,
+    limit,
+    total,
+    previousText,
+    nextText,
+    formatNumber,
+}: ReusablePaginationProps): ReactNode => {
     const totalPages = Math.ceil(total / limit);
+    const renderNumber = formatNumber ?? String;
 
     const handlePageChange = (page: number): void => {
         if (page >= 1 && page <= totalPages) {
@@ -69,6 +83,7 @@ const ReusablePagination = ({ currentPage, setCurrentPage, limit, total }: Reusa
                 <PaginationItem>
                     <PaginationPrevious
                         href="#"
+                        {...(previousText ? { text: previousText } : {})}
                         onClick={(e) => {
                             e.preventDefault();
                             handlePageChange(currentPage - 1);
@@ -90,7 +105,7 @@ const ReusablePagination = ({ currentPage, setCurrentPage, limit, total }: Reusa
                                 }}
                                 isActive={currentPage === page}
                             >
-                                {page}
+                                {renderNumber(page as number)}
                             </PaginationLink>
                         )}
                     </PaginationItem>
@@ -99,6 +114,7 @@ const ReusablePagination = ({ currentPage, setCurrentPage, limit, total }: Reusa
                 <PaginationItem>
                     <PaginationNext
                         href="#"
+                        {...(nextText ? { text: nextText } : {})}
                         onClick={(e) => {
                             e.preventDefault();
                             handlePageChange(currentPage + 1);

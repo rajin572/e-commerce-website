@@ -9,8 +9,9 @@ import FloatingCart from './FloatingCart';
 import FloatingChat from './FloatingChat';
 import MobileDrawer from './MobileDrawer';
 import CartDrawer from './CartDrawer';
+import type { ICategory } from '@/types';
 
-const Header = () => {
+const Header = ({ categories }: { categories: ICategory[] }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
@@ -53,7 +54,7 @@ const Header = () => {
             {/* Desktop Header: Hides only TopBar (h-16 = 64px) by translating up exactly that amount */}
             <header className={`hidden lg:block w-full fixed top-0 z-50 bg-background shadow-sm transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${isVisible ? 'translate-y-0' : '-translate-y-16'}`}>
                 <TopBar onCartClick={() => setIsCartOpen(true)} />
-                <CategoryBar />
+                <CategoryBar categories={categories} />
             </header>
 
             {/* Mobile Header: Hides completely on scroll down */}
@@ -65,7 +66,11 @@ const Header = () => {
             </header>
 
             {/* Mobile Drawer Navigation */}
-            <MobileDrawer isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+            <MobileDrawer
+                isOpen={isMobileMenuOpen}
+                onClose={() => setIsMobileMenuOpen(false)}
+                categories={categories}
+            />
 
             {/* Slide-in Cart Drawer */}
             <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />

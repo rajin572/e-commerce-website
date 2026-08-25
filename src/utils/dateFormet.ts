@@ -1,4 +1,20 @@
 import dayjs from "dayjs";
+import { INTL_LOCALES, type Locale } from "@/i18n/config";
+
+/**
+ * Storefront-facing dates. Goes through `Intl` so Bengali renders its own digits
+ * and month names (CODING_RULES §2.6); the dayjs helpers below are fixed-format
+ * and stay for the dashboard-style screens that already use them.
+ */
+export const formatDateForLocale = (
+  date: string | Date,
+  locale: Locale
+): string =>
+  new Intl.DateTimeFormat(INTL_LOCALES[locale], {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(new Date(date));
 
 export const formatDateTime = (date: string | Date | undefined): string => {
   // date is less than 1min ago, return "just now"

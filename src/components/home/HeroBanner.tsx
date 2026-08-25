@@ -10,12 +10,12 @@ const HERO_SLIDES = [
     {
         id: 1,
         image: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/fd795899759469.69f3981d1bcf2.png",
-        ctaLink: "/category/new"
+        ctaLink: "/collections/new-arrivals"
     },
     {
         id: 2,
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPvmeNFFLd147p3q8RjE1DFXx3Qf7VaLwpLlwOUOtCYmMVTQneTpyQX1tE&s=10",
-        ctaLink: "/products"
+        ctaLink: "/collections/featured-products"
     },
     {
         id: 3,
@@ -25,12 +25,12 @@ const HERO_SLIDES = [
     {
         id: 4,
         image: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/fd795899759469.69f3981d1bcf2.png",
-        ctaLink: "/category/new"
+        ctaLink: "/collections/new-arrivals"
     },
     {
         id: 5,
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPvmeNFFLd147p3q8RjE1DFXx3Qf7VaLwpLlwOUOtCYmMVTQneTpyQX1tE&s=10",
-        ctaLink: "/products"
+        ctaLink: "/collections/featured-products"
     },
     {
         id: 6,

@@ -19,7 +19,7 @@ export default function SuccessPage() {
 
             <div className="flex flex-col w-full gap-3">
                 <LocaleLink
-                    href="/shop"
+                    href="/collections/best-sales"
                     className="w-full py-3.5 bg-primary hover:bg-primary-dark text-white rounded-lg font-bold text-lg transition-all shadow-md shadow-primary/20"
                 >
                     Start Shopping

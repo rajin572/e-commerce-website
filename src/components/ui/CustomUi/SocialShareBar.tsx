@@ -2,18 +2,23 @@
 
 import { Button } from '../button';
 import { Link as LinkIcon, Share2 } from 'lucide-react';
-import { FaFacebook, FaTwitter } from 'react-icons/fa';
+import { FaFacebook, FaXTwitter } from 'react-icons/fa6';
 import { toast } from 'sonner';
+import { useT } from '@/components/i18n/DictionaryProvider';
 
 interface SocialShareBarProps {
+  /** Absolute URL — share targets and the clipboard both need the full address. */
   url: string;
   title: string;
+  showLabel?: boolean;
 }
 
-export const SocialShareBar = ({ url, title }: SocialShareBarProps) => {
+export const SocialShareBar = ({ url, title, showLabel = true }: SocialShareBarProps) => {
+  const t = useT();
+
   const handleCopyLink = () => {
     navigator.clipboard.writeText(url);
-    toast.success('Link copied to clipboard');
+    toast.success(t.product.linkCopied);
   };
 
   const shareLinks = {
@@ -22,29 +27,26 @@ export const SocialShareBar = ({ url, title }: SocialShareBarProps) => {
   };
 
   const handleNativeShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title,
-          url,
-        });
-      } catch (err) {
-        console.error('Error sharing:', err);
-      }
-    } else {
+    if (!navigator.share) {
       handleCopyLink();
+      return;
     }
+
+    // A dismissed share sheet rejects; that is a cancel, not a failure to report.
+    await navigator.share({ title, url }).catch(() => undefined);
   };
 
   return (
     <div className="flex items-center gap-2">
-      <span className="text-sm text-muted-foreground mr-2 font-medium">Share:</span>
+      {showLabel && (
+        <span className="text-sm text-text-secondary mr-2 font-medium">{t.product.share}</span>
+      )}
       <Button
         variant="outline"
         size="icon"
         className="h-8 w-8 rounded-full"
-        onClick={() => window.open(shareLinks.facebook, '_blank')}
-        aria-label="Share on Facebook"
+        onClick={() => window.open(shareLinks.facebook, '_blank', 'noopener,noreferrer')}
+        aria-label={t.product.shareOnFacebook}
       >
         <FaFacebook className="h-4 w-4" />
       </Button>
@@ -52,17 +54,17 @@ export const SocialShareBar = ({ url, title }: SocialShareBarProps) => {
         variant="outline"
         size="icon"
         className="h-8 w-8 rounded-full"
-        onClick={() => window.open(shareLinks.twitter, '_blank')}
-        aria-label="Share on Twitter"
+        onClick={() => window.open(shareLinks.twitter, '_blank', 'noopener,noreferrer')}
+        aria-label={t.product.shareOnTwitter}
       >
-        <FaTwitter className="h-4 w-4" />
+        <FaXTwitter className="h-4 w-4" />
       </Button>
       <Button
         variant="outline"
         size="icon"
         className="h-8 w-8 rounded-full"
         onClick={handleCopyLink}
-        aria-label="Copy link"
+        aria-label={t.product.copyLink}
       >
         <LinkIcon className="h-4 w-4" />
       </Button>
@@ -71,7 +73,7 @@ export const SocialShareBar = ({ url, title }: SocialShareBarProps) => {
         size="icon"
         className="h-8 w-8 rounded-full sm:hidden"
         onClick={handleNativeShare}
-        aria-label="Native share"
+        aria-label={t.product.shareVia}
       >
         <Share2 className="h-4 w-4" />
       </Button>

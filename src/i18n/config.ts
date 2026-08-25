@@ -35,6 +35,21 @@ export const INTL_LOCALES: Record<Locale, string> = {
   en: "en-US",
 };
 
+/**
+ * Fill `{placeholders}` in a dictionary string.
+ * `format(t.catalog.showingResults, { first: 1, last: 12, total: 124 })`
+ *
+ * Lives here rather than in `dictionaries.ts` so Client Components can use it —
+ * that module imports `next/root-params`, which is server-only.
+ */
+export const format = (
+  template: string,
+  values: Record<string, string | number>
+): string =>
+  template.replace(/\{(\w+)\}/g, (match, key: string) =>
+    key in values ? String(values[key]) : match
+  );
+
 export const isLocale = (value: unknown): value is Locale =>
   typeof value === "string" && (LOCALES as readonly string[]).includes(value);
 

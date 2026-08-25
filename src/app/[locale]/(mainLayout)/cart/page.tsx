@@ -98,7 +98,7 @@ const CartPage = () => {
                         </div>
 
                         <div className="p-4 flex justify-between items-center bg-muted/10">
-                            <LocaleLink href="/shop" className="text-primary font-semibold hover:underline text-sm">
+                            <LocaleLink href="/" className="text-primary font-semibold hover:underline text-sm">
                                 Continue Shopping
                             </LocaleLink>
                             <button className="px-4 py-2 border border-border rounded-md text-sm font-medium hover:bg-muted transition-colors">

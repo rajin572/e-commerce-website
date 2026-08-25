@@ -47,22 +47,13 @@ export async function getDictionaryFor(locale: Locale): Promise<Dictionary> {
 }
 
 /**
- * Fill `{placeholders}` in a dictionary string.
- * `format(dict.shop.showingResults, { first: 1, last: 12, total: 124 })`
+ * `format()` lives in `./config` so Client Components can import it too; it is
+ * re-exported here because Server Components read everything else from this module.
  */
-export function format(
-  template: string,
-  values: Record<string, string | number>
-): string {
-  return template.replace(/\{(\w+)\}/g, (match, key: string) =>
-    key in values ? String(values[key]) : match
-  );
-}
+export { format } from "./config";
 
 /** Locale-aware number formatting — Bengali renders its own digit glyphs. */
 export async function formatNumber(value: number): Promise<string> {
   const locale = await getLocale();
   return new Intl.NumberFormat(INTL_LOCALES[locale]).format(value);
 }
-
-// Force rebuild

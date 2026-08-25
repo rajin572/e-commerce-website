@@ -6,46 +6,28 @@ import Image from 'next/image';
 import { User, MapPin, Heart, Info, Phone, MessageCircle, ChevronDown } from 'lucide-react';
 import { AllImages } from '../../../public/images/AllImages';
 import ReusableSheet from '@/components/ui/CustomUi/ReuseableSheet';
-
-const PROMO_LINKS = [
-    { name: "Combo", href: "/collections/combos" },
-    { name: "Offer Zone", href: "/collections/offers" },
-];
-
-const DUMMY_CATEGORIES = [
-    {
-        name: "Spices",
-        hasSub: true,
-        subCategories: ["Whole Spices", "Powder Spices", "Mixed Spices"]
-    },
-    { name: "Pickles", hasSub: false },
-    {
-        name: "Dry Foods",
-        hasSub: true,
-        subCategories: ["Dates", "Raisins", "Apricots"]
-    },
-    {
-        name: "Nuts",
-        hasSub: true,
-        subCategories: ["Almonds", "Cashews", "Walnuts", "Pistachios"]
-    },
-    {
-        name: "Honey & Oil",
-        hasSub: true,
-        subCategories: ["Natural Honey", "Mustard Oil", "Ghee"]
-    },
-];
+import { useT } from '@/components/i18n/DictionaryProvider';
+import { format } from '@/i18n/config';
+import { categoryHref, collectionHref } from '@/service/CatalogService/catalog.constants';
+import type { ICategory } from '@/types';
 
 interface MobileDrawerProps {
     isOpen: boolean;
     onClose: () => void;
+    categories: ICategory[];
 }
 
-const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
+const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose, categories }) => {
+    const t = useT();
     const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
 
-    const toggleCategory = (categoryName: string) => {
-        setExpandedCategory(prev => prev === categoryName ? null : categoryName);
+    const promoLinks = [
+        { name: t.nav.combo, href: collectionHref("combos") },
+        { name: t.nav.offerZone, href: collectionHref("offers") },
+    ];
+
+    const toggleCategory = (categoryId: string) => {
+        setExpandedCategory(prev => prev === categoryId ? null : categoryId);
     };
 
     return (
@@ -62,7 +44,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
             title={
                 <Image
                     src={AllImages.logo}
-                    alt="ECommerce"
+                    alt={t.meta.siteName}
                     width={100}
                     height={30}
                     className="h-8 w-auto object-contain"
@@ -76,11 +58,11 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
                         <User size={20} />
                     </div>
                     <div>
-                        <p className="text-sm font-medium text-foreground">Welcome Guest</p>
+                        <p className="text-sm font-medium text-foreground">{t.nav.welcomeGuest}</p>
                         <div className="flex gap-2 text-xs text-primary font-semibold mt-1">
-                            <LocaleLink href="/sign-in" onClick={onClose}>Login</LocaleLink>
-                            <span>|</span>
-                            <LocaleLink href="/sign-up" onClick={onClose}>Register</LocaleLink>
+                            <LocaleLink href="/sign-in" onClick={onClose}>{t.nav.signIn}</LocaleLink>
+                            <span aria-hidden>|</span>
+                            <LocaleLink href="/sign-up" onClick={onClose}>{t.nav.register}</LocaleLink>
                         </div>
                     </div>
                 </div>
@@ -94,13 +76,12 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
                                 className="block p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors"
                                 onClick={onClose}
                             >
-                                Home
+                                {t.common.home}
                             </LocaleLink>
                         </li>
 
-                        {/* Promo Links */}
-                        {PROMO_LINKS.map((promo, idx) => (
-                            <li key={`promo-${idx}`}>
+                        {promoLinks.map((promo) => (
+                            <li key={promo.href}>
                                 <LocaleLink
                                     href={promo.href}
                                     className="block p-3 text-sm font-medium text-primary hover:bg-muted rounded transition-colors"
@@ -113,23 +94,21 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
 
                         <li className="my-2 border-t border-border" />
                         <li className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                            Categories
+                            {t.nav.categories}
                         </li>
 
-                        {/* Category Accordion */}
-                        {DUMMY_CATEGORIES.map((category, idx) => {
-                            const categorySlug = category.name
-                                .toLowerCase()
-                                .replace(/ & /g, '-')
-                                .replace(/ /g, '-');
-                            const isExpanded = expandedCategory === category.name;
+                        {categories.map((category) => {
+                            const isExpanded = expandedCategory === category._id;
+                            const hasChildren = category.hasSub && category.subCategories.length > 0;
 
                             return (
-                                <li key={`cat-${idx}`} className="flex flex-col">
-                                    {category.hasSub ? (
+                                <li key={category._id} className="flex flex-col">
+                                    {hasChildren ? (
                                         <>
                                             <button
-                                                onClick={() => toggleCategory(category.name)}
+                                                type="button"
+                                                onClick={() => toggleCategory(category._id)}
+                                                aria-expanded={isExpanded}
                                                 className="flex items-center justify-between w-full p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors"
                                             >
                                                 {category.name}
@@ -139,36 +118,28 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
                                                 />
                                             </button>
 
-                                            {/* Animated accordion content */}
                                             <div
-                                                className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                                                    }`}
+                                                className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
                                             >
                                                 <ul className="pl-4 pb-2 flex flex-col border-l-2 border-muted ml-3 mt-1">
-                                                    {category.subCategories?.map((sub, subIdx) => {
-                                                        const subSlug = sub
-                                                            .toLowerCase()
-                                                            .replace(/ & /g, '-')
-                                                            .replace(/ /g, '-');
-                                                        return (
-                                                            <li key={`sub-${subIdx}`}>
-                                                                <LocaleLink
-                                                                    href={`/category/${categorySlug}/${subSlug}`}
-                                                                    className="block py-2 px-3 text-sm text-muted-foreground hover:text-primary transition-colors"
-                                                                    onClick={onClose}
-                                                                >
-                                                                    {sub}
-                                                                </LocaleLink>
-                                                            </li>
-                                                        );
-                                                    })}
+                                                    {category.subCategories.map((sub) => (
+                                                        <li key={sub._id}>
+                                                            <LocaleLink
+                                                                href={categoryHref(category.slug, sub.slug)}
+                                                                className="block py-2 px-3 text-sm text-muted-foreground hover:text-primary transition-colors"
+                                                                onClick={onClose}
+                                                            >
+                                                                {sub.name}
+                                                            </LocaleLink>
+                                                        </li>
+                                                    ))}
                                                     <li>
                                                         <LocaleLink
-                                                            href={`/category/${categorySlug}`}
+                                                            href={categoryHref(category.slug)}
                                                             className="block py-2 px-3 text-sm font-semibold text-primary hover:bg-muted rounded transition-colors mt-1"
                                                             onClick={onClose}
                                                         >
-                                                            View All {category.name}
+                                                            {format(t.nav.viewAllCategory, { category: category.name })}
                                                         </LocaleLink>
                                                     </li>
                                                 </ul>
@@ -176,7 +147,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
                                         </>
                                     ) : (
                                         <LocaleLink
-                                            href={`/category/${categorySlug}`}
+                                            href={categoryHref(category.slug)}
                                             className="block p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors"
                                             onClick={onClose}
                                         >
@@ -191,21 +162,21 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
 
                 {/* Quick Links */}
                 <div className="p-2 border-b border-border">
-                    <p className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Quick Links</p>
+                    <p className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{t.nav.quickLinks}</p>
                     <ul className="flex flex-col">
                         <li>
                             <LocaleLink href="/track-order" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
-                                <MapPin size={18} className="text-muted-foreground" /> Track Order
+                                <MapPin size={18} className="text-muted-foreground" /> {t.nav.trackOrder}
                             </LocaleLink>
                         </li>
                         <li>
-                            <LocaleLink href="/wishlist" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
-                                <Heart size={18} className="text-muted-foreground" /> Wishlist
+                            <LocaleLink href="/dashboard/wishlist" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
+                                <Heart size={18} className="text-muted-foreground" /> {t.nav.wishlist}
                             </LocaleLink>
                         </li>
                         <li>
-                            <LocaleLink href="/account" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
-                                <User size={18} className="text-muted-foreground" /> My Account
+                            <LocaleLink href="/dashboard/profile" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
+                                <User size={18} className="text-muted-foreground" /> {t.nav.myAccount}
                             </LocaleLink>
                         </li>
                     </ul>
@@ -213,21 +184,21 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
 
                 {/* Info Links */}
                 <div className="p-2">
-                    <p className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Information</p>
+                    <p className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{t.nav.information}</p>
                     <ul className="flex flex-col">
                         <li>
                             <LocaleLink href="/about" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
-                                <Info size={18} className="text-muted-foreground" /> About Us
+                                <Info size={18} className="text-muted-foreground" /> {t.footer.aboutUs}
                             </LocaleLink>
                         </li>
                         <li>
                             <LocaleLink href="/contact" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
-                                <Phone size={18} className="text-muted-foreground" /> Contact Us
+                                <Phone size={18} className="text-muted-foreground" /> {t.footer.contact}
                             </LocaleLink>
                         </li>
                         <li>
                             <LocaleLink href="/faq" className="flex items-center gap-3 p-3 text-sm font-medium text-foreground hover:bg-muted hover:text-primary rounded transition-colors" onClick={onClose}>
-                                <MessageCircle size={18} className="text-muted-foreground" /> FAQ
+                                <MessageCircle size={18} className="text-muted-foreground" /> {t.footer.faq}
                             </LocaleLink>
                         </li>
                     </ul>

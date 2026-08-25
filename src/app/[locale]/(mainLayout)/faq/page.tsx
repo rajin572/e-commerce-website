@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import LocaleLink from '@/components/i18n/LocaleLink';
 
 const FAQS = [
     {
@@ -65,7 +66,7 @@ export default function FAQPage() {
 
             <div className="text-center mt-12">
                 <p className="text-text-secondary">Still have questions?</p>
-                <a href="/contact" className="text-primary font-bold hover:underline mt-2 inline-block">Contact our support team</a>
+                <LocaleLink href="/contact" className="text-primary font-bold hover:underline mt-2 inline-block">Contact our support team</LocaleLink>
             </div>
         </div>
     );

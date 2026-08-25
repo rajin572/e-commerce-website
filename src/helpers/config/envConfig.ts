@@ -14,6 +14,13 @@ export const getSiteUrl = () => {
   return url.replace(/\/$/, "");
 };
 
+// Business WhatsApp number in international format without "+" (e.g. 8801XXXXXXXXX).
+// Left blank, wa.me still opens WhatsApp with the message pre-filled and lets the
+// customer pick the contact, so the button is never a dead link.
+export const getWhatsappNumber = () => {
+  return process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "";
+};
+
 export const mapsApiKey = () => {
   return process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY;
 };

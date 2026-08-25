@@ -60,7 +60,7 @@ const Footer = () => {
                             <li><LocaleLink href="/category/honey" className="hover:text-primary transition-colors">Honey</LocaleLink></li>
                             <li><LocaleLink href="/category/ghee" className="hover:text-primary transition-colors">Ghee</LocaleLink></li>
                             <li><LocaleLink href="/category/spices" className="hover:text-primary transition-colors">Spices</LocaleLink></li>
-                            <li><LocaleLink href="/category/combos" className="hover:text-primary transition-colors">Combo Offers</LocaleLink></li>
+                            <li><LocaleLink href="/collections/combos" className="hover:text-primary transition-colors">Combo Offers</LocaleLink></li>
                         </ul>
                     </div>
 

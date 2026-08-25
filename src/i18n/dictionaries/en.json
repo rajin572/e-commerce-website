@@ -13,17 +13,19 @@
   },
   "common": {
     "home": "Home",
-    "shop": "Shop",
     "search": "Search for products (e.g. holud, yellow mustard)...",
+    "add": "ADD",
     "addToCart": "Add To Cart",
     "buyNow": "Buy Now",
     "outOfStock": "Out of Stock",
     "inStock": "In Stock",
     "viewAll": "View All",
     "filters": "Filters",
+    "previous": "Previous",
     "next": "Next",
     "loading": "Loading...",
-    "currency": "৳"
+    "currency": "৳",
+    "breadcrumb": "Breadcrumb"
   },
   "nav": {
     "trackOrder": "Track Order",
@@ -33,6 +35,13 @@
     "combo": "Combo",
     "offerZone": "Offer Zone",
     "categories": "Categories",
+    "viewAllCategory": "View all {category}",
+    "welcomeGuest": "Welcome, Guest",
+    "register": "Register",
+    "myAccount": "My Account",
+    "wishlist": "Wishlist",
+    "quickLinks": "Quick Links",
+    "information": "Information",
     "language": "Language"
   },
   "badge": {
@@ -42,40 +51,72 @@
     "combo": "Combo Offer",
     "outOfStock": "Out of Stock"
   },
-  "shop": {
-    "title": "All Products",
-    "showingResults": "Showing {first}–{last} of {total} results",
+  "catalog": {
+    "showingResults": "Showing {first}–{last} of {total} products",
+    "productCount": "{count} products",
     "sortBy": "Sort by:",
-    "categories": "Categories",
-    "allProducts": "All Products",
-    "filterByPrice": "Filter by Price",
-    "availability": "Availability",
-    "price": "Price",
-    "apply": "Filter",
-    "noProducts": "No products match these filters.",
-    "clearFilters": "Clear filters",
-    "gridView": "Grid view",
-    "listView": "List view",
     "sort": {
       "default": "Default sorting",
       "popularity": "Popularity",
       "latest": "Latest",
       "priceAsc": "Price: low to high",
       "priceDesc": "Price: high to low"
+    },
+    "gridView": "Grid view",
+    "listView": "List view",
+    "categories": "Categories",
+    "collectionsNav": "Collections",
+    "allProducts": "All",
+    "filterByPrice": "Filter by Price",
+    "priceUpTo": "Up to {price}",
+    "availability": "Availability",
+    "clearFilters": "Clear filters",
+    "noProducts": "No products found",
+    "noProductsHint": "Try loosening the filters, or browse another category.",
+    "collections": {
+      "combos": {
+        "title": "Exclusive Combo Deals",
+        "description": "Buy them together and save more — every bundle we offer, in one place."
+      },
+      "bestSales": {
+        "title": "Best Selling Products",
+        "description": "The products our customers order most."
+      },
+      "newArrivals": {
+        "title": "New Arrivals",
+        "description": "The latest additions to our shelves, before anyone else."
+      },
+      "featuredProducts": {
+        "title": "Featured Products",
+        "description": "A hand-picked selection of our very best quality."
+      },
+      "offers": {
+        "title": "Offer Zone",
+        "description": "Everything currently discounted, gathered in one place."
+      }
     }
   },
   "product": {
     "reviews": "Reviews",
+    "reviewsWithCount": "Reviews ({count})",
     "reviewCount": "({count} Reviews)",
     "save": "Save",
     "weight": "Weight",
     "quantity": "Quantity",
+    "decreaseQuantity": "Decrease quantity",
+    "increaseQuantity": "Increase quantity",
     "sku": "SKU:",
     "category": "Category:",
     "availability": "Availability:",
     "unitsInStock": "{count} in Stock",
     "share": "Share:",
+    "shareOnFacebook": "Share on Facebook",
+    "shareOnTwitter": "Share on X",
+    "copyLink": "Copy link",
+    "linkCopied": "Link copied to clipboard",
+    "shareVia": "Share",
     "orderOnWhatsapp": "Order On WhatsApp",
+    "whatsappMessage": "Hello, I would like to order {name} ({variant}) — {price}.",
     "description": "Description",
     "productOverview": "Product Overview",
     "relatedProducts": "Related Products",
@@ -83,7 +124,17 @@
     "basedOnReviews": "Based on {count} reviews",
     "verifiedPurchase": "Verified Purchase",
     "stars": "Stars",
-    "addToWishlist": "Add to wishlist"
+    "quickView": "Quick view",
+    "addToWishlist": "Add to wishlist",
+    "wishlistEmpty": "Your wishlist is empty",
+    "wishlistEmptyHint": "Tap the heart on any product and it will show up here.",
+    "viewImage": "View image {index}"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The address you followed is gone, or never existed. Pick up where you left off below.",
+    "backHome": "Back to home",
+    "browseCollections": "Browse collections"
   },
   "cart": {
     "title": "Your Cart",
