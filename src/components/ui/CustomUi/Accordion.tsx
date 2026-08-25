@@ -7,19 +7,19 @@ import { cn } from "../../../lib/utils";
 
 // Define types for the props
 interface AccordionProps {
-  isEditing: boolean;
+  isEditing?: boolean;
   num: string | number;
   item: {
     question: string;
     answer: string;
   };
   className?: string;
-  showFaqUpdateModal: (item: { question: string; answer: string }) => void;
-  showFaqDeleteModal: (item: { question: string; answer: string }) => void;
+  showFaqUpdateModal?: (item: { question: string; answer: string }) => void;
+  showFaqDeleteModal?: (item: { question: string; answer: string }) => void;
 }
 
 const Accordion: React.FC<AccordionProps> = ({
-  isEditing,
+  isEditing = false,
   num,
   item,
   className,
@@ -49,58 +49,56 @@ const Accordion: React.FC<AccordionProps> = ({
         if (!isEditing) toggleAccordion();
       }}
       className={cn(
-        "mb-5 bg-[#F2EBFD] duration-500 rounded shadow ",
+        "mb-4 bg-surface duration-300 rounded-lg shadow-sm border border-border",
         className
       )}
     >
-      <h1 className="px-4 pt-4 pb-2 text-base-color/50 text-xl md:text-2xl lg:text-3xl font-semibold">
-        {num}
-      </h1>
-      <div className="flex justify-between items-center px-4 pb-4 cursor-pointer duration-500">
-        <h3 className="text-base-color text-base md:text-lg lg:text-xl font-semibold">
+      <div className="flex items-start md:items-center px-4 py-4 cursor-pointer duration-300">
+        {num && (
+          <h1 className="text-primary text-lg md:text-xl font-bold mr-4 shrink-0">
+            {num}
+          </h1>
+        )}
+        <h3 className="text-foreground text-base md:text-lg font-semibold flex-1">
           {item?.question}
         </h3>
-        <div className="flex gap-2">
+        <div className="flex gap-2 shrink-0 ml-4 items-center">
           {isEditing && (
             <>
-              <div onClick={() => showFaqUpdateModal(item)} className="p-[2px]">
-                <FaEdit className="text-base-color text-base md:text-lg lg:text-xl duration-500" />
+              <div onClick={(e) => { e.stopPropagation(); showFaqUpdateModal?.(item); }} className="p-1 cursor-pointer">
+                <FaEdit className="text-muted-foreground hover:text-primary text-base duration-300" />
               </div>
-              <div onClick={() => showFaqDeleteModal(item)} className="p-[2px]">
-                <MdDelete className="text-base-color text-base md:text-lg lg:text-xl duration-500" />
+              <div onClick={(e) => { e.stopPropagation(); showFaqDeleteModal?.(item); }} className="p-1 cursor-pointer">
+                <MdDelete className="text-muted-foreground hover:text-red-500 text-base duration-300" />
               </div>
             </>
           )}
-          {isOpen ? (
-            <div
-              onClick={() => {
-                if (isEditing) toggleAccordion();
-              }}
-              className="p-[2px] rounded-full border border-[#000000] bg-[#000000]"
-            >
-              <HiMinus className="text-[#F2EBFD] text-base md:text-lg lg:text-xl duration-500" />
-            </div>
-          ) : (
-            <div
-              onClick={() => {
-                if (isEditing) toggleAccordion();
-              }}
-              className="p-[2px] rounded-full border border-[#000000] bg-[#000000]"
-            >
-              <GoPlus className="text-[#F2EBFD] text-base md:text-lg lg:text-xl duration-500" />
-            </div>
-          )}
+          <div
+            onClick={(e) => {
+              if (isEditing) {
+                e.stopPropagation();
+                toggleAccordion();
+              }
+            }}
+            className="p-1 rounded-full border border-border bg-muted/50 hover:bg-muted duration-300 flex items-center justify-center"
+          >
+            {isOpen ? (
+              <HiMinus className="text-foreground text-lg" />
+            ) : (
+              <GoPlus className="text-foreground text-lg" />
+            )}
+          </div>
         </div>
       </div>
       <div
         ref={contentRef}
         style={{
-          height: `${height}px`, // Dynamic height
+          height: `${height}px`,
           overflow: "hidden",
-          transition: "height 0.5s ease", // Smooth transition effect for height
+          transition: "height 0.3s ease",
         }}
       >
-        <div className="p-4 bg-[#F2EBFD] text-base-color duration-500 text-sm md:text-base lg:text-lg rounded-bl rounded-br">
+        <div className="px-4 pb-4 pt-1 text-muted-foreground text-sm md:text-base leading-relaxed">
           {item?.answer}
         </div>
       </div>

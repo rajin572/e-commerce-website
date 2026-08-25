@@ -153,5 +153,106 @@
     "returnPolicy": "Return Policy",
     "followUs": "Follow Us",
     "rights": "All rights reserved."
+  },
+  "testimonials": {
+    "title": "Customer Reviews",
+    "reviews": [
+      {
+        "name": "Sadia Afrin",
+        "role": "Frequent Buyer",
+        "text": "The mustard oil here is truly exceptional! You can get the authentic aroma of cold-pressed oil."
+      },
+      {
+        "name": "Mahmudul Hasan",
+        "role": "Businessman",
+        "text": "After searching for pure honey for so long, I finally found it here. No doubts about the quality."
+      },
+      {
+        "name": "Farzana Eva",
+        "role": "Homemaker",
+        "text": "The flavor of the spices is so rich that it brings a unique taste to the food. Packaging was also great."
+      },
+      {
+        "name": "Arifur Rahman",
+        "role": "Service Holder",
+        "text": "Ordered almonds and dates. The size was quite large and very fresh. Received the delivery very fast."
+      },
+      {
+        "name": "Nishat Tasnim",
+        "role": "Frequent Buyer",
+        "text": "The taste of pure Gawa Ghee is exactly like the homemade ghee from my childhood. Highly satisfied."
+      },
+      {
+        "name": "Towhid Iqbal",
+        "role": "Teacher",
+        "text": "Customer service is top-notch. They respond quickly and resolve any issues without hassle."
+      },
+      {
+        "name": "Shamima Nasrin",
+        "role": "Homemaker",
+        "text": "The pungent aroma and taste of the mustard oil are perfect. It forces me to order again and again."
+      },
+      {
+        "name": "Kamrul Islam",
+        "role": "Entrepreneur",
+        "text": "The quality of products here is much better than other brands in the market. Can buy without hesitation."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "stillNeedHelp": "Still need help?",
+    "contactUs": "CONTACT US",
+    "trackOrderBanner": "You can track your orders in 'My Orders'.",
+    "trackOrderBtn": "TRACK ORDERS",
+    "emptyFaq": "No FAQs available for this category yet.",
+    "categories": {
+      "top-queries": "Top Queries",
+      "terms": "Terms and Conditions",
+      "shipping": "Shipping, Order Tracking & Delivery",
+      "cancellations": "Cancellations and Modifications",
+      "returns": "Returns and Exchange",
+      "account": "Sign Up and Login",
+      "payments": "Payments"
+    },
+    "questions": {
+      "top-queries": [
+        { "q": "What is Try and Buy Service?", "a": "Try and Buy is a service that allows you to try on your purchases at home and pay for only what you like." },
+        { "q": "Why are there different prices for the same product? Is it legal?", "a": "Different sellers may offer the same product at different prices based on their pricing strategy." },
+        { "q": "I saw the product at Rs. 1000 but post clicking on the product, there are multiple prices...", "a": "Prices can vary based on size, color, or seller availability." },
+        { "q": "How will I detect fraudulent emails/calls seeking sensitive information?", "a": "We will never ask for your passwords, PINs, or OTPs. Please do not share these details." },
+        { "q": "How do I cancel the order, I have placed?", "a": "You can cancel your order from the 'My Orders' section before it gets dispatched." }
+      ],
+      "shipping": [
+        { "q": "How long does delivery take?", "a": "Usually it takes 1-2 days inside the city and 3-5 working days outside." },
+        { "q": "What is the delivery charge?", "a": "Delivery charge varies depending on your location and order value." },
+        { "q": "How can I track my order?", "a": "You can track your order status in the 'My Orders' section." }
+      ],
+      "returns": [
+        { "q": "Can I return a product if there is an issue?", "a": "Yes, you can initiate a return within 7 days of delivery." },
+        { "q": "How do I create a Return Request?", "a": "Go to 'My Orders', select the item, and click 'Return/Exchange'." }
+      ],
+      "payments": [
+        { "q": "What payment methods are accepted?", "a": "We accept Cash on Delivery, bKash, Nagad, and all major cards." }
+      ]
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "heading": "Let's Get in Touch.",
+    "subheading": "Whether you have a question about our products, delivery, or anything else, we're here to help. Send us a message and we'll reply as soon as possible.",
+    "emailTitle": "EMAIL US",
+    "addressTitle": "ADDRESS",
+    "getInTouch": "GET IN TOUCH",
+    "formHeading": "Send us a message",
+    "name": "Your name",
+    "email": "name@yourname.com",
+    "phonePlaceholder": "+880 123 456 789",
+    "message": "Enter your message here...",
+    "submit": "Submit Form",
+    "addressValue": "House 12, Road 5, Dhanmondi, Dhaka",
+    "emailValue": "support@ecommerce.com"
   }
 }
+
+

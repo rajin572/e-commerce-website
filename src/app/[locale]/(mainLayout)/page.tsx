@@ -2,6 +2,7 @@ import HeroBanner from '@/components/home/HeroBanner';
 import FeaturedCategories from '@/components/home/FeaturedCategories';
 import ProductSection from '@/components/home/ProductSection';
 import PromoBanner from '@/components/home/PromoBanner';
+import Testimonials from '@/components/home/Testimonials';
 import { getDictionary } from '@/i18n/dictionaries';
 import {
     categoryHref,
@@ -64,6 +65,8 @@ const HomePage = async () => {
                 products={featured}
                 showBadge
             />
+
+            <Testimonials />
         </div>
     );
 };

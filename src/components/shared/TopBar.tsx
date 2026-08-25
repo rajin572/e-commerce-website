@@ -32,7 +32,8 @@ const TopBar = ({ onCartClick }: { onCartClick?: () => void }) => {
     const moreDropdownItems: DropdownItem[] = [
         { label: t.footer.aboutUs, href: '/about', icon: <Contact size={18} className="text-[#102a3a]" /> },
         { label: 'Wishlists', href: '/wishlist', icon: <Heart size={18} className="text-[#102a3a]" /> },
-        { label: t.footer.faq, href: '/faqs', icon: <FileQuestion size={18} className="text-[#102a3a]" /> },
+        { label: t.contact?.title || 'Contact', href: '/contact', icon: <Contact size={18} className="text-[#102a3a]" /> },
+        { label: t.footer.faq, href: '/faq', icon: <FileQuestion size={18} className="text-[#102a3a]" /> },
         { label: 'Call Us', href: 'tel:+8801700000000', icon: <PhoneCall size={18} className="text-[#102a3a]" /> },
         { label: 'WhatsApp', href: 'https://wa.me/8801700000000', icon: <FaWhatsapp size={18} className="text-[#4FCE5D]" />, labelClassName: 'text-[#ea7f12]' },
     ];
