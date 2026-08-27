@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Hind_Siliguri } from "next/font/google";
+import { Playfair_Display, Mina, Roboto, Noto_Sans_Bengali } from "next/font/google";
 import { Toaster } from "sonner";
 import "../globals.css";
 import LenisSmoothScroll from "@/components/ui/animation/LenisSmoothScroll";
@@ -9,9 +9,27 @@ import { LOCALES, OG_LOCALES, isLocale } from "@/i18n/config";
 import { getDictionaryFor } from "@/i18n/dictionaries";
 import { DictionaryProvider } from "@/components/i18n/DictionaryProvider";
 
-const hindSiliguri = Hind_Siliguri({
-  variable: "--font-hind-siliguri",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const mina = Mina({
+  variable: "--font-mina",
   subsets: ["bengali", "latin"],
+  weight: ["400", "700"],
+});
+
+const roboto = Roboto({
+  variable: "--font-roboto",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+});
+
+const notoSansBengali = Noto_Sans_Bengali({
+  variable: "--font-noto-bengali",
+  subsets: ["bengali"],
   weight: ["300", "400", "500", "600", "700"],
 });
 
@@ -63,7 +81,7 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
-      className={`${hindSiliguri.variable} h-full antialiased`}
+      className={`${playfair.variable} ${mina.variable} ${roboto.variable} ${notoSansBengali.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground">
         {/* Inside <body>: it renders a real wrapper element, and nothing but
