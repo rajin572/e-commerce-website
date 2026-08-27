@@ -80,7 +80,7 @@ const Header = ({ categories }: { categories: ICategory[] }) => {
             <FloatingChat />
 
             {/* Mobile Bottom Nav */}
-            <BottomNavBar />
+            <BottomNavBar onCartClick={() => setIsCartOpen(true)} />
         </>
     );
 };

@@ -9,6 +9,7 @@ import {
     collectionHref,
 } from '@/service/CatalogService/catalog.constants';
 import { getCategories, getProducts } from '@/service/CatalogService/catalogApi';
+import ContactSection from '@/components/home/ContactSection';
 
 /**
  * Every row reads the same collection the "View All" link opens, so the
@@ -46,8 +47,16 @@ const HomePage = async () => {
             />
 
             <PromoBanner
-                imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1Ml-n2M2ENkGkCbZ9ietzOuIYgUTYByTB6y8UmfhGyysSRy5uOPIow-4I&s=10"
-                link={categoryHref('oil')}
+                banners={[
+                    {
+                        imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1Ml-n2M2ENkGkCbZ9ietzOuIYgUTYByTB6y8UmfhGyysSRy5uOPIow-4I&s=10",
+                        link: categoryHref('oil'),
+                    },
+                    {
+                        imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1Ml-n2M2ENkGkCbZ9ietzOuIYgUTYByTB6y8UmfhGyysSRy5uOPIow-4I&s=10",
+                        link: categoryHref('honey'),
+                    }
+                ]}
             />
 
             <ProductSection
@@ -65,8 +74,9 @@ const HomePage = async () => {
                 products={featured}
                 showBadge
             />
-
             <Testimonials />
+            <ContactSection />
+
         </div>
     );
 };

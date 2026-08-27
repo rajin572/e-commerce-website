@@ -152,7 +152,17 @@
     "terms": "Terms & Conditions",
     "returnPolicy": "Return Policy",
     "followUs": "Follow Us",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "brandDescription": "Your one-stop shop for premium quality products. We deliver the best items directly to your doorstep with care and reliability.",
+    "information": "Information",
+    "support": "Support",
+    "contactUs": "Contact Us",
+    "address": "House 12, Road 5, Dhanmondi, Dhaka",
+    "newsletter": "Newsletter",
+    "newsletterPlaceholder": "Enter your email address",
+    "newsletterText": "Register now and be instantly informed about discounts and advantages",
+    "subscribe": "Subscribe",
+    "privacyConsent": "I have read the privacy policy and agree to receive promotional emails."
   },
   "testimonials": {
     "title": "Customer Reviews",
