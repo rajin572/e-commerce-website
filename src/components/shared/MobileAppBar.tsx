@@ -7,6 +7,7 @@ import { Menu, Search, ShoppingCart, ArrowLeft, MoreVertical, Contact, Heart, Fi
 import { FaWhatsapp } from 'react-icons/fa';
 import { AllImages } from '../../../public/images/AllImages';
 import { NavDropdown, DropdownItem } from './NavDropdown';
+import Cookies from 'js-cookie';
 
 interface MobileAppBarProps {
     onMenuClick: () => void;
@@ -16,10 +17,17 @@ interface MobileAppBarProps {
 const MobileAppBar: React.FC<MobileAppBarProps> = ({ onMenuClick, onCartClick }) => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    React.useEffect(() => {
+        if (Cookies.get('eCommerce_access_token')) {
+            setIsLoggedIn(true);
+        }
+    }, []);
 
     const moreDropdownItems: DropdownItem[] = [
         { label: 'About Us', href: '/about', icon: <Contact size={18} className="text-[#102a3a]" /> },
-        { label: 'Wishlists', href: '/wishlist', icon: <Heart size={18} className="text-[#102a3a]" /> },
+        { label: 'Wishlists', href: isLoggedIn ? '/dashboard/wishlist' : '/wishlist', icon: <Heart size={18} className="text-[#102a3a]" /> },
         { label: 'Faqs', href: '/faqs', icon: <FileQuestion size={18} className="text-[#102a3a]" /> },
         { label: 'Call Us', href: 'tel:+8801700000000', icon: <PhoneCall size={18} className="text-[#102a3a]" /> },
         { label: 'WhatsApp', href: 'https://wa.me/8801700000000', icon: <FaWhatsapp size={18} className="text-[#4FCE5D]" />, labelClassName: 'text-[#ea7f12]' },

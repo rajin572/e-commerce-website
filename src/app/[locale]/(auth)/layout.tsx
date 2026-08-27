@@ -10,7 +10,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             <div className="hidden md:flex md:w-1/2 lg:w-[55%] relative bg-primary items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-dark/80 to-primary/40 z-10"></div>
                 <Image
-                    src="https://placehold.co/1080x1920/F9FAFB/F97316?text=ECommerce+Farm"
+                    src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=1080&auto=format&fit=crop"
                     alt="ECommerce Auth Background"
                     fill
                     className="object-cover"

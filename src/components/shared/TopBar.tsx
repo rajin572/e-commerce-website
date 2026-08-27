@@ -31,7 +31,7 @@ const TopBar = ({ onCartClick }: { onCartClick?: () => void }) => {
 
     const moreDropdownItems: DropdownItem[] = [
         { label: t.footer.aboutUs, href: '/about', icon: <Contact size={18} className="text-[#102a3a]" /> },
-        { label: 'Wishlists', href: '/wishlist', icon: <Heart size={18} className="text-[#102a3a]" /> },
+        { label: 'Wishlists', href: isLoggedIn ? '/dashboard/wishlist' : '/wishlist', icon: <Heart size={18} className="text-[#102a3a]" /> },
         { label: t.contact?.title || 'Contact', href: '/contact', icon: <Contact size={18} className="text-[#102a3a]" /> },
         { label: t.footer.faq, href: '/faq', icon: <FileQuestion size={18} className="text-[#102a3a]" /> },
         { label: 'Call Us', href: 'tel:+8801700000000', icon: <PhoneCall size={18} className="text-[#102a3a]" /> },
@@ -88,7 +88,7 @@ const TopBar = ({ onCartClick }: { onCartClick?: () => void }) => {
                             </LocaleLink>
                         )}
 
-                        <LocaleLink href="/wishlist" className="flex items-center gap-1.5 hover:text-primary transition-colors relative">
+                        <LocaleLink href={isLoggedIn ? "/dashboard/wishlist" : "/wishlist"} className="flex items-center gap-1.5 hover:text-primary transition-colors relative">
                             <Heart size={18} />
                             <span className="absolute -top-2 -right-2 bg-primary text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
                         </LocaleLink>

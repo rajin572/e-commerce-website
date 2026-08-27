@@ -138,16 +138,16 @@ export const FormInput: FormControlFunc<{
       {(field) => (
         <div className="relative flex items-center">
           {prefix && (
-            <div className="absolute left-3 flex items-center pointer-events-none">
+            <div className="absolute left-3 flex items-center pointer-events-none text-text-secondary">
               {prefix}
             </div>
           )}
           <Input
             type={type}
             className={cn(
-              "placeholder:text-base-color/50! bg-primary-color! border! border-base-color/30! focus:border-base-color/70! outline-none! shadow! ring-0! text-base! py-2!",
-              prefix && "pl-10",
-              suffix && "pr-10",
+              "w-full h-12 bg-surface rounded-xl border border-border px-4 py-2 text-foreground placeholder:text-text-muted focus-visible:border-primary focus-visible:ring-4 focus-visible:ring-primary/10 transition-all outline-none shadow-sm",
+              prefix && "pl-11",
+              suffix && "pr-11",
               inputClassName
             )}
             placeholder={placeholder}
@@ -178,9 +178,9 @@ export const FormTextarea: FormControlFunc<{ prefix?: ReactNode; suffix?: ReactN
           )}
           <Textarea
             className={cn(
-              "placeholder:text-base-color/50! bg-primary-color! border! border-base-color/30! focus:border-base-color/70! outline-none! shadow! ring-0! text-base! py-2! min-h-20",
-              prefix && "pl-10",
-              suffix && "pr-10",
+              "w-full min-h-[100px] bg-surface rounded-xl border border-border px-4 py-3 text-foreground placeholder:text-text-muted focus-visible:border-primary focus-visible:ring-4 focus-visible:ring-primary/10 transition-all outline-none shadow-sm resize-y",
+              prefix && "pl-11",
+              suffix && "pr-11",
               inputClassName
             )}
             {...field}
@@ -210,15 +210,15 @@ export const FormPassword: FormControlFunc<{ prefix?: ReactNode; placeholder?: s
       {(field) => (
         <div className="relative">
           {prefix && (
-            <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">
+            <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-text-secondary">
               {prefix}
             </div>
           )}
           <Input
             className={cn(
-              "placeholder:text-base-color/50! bg-primary-color! border! border-base-color/30! focus:border-base-color/70! outline-none! shadow! ring-0! text-base! py-2!",
-              prefix && "pl-10",
-              "pr-10", // Always add right padding for eye icon
+              "w-full h-12 bg-surface rounded-xl border border-border px-4 py-2 text-foreground placeholder:text-text-muted focus-visible:border-primary focus-visible:ring-4 focus-visible:ring-primary/10 transition-all outline-none shadow-sm",
+              prefix && "pl-11",
+              "pr-11", // Always add right padding for eye icon
               inputClassName
             )}
             type={isPasswordVisible ? "text" : "password"}
@@ -227,7 +227,7 @@ export const FormPassword: FormControlFunc<{ prefix?: ReactNode; placeholder?: s
           />
           <button
             type="button"
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-base-color"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary hover:text-primary transition-colors focus:outline-none"
             onClick={togglePasswordVisibility}
           >
             {isPasswordVisible ? (

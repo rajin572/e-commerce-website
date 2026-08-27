@@ -238,23 +238,56 @@
     },
     "questions": {
       "top-queries": [
-        { "q": "What is Try and Buy Service?", "a": "Try and Buy is a service that allows you to try on your purchases at home and pay for only what you like." },
-        { "q": "Why are there different prices for the same product? Is it legal?", "a": "Different sellers may offer the same product at different prices based on their pricing strategy." },
-        { "q": "I saw the product at Rs. 1000 but post clicking on the product, there are multiple prices...", "a": "Prices can vary based on size, color, or seller availability." },
-        { "q": "How will I detect fraudulent emails/calls seeking sensitive information?", "a": "We will never ask for your passwords, PINs, or OTPs. Please do not share these details." },
-        { "q": "How do I cancel the order, I have placed?", "a": "You can cancel your order from the 'My Orders' section before it gets dispatched." }
+        {
+          "q": "What is Try and Buy Service?",
+          "a": "Try and Buy is a service that allows you to try on your purchases at home and pay for only what you like."
+        },
+        {
+          "q": "Why are there different prices for the same product? Is it legal?",
+          "a": "Different sellers may offer the same product at different prices based on their pricing strategy."
+        },
+        {
+          "q": "I saw the product at Rs. 1000 but post clicking on the product, there are multiple prices...",
+          "a": "Prices can vary based on size, color, or seller availability."
+        },
+        {
+          "q": "How will I detect fraudulent emails/calls seeking sensitive information?",
+          "a": "We will never ask for your passwords, PINs, or OTPs. Please do not share these details."
+        },
+        {
+          "q": "How do I cancel the order, I have placed?",
+          "a": "You can cancel your order from the 'My Orders' section before it gets dispatched."
+        }
       ],
       "shipping": [
-        { "q": "How long does delivery take?", "a": "Usually it takes 1-2 days inside the city and 3-5 working days outside." },
-        { "q": "What is the delivery charge?", "a": "Delivery charge varies depending on your location and order value." },
-        { "q": "How can I track my order?", "a": "You can track your order status in the 'My Orders' section." }
+        {
+          "q": "How long does delivery take?",
+          "a": "Usually it takes 1-2 days inside the city and 3-5 working days outside."
+        },
+        {
+          "q": "What is the delivery charge?",
+          "a": "Delivery charge varies depending on your location and order value."
+        },
+        {
+          "q": "How can I track my order?",
+          "a": "You can track your order status in the 'My Orders' section."
+        }
       ],
       "returns": [
-        { "q": "Can I return a product if there is an issue?", "a": "Yes, you can initiate a return within 7 days of delivery." },
-        { "q": "How do I create a Return Request?", "a": "Go to 'My Orders', select the item, and click 'Return/Exchange'." }
+        {
+          "q": "Can I return a product if there is an issue?",
+          "a": "Yes, you can initiate a return within 7 days of delivery."
+        },
+        {
+          "q": "How do I create a Return Request?",
+          "a": "Go to 'My Orders', select the item, and click 'Return/Exchange'."
+        }
       ],
       "payments": [
-        { "q": "What payment methods are accepted?", "a": "We accept Cash on Delivery, bKash, Nagad, and all major cards." }
+        {
+          "q": "What payment methods are accepted?",
+          "a": "We accept Cash on Delivery, bKash, Nagad, and all major cards."
+        }
       ]
     }
   },
@@ -273,7 +306,146 @@
     "submit": "Submit Form",
     "addressValue": "House 12, Road 5, Dhanmondi, Dhaka",
     "emailValue": "support@ecommerce.com"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "backToCart": "Back to Cart",
+    "customerInfo": "Customer Information",
+    "haveAccount": "Already have an account? Login",
+    "fullName": "Full Name *",
+    "fullNamePlaceholder": "e.g. Rahim Uddin",
+    "phone": "Phone Number *",
+    "phonePlaceholder": "01XXXXXXXXX",
+    "email": "Email Address (Optional)",
+    "emailPlaceholder": "example@email.com",
+    "deliveryAddress": "Delivery Address",
+    "fullAddress": "Full Address *",
+    "fullAddressPlaceholder": "House/Flat No, Road No, Area...",
+    "city": "City/District *",
+    "cityPlaceholder": "Select District",
+    "zone": "Zone/Area *",
+    "zonePlaceholder": "Select Area",
+    "deliveryMethod": "Delivery Method",
+    "insideDhaka": "Inside Dhaka",
+    "insideDhakaDesc": "Delivery within 24-48 hours",
+    "outsideDhaka": "Outside Dhaka",
+    "outsideDhakaDesc": "Delivery within 3-5 days",
+    "paymentMethod": "Payment Method",
+    "cod": "Cash on Delivery",
+    "codDesc": "Pay when you receive the product",
+    "bkash": "bKash Manual",
+    "bkashDesc": "Send money to our merchant number",
+    "bkashInstructions": "Please send ৳{total} to our bKash merchant number: 01XXXXXXXXX.",
+    "bkashNumber": "bKash Number",
+    "bkashNumberPlaceholder": "01XXXXXXXXX",
+    "trxId": "Transaction ID",
+    "trxIdPlaceholder": "E.G. 9J7A6X8Y2Z",
+    "card": "Credit / Debit Card",
+    "orderReview": "Order Review",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "discount": "Discount",
+    "coupon": "Coupon Code",
+    "apply": "Apply",
+    "total": "Total",
+    "termsStart": "I agree to the ",
+    "terms": "Terms & Conditions",
+    "and": " and ",
+    "privacy": "Privacy Policy",
+    "placeOrder": "Place Order",
+    "codTitle": "Cash on Delivery (COD)",
+    "codSub": "Pay when you receive your order",
+    "bkashTitle": "bKash",
+    "bkashSub": "Pay securely with bKash",
+    "nagadTitle": "Nagad",
+    "nagadSub": "Pay securely with Nagad",
+    "paymentInstructions": "{method} Payment Instructions",
+    "personalSendMoney": "Personal (Send Money)",
+    "sendMoneyTo": "SEND MONEY TO THIS {method} NUMBER",
+    "copy": "Copy",
+    "howToPay": "How to pay:",
+    "step1": "1. Open the {method} app or dial {dial}.",
+    "step2": "2. Select 'Send Money'.",
+    "step3": "3. Send the exact amount to the number below.",
+    "step4": "4. Copy the Transaction ID (TrxID) from the confirmation.",
+    "step5": "5. Enter your number and the TrxID in the form below.",
+    "yourNumber": "Your {method} Number",
+    "yourNumberPlaceholder": "017XXXXXXXX",
+    "trxIdLabel": "Transaction ID (TrxID)"
+  },
+  "checkoutSuccess": {
+    "title": "Thank You for Your Order!",
+    "description": "Your order has been placed successfully and is now being processed.",
+    "orderNumber": "Order Number",
+    "expectedDelivery": "Expected Delivery",
+    "expectedDeliveryTime": "Within 2-3 business days",
+    "guestPrompt": "Create an account to save your order history and checkout faster next time.",
+    "createAccount": "Create Account",
+    "trackOrder": "Track Order",
+    "continueShopping": "Continue Shopping"
+  },
+  "trackOrder": {
+    "title": "Track Your Order",
+    "description": "Enter your Order ID below to check the current status of your delivery.",
+    "placeholder": "e.g. ASTHA-12345",
+    "button": "Track",
+    "orderId": "Order ID:",
+    "expectedDelivery": "Expected Delivery:",
+    "status": "Status",
+    "statusPending": "Pending",
+    "statusConfirmed": "Confirmed",
+    "statusProcessing": "Processing",
+    "statusPacked": "Packed",
+    "statusShipped": "Shipped",
+    "statusOutForDelivery": "Out for Delivery",
+    "statusDelivered": "Delivered",
+    "dateDummy1": "August 18, 2026 - 10:30 AM",
+    "dateDummy2": "August 18, 2026 - 02:15 PM",
+    "dateDummy3": "August 19, 2026 - 09:00 AM",
+    "onTheWay": "On The Way"
+  },
+  "auth": {
+    "welcomeBack": "Welcome Back! 👋",
+    "signInPrompt": "Please sign in to your account.",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "e.g. user@example.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "••••••••",
+    "forgotPasswordQ": "Forgot Password?",
+    "signInBtn": "Sign In",
+    "dontHaveAccount": "Don't have an account?",
+    "createAccount": "Create Account",
+    "createAccountTitle": "Create Account 🚀",
+    "joinUsPrompt": "Join us to get started.",
+    "fullNameLabel": "Full Name",
+    "fullNamePlaceholder": "John Doe",
+    "phoneLabel": "Phone Number",
+    "phonePlaceholder": "+880 1...",
+    "alreadyHaveAccount": "Already have an account?",
+    "forgotPasswordTitle": "Forgot Password 🔒",
+    "forgotPasswordPrompt": "Enter your email address and we'll send you a link to reset your password.",
+    "sendResetLink": "Send Reset Link",
+    "backToSignIn": "Back to Sign In",
+    "resetPasswordTitle": "Reset Password 🔑",
+    "resetPasswordPrompt": "Enter your new password below.",
+    "newPasswordLabel": "New Password",
+    "resetPasswordBtn": "Reset Password",
+    "verifyOtpTitle": "Verify OTP 📩",
+    "verifyOtpPrompt": "We've sent a 6-digit code to {email}. Please enter it below.",
+    "codeDeadMsg": "That code can no longer be used. Request a new one ",
+    "codeDeadBelow": "below.",
+    "codeDeadIn": "in {time}.",
+    "verifyCodeBtn": "Verify Code",
+    "codeExpiresIn": "Code expires in",
+    "codeExpired": "This code has expired.",
+    "didntReceiveCode": "Didn't receive the code?",
+    "resendOtp": "Resend OTP",
+    "resendIn": "Resend in {time}",
+    "loadingSignIn": "Signing in...",
+    "loadingSignUp": "Creating account...",
+    "loadingSendOtp": "Sending OTP...",
+    "loadingVerifyOtp": "Verifying OTP...",
+    "loadingReset": "Resetting password...",
+    "loadingResend": "Resending OTP..."
   }
 }
-
-

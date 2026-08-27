@@ -5,6 +5,7 @@ import LocaleLink from '@/components/i18n/LocaleLink';
 import { usePathname } from 'next/navigation';
 import { Home, MapPin, Heart, User, ShoppingCart } from 'lucide-react';
 import { useT } from '@/components/i18n/DictionaryProvider';
+import Cookies from 'js-cookie';
 
 interface BottomNavBarProps {
     onCartClick?: () => void;
@@ -13,13 +14,20 @@ interface BottomNavBarProps {
 const BottomNavBar: React.FC<BottomNavBarProps> = ({ onCartClick }) => {
     const pathname = usePathname();
     const t = useT();
+    const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
+    React.useEffect(() => {
+        if (Cookies.get('eCommerce_access_token')) {
+            setIsLoggedIn(true);
+        }
+    }, []);
 
     const tabs = [
         { name: t.common?.home || "Home", route: "/", icon: <Home size={20} /> },
         { name: t.nav?.trackOrder || "Track Order", route: "/track-order", icon: <MapPin size={20} /> },
         { name: "Cart", route: "/cart", icon: <ShoppingCart size={20} />, badge: 2, isAction: true },
-        { name: "Wishlist", route: "/wishlist", icon: <Heart size={20} />, badge: 0 },
-        { name: t.nav?.myAccount || "Account", route: "/dashboard/profile", icon: <User size={20} /> },
+        { name: "Wishlist", route: isLoggedIn ? "/dashboard/wishlist" : "/wishlist", icon: <Heart size={20} />, badge: 0 },
+        { name: t.nav?.myAccount || "Account", route: isLoggedIn ? "/dashboard/profile" : "/sign-in", icon: <User size={20} /> },
     ];
 
     return (

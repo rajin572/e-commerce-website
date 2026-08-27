@@ -5,6 +5,7 @@ import { Heart, MessageCircle, Minus, Plus, ShoppingCart } from "lucide-react";
 import { useDictionary } from "@/components/i18n/DictionaryProvider";
 import { format } from "@/i18n/config";
 import { getWhatsappNumber } from "@/helpers/config/envConfig";
+import { useRouter } from "next/navigation";
 import { formatPrice } from "@/utils/money";
 import type { IProduct } from "@/types";
 
@@ -19,6 +20,7 @@ interface ProductBuyPanelProps {
  */
 const ProductBuyPanel = ({ product }: ProductBuyPanelProps) => {
   const { dict: t, locale } = useDictionary();
+  const router = useRouter();
   const [variant, setVariant] = useState(product.variants[0]);
   const [quantity, setQuantity] = useState(1);
 
@@ -95,6 +97,10 @@ const ProductBuyPanel = ({ product }: ProductBuyPanelProps) => {
         <button
           type="button"
           disabled={isOutOfStock}
+          onClick={() => {
+            // In a real app, this would also add the item to cart or store it in checkout state.
+            router.push(`/${locale}/checkout`);
+          }}
           className="grow md:grow-0 md:w-40 h-12 bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-md font-semibold transition-colors disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
         >
           {t.common.buyNow}

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, Suspense } from 'react';
+import LocaleLink from '@/components/i18n/LocaleLink';
 import { useRouter, useSearchParams } from 'next/navigation';
 import {
     verifySignupOtp,
@@ -9,16 +10,18 @@ import {
 } from '@/service/AuthService/AuthServiceAPi';
 import tryCatchWrapper from '@/utils/tryCatchWrapper';
 import { Button } from "@/components/ui/button";
+import { useT } from '@/components/i18n/DictionaryProvider';
 
 // The backend issues 6-digit codes (auth.service generateOtp).
 const OTP_LENGTH = 6;
-// How long the code stays valid — display only (OTP_EXPIRES_IN=5).
+// How long the code stays valid ?" display only (OTP_EXPIRES_IN=5).
 const EXPIRES_AFTER = 300;
 // The backend rejects a resend within 60s of the last one, so the button
 // follows that, not the expiry. Burning your attempts must not strand you.
 const RESEND_COOLDOWN = 60;
 
 function VerifyOTPContent() {
+    const t = useT();
     const [otp, setOtp] = useState<string[]>(Array(OTP_LENGTH).fill(''));
     const [expiresIn, setExpiresIn] = useState(EXPIRES_AFTER);
     const [resendIn, setResendIn] = useState(RESEND_COOLDOWN);
@@ -81,20 +84,21 @@ function VerifyOTPContent() {
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
-        // e.preventDefault();
-        // const code = otp.join('');
-        // if (code.length !== OTP_LENGTH) return;
+        e.preventDefault();
+        const code = otp.join('');
+        if (code.length !== OTP_LENGTH) return;
 
+        // FIXME: API integration temporarily commented out for UI testing
         // const res = isReset
         //     ? await tryCatchWrapper(
         //           verifyForgotOtp,
         //           { body: { email, otp: code } },
-        //           { toastLoadingMessage: "Verifying OTP..." }
+        //           { toastLoadingMessage: t.auth?.loadingVerifyOtp || "Verifying OTP..." }
         //       )
         //     : await tryCatchWrapper(
         //           verifySignupOtp,
         //           { body: { code } },
-        //           { toastLoadingMessage: "Creating account..." }
+        //           { toastLoadingMessage: t.auth?.loadingSignUp || "Creating account..." }
         //       );
 
         // if (res?.success) {
@@ -103,22 +107,33 @@ function VerifyOTPContent() {
         // } else {
         //     handleFailure(res?.message);
         // }
+        
+        // Simulating successful auth flow redirect
+        router.push(isReset ? '/reset-password' : '/success');
     };
 
     const handleResend = async () => {
-        const res = await tryCatchWrapper(
-            resendOtp,
-            { body: { email, type: isReset ? 'forgot' : 'signup' } },
-            { toastLoadingMessage: "Resending OTP..." }
-        );
+        // FIXME: API integration temporarily commented out for UI testing
+        // const res = await tryCatchWrapper(
+        //     resendOtp,
+        //     { body: { email, type: isReset ? 'forgot' : 'signup' } },
+        //     { toastLoadingMessage: t.auth?.loadingResend || "Resending OTP..." }
+        // );
 
-        if (res?.success) {
-            setExpiresIn(EXPIRES_AFTER);
-            setResendIn(RESEND_COOLDOWN);
-            setCodeDead(false);
-            setOtp(Array(OTP_LENGTH).fill(''));
-            focusInput(0);
-        }
+        // if (res?.success) {
+        //     setExpiresIn(EXPIRES_AFTER);
+        //     setResendIn(RESEND_COOLDOWN);
+        //     setCodeDead(false);
+        //     setOtp(Array(OTP_LENGTH).fill(''));
+        //     focusInput(0);
+        // }
+        
+        // Simulating successful resend
+        setExpiresIn(EXPIRES_AFTER);
+        setResendIn(RESEND_COOLDOWN);
+        setCodeDead(false);
+        setOtp(Array(OTP_LENGTH).fill(''));
+        focusInput(0);
     };
 
     const formatTime = (time: number) => {
@@ -130,17 +145,16 @@ function VerifyOTPContent() {
     return (
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="mb-8">
-                <h1 className="text-3xl font-bold text-foreground mb-2">Verify OTP 🔢</h1>
+                <h1 className="text-3xl font-bold text-foreground mb-2">{t.auth?.verifyOtpTitle || "Verify OTP 📩"}</h1>
                 <p className="text-text-secondary leading-relaxed">
-                    We&apos;ve sent a {OTP_LENGTH}-digit code to{' '}
-                    <span className="font-semibold text-foreground">{email}</span>. Please enter it below.
+                    {(t.auth?.verifyOtpPrompt || "We've sent a 6-digit code to {email}. Please enter it below.").replace('{email}', email)}
                 </p>
             </div>
 
             {codeDead && (
                 <div className="mb-6 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-                    That code can no longer be used. Request a new one
-                    {canResend ? ' below.' : ` in ${formatTime(resendIn)}.`}
+                    {t.auth?.codeDeadMsg || "That code can no longer be used. Request a new one "}
+                    {canResend ? (t.auth?.codeDeadBelow || ' below.') : (t.auth?.codeDeadIn || ` in {time}.`).replace('{time}', formatTime(resendIn))}
                 </div>
             )}
 
@@ -168,7 +182,7 @@ function VerifyOTPContent() {
                     disabled={codeDead}
                     className="w-full h-12 text-lg font-bold"
                 >
-                    Verify Code
+                    {t.auth?.verifyCodeBtn || "Verify Code"}
                 </Button>
             </form>
 
@@ -176,22 +190,22 @@ function VerifyOTPContent() {
                 <p className="text-text-secondary mb-2">
                     {expiresIn > 0 ? (
                         <>
-                            Code expires in{' '}
+                            {t.auth?.codeExpiresIn || "Code expires in"}{' '}
                             <span className="font-mono font-bold text-primary">{formatTime(expiresIn)}</span>
                         </>
                     ) : (
-                        <span className="font-semibold text-amber-700">This code has expired.</span>
+                        <span className="font-semibold text-amber-700">{t.auth?.codeExpired || "This code has expired."}</span>
                     )}
                 </p>
                 <p className="text-text-secondary">
-                    Didn&apos;t receive the code?{' '}
+                    {t.auth?.didntReceiveCode || "Didn't receive the code?"}{' '}
                     <button
                         type="button"
                         onClick={handleResend}
                         disabled={!canResend}
                         className={`font-bold transition-colors ${canResend ? 'text-primary hover:text-primary-dark' : 'text-text-muted cursor-not-allowed'}`}
                     >
-                        {canResend ? 'Resend OTP' : `Resend in ${formatTime(resendIn)}`}
+                        {canResend ? (t.auth?.resendOtp || "Resend OTP") : (t.auth?.resendIn || `Resend in {time}`).replace('{time}', formatTime(resendIn))}
                     </button>
                 </p>
             </div>

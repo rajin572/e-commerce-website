@@ -11,6 +11,7 @@ import z from "zod";
 import { FormPassword } from "@/components/ui/CustomUi/ReuseForm/Form";
 import { FieldGroup } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
+import { useT } from '@/components/i18n/DictionaryProvider';
 
 const resetSchema = z.object({
     password: z.string().min(6, "Password must be at least 6 characters"),
@@ -22,6 +23,7 @@ const resetSchema = z.object({
 
 export default function ResetPasswordPage() {
     const router = useRouter();
+    const t = useT();
 
     const form = useForm({
         resolver: zodResolver(resetSchema),
@@ -29,26 +31,31 @@ export default function ResetPasswordPage() {
     });
 
     const onSubmit = async (data: z.infer<typeof resetSchema>) => {
+        // FIXME: API integration temporarily commented out for UI testing
         // The reset token is held server-side in an httpOnly cookie set by
-        // verifyForgotOtp — resetPassword reads it there.
+        // verifyForgotOtp ?" resetPassword reads it there.
         // const res = await tryCatchWrapper(
         //     resetPassword,
         //     { body: { newPassword: data.password } },
-        //     { toastLoadingMessage: "Resetting Password..." }
+        //     { toastLoadingMessage: t.auth?.loadingReset || "Resetting Password..." }
         // );
 
         // if (res?.success) {
         //     toast.success("Password reset successfully. Please sign in.");
         //     router.push('/sign-in');
         // }
+        
+        // Simulating successful auth flow redirect
+        toast.success("Password reset successfully. Please sign in.");
+        router.push('/sign-in');
     };
 
     return (
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="mb-8">
-                <h1 className="text-3xl font-bold text-foreground mb-2">Set New Password 🔐</h1>
+                <h1 className="text-3xl font-bold text-foreground mb-2">{t.auth?.resetPasswordTitle || "Set New Password 🔑"}</h1>
                 <p className="text-text-secondary leading-relaxed">
-                    Your new password must be different to previously used passwords.
+                    {t.auth?.resetPasswordPrompt || "Your new password must be different to previously used passwords."}
                 </p>
             </div>
 
@@ -57,20 +64,20 @@ export default function ResetPasswordPage() {
                     <FormPassword
                         control={form.control}
                         name="password"
-                        label="New Password"
-                        placeholder="••••••••"
+                        label={t.auth?.newPasswordLabel || "New Password"}
+                        placeholder={t.auth?.passwordPlaceholder || "••••••••"}
                     />
 
                     <FormPassword
                         control={form.control}
                         name="confirmPassword"
                         label="Confirm Password"
-                        placeholder="••••••••"
+                        placeholder={t.auth?.passwordPlaceholder || "••••••••"}
                     />
                 </FieldGroup>
 
                 <Button type="submit" className="w-full h-12 text-lg font-bold mt-4">
-                    Reset Password
+                    {t.auth?.resetPasswordBtn || "Reset Password"}
                 </Button>
             </form>
         </div>

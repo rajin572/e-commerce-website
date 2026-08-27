@@ -1,6 +1,5 @@
-import { getDictionary } from '@/i18n/dictionaries';
 import { getProducts } from '@/service/CatalogService/catalogApi';
-import WishlistClient from './WishlistClient';
+import WishlistClient from '../../(dashboardLayout)/dashboard/wishlist/WishlistClient';
 
 export default async function WishlistPage() {
     // TODO: wire to `getWishlist()` once GET /wishlist exists; until then the
@@ -8,7 +7,7 @@ export default async function WishlistPage() {
     const products = (await getProducts()).slice(0, 3);
 
     return (
-        <div>
+        <div className="container mx-auto px-4 py-8">
             <WishlistClient initialProducts={products} />
         </div>
     );
