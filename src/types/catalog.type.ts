@@ -73,6 +73,14 @@ export interface IProduct {
   createdAt: string;
   /** Drives the "popularity" sort. */
   soldCount: number;
+  /** Rich structured data for the product details tab */
+  productDetails?: {
+    title?: string;
+    description?: string;
+    keyFeatures?: string[];
+    healthBenefits?: string[];
+    usageStorage?: string[];
+  };
 }
 
 export interface IProductReview {

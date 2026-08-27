@@ -128,7 +128,18 @@
     "addToWishlist": "Add to wishlist",
     "wishlistEmpty": "Your wishlist is empty",
     "wishlistEmptyHint": "Tap the heart on any product and it will show up here.",
-    "viewImage": "View image {index}"
+    "viewImage": "View image {index}",
+    "reviewModal": {
+      "title": "Submit Your Review",
+      "subtitle": "Your email address will not be published. Required fields are marked *",
+      "opinionLabel": "Write your opinion about the product",
+      "opinionPlaceholder": "Write Your Review Here...",
+      "imagesLabel": "Upload Images (Optional)",
+      "dragDrop": "Drag & Drop Images Here",
+      "browse": "or click to browse files ( 3 max )",
+      "ratingLabel": "Your Rating:",
+      "submit": "SUBMIT REVIEW"
+    }
   },
   "notFound": {
     "title": "Page not found",

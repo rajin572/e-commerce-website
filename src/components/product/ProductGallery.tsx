@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useT } from "@/components/i18n/DictionaryProvider";
 import { format } from "@/i18n/config";
+import { ImagePreview } from "@/components/ui/CustomUi/ReuseImagePreview";
 
 interface ProductGalleryProps {
   images: string[];
@@ -43,13 +44,10 @@ const ProductGallery = ({ images, name }: ProductGalleryProps) => {
       </div>
 
       <div className="grow aspect-square relative border border-border rounded-lg overflow-hidden bg-card">
-        <Image
+        <ImagePreview
           src={activeImage}
           alt={name}
-          fill
-          sizes="(max-width: 768px) 100vw, 45vw"
-          priority
-          className="object-cover"
+          className="absolute inset-0 w-full h-full"
         />
       </div>
     </div>

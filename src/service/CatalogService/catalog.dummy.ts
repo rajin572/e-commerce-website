@@ -175,6 +175,7 @@ interface ProductSeed {
   /** loremflickr keywords, e.g. `honey,jar`. */
   keywords: string;
   description: string;
+  productDetails?: IProduct["productDetails"];
   price: number;
   oldPrice?: number;
   rating: number;
@@ -200,6 +201,28 @@ const buildProduct = (seed: ProductSeed, index: number): IProduct => {
     slug: `${seed.categorySlug}-${index + 1}`,
     sku: `ECM-${String(index + 1).padStart(4, "0")}`,
     description: seed.description,
+    productDetails: seed.productDetails || {
+      title: seed.name,
+      description: seed.description,
+      keyFeatures: [
+        "100% Premium Quality.",
+        "Sourced naturally and processed carefully.",
+        "No artificial chemicals or preservatives.",
+        "Rich in natural nutrients.",
+        "Satisfaction guaranteed."
+      ],
+      healthBenefits: [
+        "Boosts immunity and overall health.",
+        "Rich in essential vitamins and minerals.",
+        "Aids in natural digestion.",
+        "Promotes a healthy lifestyle."
+      ],
+      usageStorage: [
+        "Store in a cool, dry place away from direct sunlight.",
+        "Keep the container tightly closed after use.",
+        "No refrigeration required under normal room temperature."
+      ]
+    },
     images: gallery,
     image: gallery[0],
     secondaryImage: gallery[1],
@@ -341,8 +364,29 @@ const PRODUCT_SEEDS: ProductSeed[] = [
   {
     name: "ঘানি ভাঙা সরিষার তেল (১ লিটার)",
     keywords: "mustard,oil",
-    description:
-      "কাঠের ঘানিতে ভাঙানো ঝাঁঝালো সরিষার তেল। রান্না ও ত্বক দুই কাজেই ব্যবহারযোগ্য।",
+    description: "কাঠের ঘানিতে ভাঙানো খাঁটি সরিষার তেল।",
+    productDetails: {
+      title: "Ghorerbazar Wooden Cold-Pressed Maghi Mustard Oil",
+      description: "Bring back the authentic taste of tradition with Ghorerbazar Wooden Ghani Cold-Pressed First Extract Maghi Mustard Oil. Using a traditional tamarind-wood ghani (wooden press), mustard seeds are crushed with wood-on-wood friction at low pressure, keeping heat minimal. This ensures the oil remains pure, nutrient-rich, and naturally aromatic.",
+      keyFeatures: [
+        "100% Pure Maghi Mustard Oil.",
+        "First-press cold extraction in wooden ghani.",
+        "No chemicals, no additives.",
+        "Rich golden color with natural aroma.",
+        "Enhances flavor and nutrition in cooking"
+      ],
+      healthBenefits: [
+        "Aids digestion and helps maintain healthy weight.",
+        "Rich in Omega-3 & Omega-6 fatty acids that support heart health and reduce cholesterol.",
+        "Warm oil massage helps relieve joint pain and stiffness.",
+        "Strengthens immunity and overall wellness."
+      ],
+      usageStorage: [
+        "Perfect for frying, bharta, curries, and pickles.",
+        "Store in an airtight bottle in a cool, dry place.",
+        "No preservatives and no refrigeration needed."
+      ]
+    },
     price: 380,
     oldPrice: 420,
     rating: 4.5,
@@ -358,7 +402,29 @@ const PRODUCT_SEEDS: ProductSeed[] = [
   {
     name: "ঘানি ভাঙা সরিষার তেল (৫ লিটার)",
     keywords: "oil,bottle",
-    description: "বড় পরিবারের জন্য ৫ লিটারের সাশ্রয়ী প্যাক, একই ঘানি ভাঙা মান।",
+    description: "কাঠের ঘানিতে ভাঙানো খাঁটি সরিষার তেল।",
+    productDetails: {
+      title: "Ghorerbazar Wooden Cold-Pressed Maghi Mustard Oil",
+      description: "Bring back the authentic taste of tradition with Ghorerbazar Wooden Ghani Cold-Pressed First Extract Maghi Mustard Oil. Using a traditional tamarind-wood ghani (wooden press), mustard seeds are crushed with wood-on-wood friction at low pressure, keeping heat minimal. This ensures the oil remains pure, nutrient-rich, and naturally aromatic.",
+      keyFeatures: [
+        "100% Pure Maghi Mustard Oil.",
+        "First-press cold extraction in wooden ghani.",
+        "No chemicals, no additives.",
+        "Rich golden color with natural aroma.",
+        "Enhances flavor and nutrition in cooking"
+      ],
+      healthBenefits: [
+        "Aids digestion and helps maintain healthy weight.",
+        "Rich in Omega-3 & Omega-6 fatty acids that support heart health and reduce cholesterol.",
+        "Warm oil massage helps relieve joint pain and stiffness.",
+        "Strengthens immunity and overall wellness."
+      ],
+      usageStorage: [
+        "Perfect for frying, bharta, curries, and pickles.",
+        "Store in an airtight bottle in a cool, dry place.",
+        "No preservatives and no refrigeration needed."
+      ]
+    },
     price: 1750,
     rating: 4.7,
     reviewCount: 52,

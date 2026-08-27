@@ -164,8 +164,8 @@ export const FormInput: FormControlFunc<{
   );
 };
 
-export const FormTextarea: FormControlFunc<{ prefix?: ReactNode; suffix?: ReactNode; inputClassName?: string }> = (props) => {
-  const { prefix, suffix, inputClassName, ...restProps } = props;
+export const FormTextarea: FormControlFunc<{ prefix?: ReactNode; suffix?: ReactNode; inputClassName?: string; placeholder?: string }> = (props) => {
+  const { prefix, suffix, inputClassName, placeholder, ...restProps } = props;
 
   return (
     <FormBase {...restProps}>
@@ -184,6 +184,7 @@ export const FormTextarea: FormControlFunc<{ prefix?: ReactNode; suffix?: ReactN
               inputClassName
             )}
             {...field}
+            placeholder={placeholder}
           />
           {suffix && (
             <div className="absolute right-3 top-3 flex items-start">

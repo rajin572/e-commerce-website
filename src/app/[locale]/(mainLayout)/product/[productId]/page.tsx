@@ -84,11 +84,11 @@ export default async function ProductDetailsPage({ params }: ProductParams) {
       : []),
     ...(category && subCategory
       ? [
-          {
-            label: subCategory.name,
-            href: categoryHref(category.slug, subCategory.slug),
-          },
-        ]
+        {
+          label: subCategory.name,
+          href: categoryHref(category.slug, subCategory.slug),
+        },
+      ]
       : []),
     { label: product.name },
   ];
@@ -97,93 +97,96 @@ export default async function ProductDetailsPage({ params }: ProductParams) {
   const shareUrl = `${getSiteUrl()}${localizePath(productHref(product._id), locale)}`;
 
   return (
-    <Container className="py-6 md:py-10">
-      <Breadcrumb label={t.common.breadcrumb} items={breadcrumb} />
+    <section>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-12">
-        <ProductGallery images={product.images} name={product.name} />
+      <Container className="py-6 md:py-10">
+        <Breadcrumb label={t.common.breadcrumb} items={breadcrumb} />
 
-        <div className="flex flex-col">
-          <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-            {product.name}
-          </h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-12">
+          <ProductGallery images={product.images} name={product.name} />
 
-          <div className="flex items-center gap-3 mb-4">
-            <div className="flex items-center gap-0.5 text-warning">
-              {[...Array(5)].map((_, index) => (
-                <Star
-                  key={index}
-                  size={16}
-                  fill={index < Math.floor(product.rating) ? "currentColor" : "none"}
-                />
-              ))}
+          <div className="flex flex-col">
+            <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+              {product.name}
+            </h1>
+
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-0.5 text-warning">
+                {[...Array(5)].map((_, index) => (
+                  <Star
+                    key={index}
+                    size={16}
+                    fill={index < Math.floor(product.rating) ? "currentColor" : "none"}
+                  />
+                ))}
+              </div>
+              <span className="text-sm text-text-secondary">
+                {format(t.product.reviewCount, { count: count(product.reviewCount) })}
+              </span>
             </div>
-            <span className="text-sm text-text-secondary">
-              {format(t.product.reviewCount, { count: count(product.reviewCount) })}
-            </span>
-          </div>
 
-          <div className="flex flex-wrap items-center gap-3 mb-6">
-            <span className="text-3xl font-bold text-primary">
-              {price(product.price)}
-            </span>
-            {product.oldPrice && (
-              <>
-                <span className="text-lg text-muted-foreground line-through">
-                  {price(product.oldPrice)}
-                </span>
-                <span className="bg-success/10 text-success text-xs font-bold px-2 py-1 rounded">
-                  {t.product.save} {price(product.oldPrice - product.price)}
-                </span>
-              </>
-            )}
-          </div>
-
-          <p className="text-text-secondary mb-6 leading-relaxed">
-            {product.description}
-          </p>
-
-          <ProductBuyPanel product={product} />
-
-          <div className="border-t border-border mt-6 pt-6 flex flex-col gap-2 text-sm">
-            <div className="flex gap-2">
-              <span className="w-28 shrink-0 text-text-secondary">{t.product.sku}</span>
-              <span className="font-medium">{product.sku}</span>
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              <span className="text-3xl font-bold text-primary">
+                {price(product.price)}
+              </span>
+              {product.oldPrice && (
+                <>
+                  <span className="text-lg text-muted-foreground line-through">
+                    {price(product.oldPrice)}
+                  </span>
+                  <span className="bg-success/10 text-success text-xs font-bold px-2 py-1 rounded">
+                    {t.product.save} {price(product.oldPrice - product.price)}
+                  </span>
+                </>
+              )}
             </div>
-            {category && (
+
+            <p className="text-text-secondary mb-6 leading-relaxed">
+              {product.description}
+            </p>
+
+            <ProductBuyPanel product={product} />
+
+            <div className="border-t border-border mt-6 pt-6 flex flex-col gap-2 text-sm">
+              <div className="flex gap-2">
+                <span className="w-28 shrink-0 text-text-secondary">{t.product.sku}</span>
+                <span className="font-medium">{product.sku}</span>
+              </div>
+              {category && (
+                <div className="flex gap-2">
+                  <span className="w-28 shrink-0 text-text-secondary">
+                    {t.product.category}
+                  </span>
+                  <LocaleLink
+                    href={categoryHref(category.slug)}
+                    className="font-medium text-primary hover:underline"
+                  >
+                    {category.name}
+                  </LocaleLink>
+                </div>
+              )}
               <div className="flex gap-2">
                 <span className="w-28 shrink-0 text-text-secondary">
-                  {t.product.category}
+                  {t.product.availability}
                 </span>
-                <LocaleLink
-                  href={categoryHref(category.slug)}
-                  className="font-medium text-primary hover:underline"
+                <span
+                  className={`font-medium ${isOutOfStock ? "text-destructive" : "text-success"}`}
                 >
-                  {category.name}
-                </LocaleLink>
+                  {isOutOfStock
+                    ? t.common.outOfStock
+                    : format(t.product.unitsInStock, { count: count(product.stock) })}
+                </span>
               </div>
-            )}
-            <div className="flex gap-2">
-              <span className="w-28 shrink-0 text-text-secondary">
-                {t.product.availability}
-              </span>
-              <span
-                className={`font-medium ${isOutOfStock ? "text-destructive" : "text-success"}`}
-              >
-                {isOutOfStock
-                  ? t.common.outOfStock
-                  : format(t.product.unitsInStock, { count: count(product.stock) })}
-              </span>
-            </div>
 
-            <div className="mt-4">
-              <SocialShareBar url={shareUrl} title={product.name} />
+              <div className="mt-4">
+                <SocialShareBar url={shareUrl} title={product.name} />
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <ProductTabs product={product} reviews={reviews} />
+        <ProductTabs product={product} reviews={reviews} />
+      </Container>
 
       {related.length > 0 && (
         <ProductSection title={t.product.relatedProducts} products={related} />
@@ -217,6 +220,7 @@ export default async function ProductDetailsPage({ params }: ProductParams) {
           }),
         }}
       />
-    </Container>
+    </section>
+
   );
 }

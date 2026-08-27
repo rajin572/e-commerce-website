@@ -8,6 +8,7 @@ import { format } from "@/i18n/config";
 import { formatCount } from "@/utils/money";
 import { formatDateForLocale } from "@/utils/dateFormet";
 import type { IProduct, IProductReview } from "@/types";
+import { ReviewModal } from "./ReviewModal";
 
 interface ProductTabsProps {
   product: IProduct;
@@ -35,10 +36,9 @@ const ProductTabs = ({ product, reviews }: ProductTabsProps) => {
   }, [reviews]);
 
   const tabClasses = (tab: TabValue) =>
-    `flex-1 md:flex-none px-6 py-4 font-semibold text-sm md:text-base border-b-2 transition-colors ${
-      activeTab === tab
-        ? "border-primary text-primary"
-        : "border-transparent text-text-secondary hover:text-foreground"
+    `flex-1 md:flex-none px-6 py-4 font-semibold text-sm md:text-base border-b-2 transition-colors ${activeTab === tab
+      ? "border-primary text-primary"
+      : "border-transparent text-text-secondary hover:text-foreground"
     }`;
 
   return (
@@ -65,19 +65,80 @@ const ProductTabs = ({ product, reviews }: ProductTabsProps) => {
       <div className="p-6 md:p-8">
         {activeTab === "description" ? (
           <div className="max-w-3xl">
-            <h2 className="text-lg font-bold text-foreground mb-4">
-              {t.product.productOverview}
-            </h2>
-            <p className="text-text-secondary leading-relaxed">
-              {product.description}
-            </p>
+            <div className="mb-6">
+              <h2 className="text-xl font-bold text-foreground">
+                {t.product.productOverview || "Product Details"}
+              </h2>
+              <div className="h-0.5 w-24 bg-primary mt-2" />
+            </div>
+            
+            {product.productDetails ? (
+              <div className="text-text-secondary leading-relaxed space-y-8 text-sm md:text-base">
+                <div>
+                  {product.productDetails.title && (
+                    <h3 className="text-foreground font-bold text-base md:text-lg mb-2">
+                      {product.productDetails.title}
+                    </h3>
+                  )}
+                  {product.productDetails.description && (
+                    <p className="mb-4">{product.productDetails.description}</p>
+                  )}
+                </div>
+
+                {product.productDetails.keyFeatures && product.productDetails.keyFeatures.length > 0 && (
+                  <div>
+                    <h3 className="text-foreground font-bold mb-3">{locale === "bn" ? "মূল বৈশিষ্ট্য:" : "Key Features:"}</h3>
+                    <ul className="list-disc pl-5 space-y-2">
+                      {product.productDetails.keyFeatures.map((feature, idx) => (
+                        <li key={idx} className="pl-1">{feature}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {product.productDetails.healthBenefits && product.productDetails.healthBenefits.length > 0 && (
+                  <div>
+                    <h3 className="text-foreground font-bold mb-3">{locale === "bn" ? "স্বাস্থ্য উপকারিতা:" : "Health Benefits:"}</h3>
+                    <ul className="list-disc pl-5 space-y-2">
+                      {product.productDetails.healthBenefits.map((benefit, idx) => (
+                        <li key={idx} className="pl-1">{benefit}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {product.productDetails.usageStorage && product.productDetails.usageStorage.length > 0 && (
+                  <div>
+                    <h3 className="text-foreground font-bold mb-3">{locale === "bn" ? "ব্যবহার ও সংরক্ষণ:" : "Usage & Storage:"}</h3>
+                    <ul className="list-disc pl-5 space-y-2">
+                      {product.productDetails.usageStorage.map((usage, idx) => (
+                        <li key={idx} className="pl-1">{usage}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <p className="text-text-secondary leading-relaxed">
+                {product.description}
+              </p>
+            )}
           </div>
         ) : reviews.length === 0 ? (
           <EmptyState
             icon={MessageSquarePlus}
             title={t.product.reviews}
             description={t.product.writeReview}
-          />
+          >
+            <ReviewModal>
+              <button
+                type="button"
+                className="mt-6 cursor-pointer px-6 py-2 bg-primary text-primary-foreground rounded-md font-semibold hover:bg-primary-dark transition-colors"
+              >
+                {t.product.writeReview}
+              </button>
+            </ReviewModal>
+          </EmptyState>
         ) : (
           <div>
             <div className="flex flex-col md:flex-row gap-8 mb-8 border-b border-border pb-8">
@@ -153,12 +214,14 @@ const ProductTabs = ({ product, reviews }: ProductTabsProps) => {
               ))}
             </ul>
 
-            <button
-              type="button"
-              className="mt-8 px-6 py-2 border border-primary text-primary rounded-md font-semibold hover:bg-primary/5 transition-colors"
-            >
-              {t.product.writeReview}
-            </button>
+            <ReviewModal>
+              <button
+                type="button"
+                className="mt-8 px-6 py-2 border border-primary text-primary rounded-md font-semibold hover:bg-primary/5 transition-colors"
+              >
+                {t.product.writeReview}
+              </button>
+            </ReviewModal>
           </div>
         )}
       </div>

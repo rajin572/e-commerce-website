@@ -121,25 +121,24 @@ const Testimonials = () => {
                 <GradientSectionTitle
                     title={t.testimonials.title}
                 />
-                <section className="mt-8 relative -mx-4 sm:mx-0">
-                    <div className="flex flex-col gap-6">
-                        <MarqueeTrack direction={1} speed={0.5}>
-                            {[...row1, ...row1, ...row1].map((item, i) => (
-                                <TestimonialCard key={`r1-${i}`} {...item} />
-                            ))}
-                        </MarqueeTrack>
-
-                        <MarqueeTrack direction={-1} speed={0.5}>
-                            {[...row2, ...row2, ...row2].map((item, i) => (
-                                <TestimonialCard key={`r2-${i}`} {...item} />
-                            ))}
-                        </MarqueeTrack>
-                    </div>
-
-                    <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-1/4 bg-gradient-to-r"></div>
-                    <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-1/4 bg-gradient-to-l"></div>
-                </section>
             </Container>
+            <section className="mt-8 relative">
+                <div className="flex flex-col gap-6">
+                    <MarqueeTrack direction={1} speed={0.5}>
+                        {[...row1, ...row1, ...row1].map((item, i) => (
+                            <TestimonialCard key={`r1-${i}`} {...item} />
+                        ))}
+                    </MarqueeTrack>
+
+                    <MarqueeTrack direction={-1} speed={0.5}>
+                        {[...row2, ...row2, ...row2].map((item, i) => (
+                            <TestimonialCard key={`r2-${i}`} {...item} />
+                        ))}
+                    </MarqueeTrack>
+                </div>
+                <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r"></div>
+                <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l"></div>
+            </section>
         </section>
     );
 };
