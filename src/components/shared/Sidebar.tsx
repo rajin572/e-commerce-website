@@ -47,7 +47,7 @@ export function Sidebar() {
           <Image
             src={AllImages.logo}
             alt="ECommerce"
-            className="h-auto w-[90%] group-data-[collapsible=icon]:hidden"
+            className="h-20 w-auto group-data-[collapsible=icon]:hidden"
             priority
           />
           <Image
