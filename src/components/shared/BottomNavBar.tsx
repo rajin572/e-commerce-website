@@ -2,6 +2,8 @@
 
 import React from 'react';
 import LocaleLink from '@/components/i18n/LocaleLink';
+import { useCurrentLocale } from '@/components/i18n/LocaleLink';
+import { localizePath } from "@/i18n/config";
 import { usePathname } from 'next/navigation';
 import { Home, MapPin, Heart, User, ShoppingCart } from 'lucide-react';
 import { useT } from '@/components/i18n/DictionaryProvider';
@@ -14,6 +16,7 @@ interface BottomNavBarProps {
 
 const BottomNavBar: React.FC<BottomNavBarProps> = ({ onCartClick }) => {
     const pathname = usePathname();
+    const locale = useCurrentLocale();
     const t = useT();
     const [isLoggedIn, setIsLoggedIn] = React.useState(false);
     const cartCount = useCartStore((state) => (state.hasHydrated ? state.items.reduce((sum, item) => sum + item.quantity, 0) : 0));
@@ -36,7 +39,7 @@ const BottomNavBar: React.FC<BottomNavBarProps> = ({ onCartClick }) => {
         <div className="lg:hidden fixed bottom-0 left-0 right-0 h-[60px] bg-background border-t border-border z-40 pb-safe">
             <div className="flex items-center justify-around h-full px-2">
                 {tabs.map((tab, index) => {
-                    const isActive = pathname === tab.route && !tab.isAction;
+                    const isActive = pathname === localizePath(tab.route, locale) && !tab.isAction;
 
                     const content = (
                         <>

@@ -177,16 +177,21 @@ function SidebarMenuCollapsedDropdown({
 function checkIsActive(href: string, item: NavItem, mainNav = false) {
   const itemUrl =
     typeof item.url === "string" ? "/admin/" + item.url : "/admin";
-  console.log(itemUrl);
+  
+  // href comes from usePathname() which includes locale (e.g. /en/admin/dashboard)
+  // We can strip the locale to check.
+  const [, , ...rest] = href.split("/");
+  const hrefWithoutLocale = `/${rest.join("/")}`;
+
   return (
-    href === itemUrl || // /endpint?search=param
-    href.split("?")[0] === itemUrl || // endpoint
+    hrefWithoutLocale === itemUrl || // /endpint?search=param
+    hrefWithoutLocale.split("?")[0] === itemUrl || // endpoint
     !!item?.items?.filter((i) => {
       const subItemUrl = typeof i.url === "string" ? i.url : "";
-      return subItemUrl === href;
+      return subItemUrl === hrefWithoutLocale;
     }).length || // if child nav is active
     (mainNav &&
-      href.split("/")[1] !== "" &&
-      href.split("/")[1] === itemUrl.split("/")[1])
+      hrefWithoutLocale.split("/")[1] !== "" &&
+      hrefWithoutLocale.split("/")[1] === itemUrl.split("/")[1])
   );
 }

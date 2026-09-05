@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import LocaleLink from '@/components/i18n/LocaleLink';
+import { useCurrentLocale } from "@/components/i18n/LocaleLink";
+import { localizePath } from "@/i18n/config";
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
@@ -36,6 +38,7 @@ const NAV_ITEMS = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const locale = useCurrentLocale();
 
   return (
     <SidebarPrimitive collapsible="icon">
@@ -59,7 +62,7 @@ export function Sidebar() {
       <SidebarContent className="px-2">
         <SidebarMenu className="gap-1.5">
           {NAV_ITEMS.map(({ label, href, icon: Icon }) => {
-            const isActive = pathname === href;
+            const isActive = pathname === localizePath(href, locale);
             return (
               <SidebarMenuItem key={label}>
                 <SidebarMenuButton
