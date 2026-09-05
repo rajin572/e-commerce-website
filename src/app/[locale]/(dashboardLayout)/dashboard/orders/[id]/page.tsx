@@ -2,12 +2,13 @@ import React from 'react';
 import Image from 'next/image';
 import LocaleLink from '@/components/i18n/LocaleLink';
 import { ArrowLeft, Package, Truck, CheckCircle2, MapPin, CreditCard } from 'lucide-react';
+import OrderStatusBadge from '@/components/dashboard/OrderStatusBadge';
 
 // TODO: wire to GET /orders/:id once the endpoint exists — this page currently
 // renders the same illustrative order for any id, per CODING_RULES §1.2.
 const ORDER = {
     date: 'Aug 18, 2026',
-    status: 'shipped' as const,
+    status: 'Shipped',
     items: [
         { name: 'সুন্দরবনের প্রাকৃতিক চাকের মধু', variant: '1 kg', quantity: 1, price: 850, image: 'https://placehold.co/200x200/F9FAFB/F97316.png?text=Honey' },
         { name: 'গাওয়া ঘি (খাঁটি গাওয়া ঘি)', variant: '500g', quantity: 1, price: 600, image: 'https://placehold.co/200x200/F9FAFB/F97316.png?text=Ghee' },
@@ -21,18 +22,18 @@ const ORDER = {
 };
 
 const STEPS = [
-    { key: 'confirmed', label: 'Confirmed', icon: Package },
-    { key: 'processing', label: 'Processing', icon: Package },
-    { key: 'packed', label: 'Packed', icon: Package },
-    { key: 'shipped', label: 'Shipped', icon: Truck },
-    { key: 'delivered', label: 'Delivered', icon: CheckCircle2 },
+    { key: 'Confirmed', label: 'Confirmed', icon: Package },
+    { key: 'Processing', label: 'Processing', icon: Package },
+    { key: 'Packed', label: 'Packed', icon: Package },
+    { key: 'Shipped', label: 'Shipped', icon: Truck },
+    { key: 'Delivered', label: 'Delivered', icon: CheckCircle2 },
 ] as const;
 
 const STEP_ORDER = STEPS.map((s) => s.key);
 
 export default async function OrderDetailPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
-    const currentStepIndex = STEP_ORDER.indexOf(ORDER.status);
+    const currentStepIndex = STEP_ORDER.indexOf(ORDER.status as (typeof STEP_ORDER)[number]);
     const total = ORDER.subtotal - ORDER.discount + ORDER.deliveryFee;
 
     return (
@@ -46,13 +47,11 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
                     <h1 className="text-2xl font-bold">Order #{id}</h1>
                     <p className="text-sm text-text-secondary mt-1">Placed on {ORDER.date}</p>
                 </div>
-                <span className="inline-flex items-center w-max px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary uppercase tracking-wide">
-                    {ORDER.status}
-                </span>
+                <OrderStatusBadge status={ORDER.status} />
             </div>
 
             {/* Timeline */}
-            <div className="bg-surface border border-border rounded-xl p-6 mb-6 shadow-sm">
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.03)] p-6 mb-6">
                 <div className="flex items-center">
                     {STEPS.map((step, index) => {
                         const Icon = step.icon;
@@ -78,9 +77,9 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Items */}
-                <div className="lg:col-span-2 bg-surface border border-border rounded-xl shadow-sm overflow-hidden">
-                    <div className="p-4 border-b border-border font-bold">Items</div>
-                    <div className="divide-y divide-border">
+                <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.03)] overflow-hidden">
+                    <div className="p-4 border-b border-gray-100 font-bold bg-gray-50/50">Items</div>
+                    <div className="divide-y divide-gray-100">
                         {ORDER.items.map((item) => (
                             <div key={item.name} className="p-4 flex gap-4 items-center">
                                 <div className="w-16 h-16 bg-muted rounded-md overflow-hidden relative shrink-0">
@@ -98,7 +97,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
 
                 {/* Summary + details */}
                 <div className="flex flex-col gap-6">
-                    <div className="bg-surface border border-border rounded-xl p-5 shadow-sm space-y-3 text-sm">
+                    <div className="bg-white rounded-2xl border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.03)] p-5 space-y-3 text-sm">
                         <div className="flex justify-between text-text-secondary">
                             <span>Subtotal</span>
                             <span className="text-foreground">৳{ORDER.subtotal}</span>
@@ -111,13 +110,13 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
                             <span>Delivery Fee</span>
                             <span className="text-foreground">৳{ORDER.deliveryFee}</span>
                         </div>
-                        <div className="flex justify-between font-bold text-base pt-3 border-t border-border">
+                        <div className="flex justify-between font-bold text-base pt-3 border-t border-gray-100">
                             <span>Total Paid</span>
                             <span className="text-primary">৳{total}</span>
                         </div>
                     </div>
 
-                    <div className="bg-surface border border-border rounded-xl p-5 shadow-sm space-y-4 text-sm">
+                    <div className="bg-white rounded-2xl border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.03)] p-5 space-y-4 text-sm">
                         <div className="flex gap-3">
                             <MapPin size={18} className="text-primary shrink-0 mt-0.5" />
                             <div>

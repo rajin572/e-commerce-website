@@ -23,11 +23,11 @@ export default function ReviewsPage() {
             <section>
                 <h2 className="text-lg font-bold mb-4">Pending Reviews</h2>
                 {PENDING_REVIEWS.length === 0 ? (
-                    <div className="bg-surface border border-dashed border-border rounded-xl p-8 text-center text-text-secondary">
+                    <div className="bg-white border border-dashed border-gray-200 rounded-2xl p-8 text-center text-text-secondary">
                         No delivered items are waiting for a review right now.
                     </div>
                 ) : (
-                    <div className="bg-surface border border-border rounded-xl divide-y divide-border shadow-sm overflow-hidden">
+                    <div className="bg-white rounded-2xl border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.03)] divide-y divide-gray-100 overflow-hidden">
                         {PENDING_REVIEWS.map((item) => (
                             <div key={item.id} className="p-4 flex items-center gap-4">
                                 <div className="w-16 h-16 bg-muted rounded-md overflow-hidden relative shrink-0">
@@ -54,11 +54,11 @@ export default function ReviewsPage() {
             <section>
                 <h2 className="text-lg font-bold mb-4">Published Reviews</h2>
                 {PUBLISHED_REVIEWS.length === 0 ? (
-                    <div className="bg-surface border border-dashed border-border rounded-xl p-8 text-center text-text-secondary">
+                    <div className="bg-white border border-dashed border-gray-200 rounded-2xl p-8 text-center text-text-secondary">
                         You haven&apos;t published any reviews yet.
                     </div>
                 ) : (
-                    <div className="bg-surface border border-border rounded-xl divide-y divide-border shadow-sm overflow-hidden">
+                    <div className="bg-white rounded-2xl border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.03)] divide-y divide-gray-100 overflow-hidden">
                         {PUBLISHED_REVIEWS.map((review) => (
                             <div key={review.id} className="p-4">
                                 <div className="flex items-center justify-between mb-2">

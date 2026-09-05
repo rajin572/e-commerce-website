@@ -23,13 +23,13 @@ export default function CouponsPage() {
             <section>
                 <h2 className="text-lg font-bold mb-4">Available Coupons</h2>
                 {AVAILABLE_COUPONS.length === 0 ? (
-                    <div className="bg-surface border border-dashed border-border rounded-xl p-8 text-center text-text-secondary">
+                    <div className="bg-white border border-dashed border-gray-200 rounded-2xl p-8 text-center text-text-secondary">
                         No active coupons right now.
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {AVAILABLE_COUPONS.map((coupon) => (
-                            <div key={coupon.code} className="bg-surface border-2 border-dashed border-primary/30 rounded-xl p-5 shadow-sm relative overflow-hidden">
+                            <div key={coupon.code} className="bg-white border-2 border-dashed border-primary/30 rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.03)] p-5 relative overflow-hidden">
                                 <div className="flex items-start gap-3 mb-3">
                                     <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
                                         <Ticket size={18} />
@@ -53,7 +53,7 @@ export default function CouponsPage() {
             <section>
                 <h2 className="text-lg font-bold mb-4">Used / Expired</h2>
                 {EXPIRED_COUPONS.length === 0 ? (
-                    <div className="bg-surface border border-dashed border-border rounded-xl p-8 text-center text-text-secondary">
+                    <div className="bg-white border border-dashed border-gray-200 rounded-2xl p-8 text-center text-text-secondary">
                         Nothing here yet.
                     </div>
                 ) : (
