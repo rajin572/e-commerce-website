@@ -2,12 +2,14 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { toast } from 'sonner';
 import { Heart, ShoppingBag, Trash2, CheckCircle2 } from 'lucide-react';
 import LocaleLink from '@/components/i18n/LocaleLink';
 import { useDictionary, useT } from '@/components/i18n/DictionaryProvider';
 import { formatPrice } from '@/utils/money';
 import { EmptyState } from '@/components/ui/CustomUi/EmptyState';
 import { productHref } from '@/service/CatalogService/catalog.constants';
+import { useCartStore } from '@/store/cartStore';
 import type { IProduct } from '@/types';
 
 interface WishlistClientProps {
@@ -17,12 +19,26 @@ interface WishlistClientProps {
 export default function WishlistClient({ initialProducts }: WishlistClientProps) {
     const { locale } = useDictionary();
     const t = useT();
+    const addToCart = useCartStore((state) => state.addToCart);
     const [products, setProducts] = useState<IProduct[]>(initialProducts);
 
     const price = (value: number) => formatPrice(value, locale, t.common.currency);
 
     const handleRemove = (id: string) => {
         setProducts(products.filter(p => p._id !== id));
+    };
+
+    const handleAddToCart = (product: IProduct) => {
+        addToCart({
+            productId: product._id,
+            variantId: product.variants[0],
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            quantity: 1,
+            stock: product.stock,
+        });
+        toast.success(t.common.addedToCart);
     };
 
     if (products.length === 0) {
@@ -119,9 +135,10 @@ export default function WishlistClient({ initialProducts }: WishlistClientProps)
                                 
                                 <button
                                     disabled={isOutOfStock}
+                                    onClick={() => handleAddToCart(product)}
                                     className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm transition-all duration-300 ${
-                                        isOutOfStock 
-                                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+                                        isOutOfStock
+                                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                                         : 'bg-primary text-white hover:bg-primary/90 shadow-md shadow-primary/20 hover:-translate-y-0.5 cursor-pointer'
                                     }`}
                                 >

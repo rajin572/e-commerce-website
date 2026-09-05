@@ -2,17 +2,33 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { toast } from 'sonner';
 import LocaleLink from '@/components/i18n/LocaleLink';
 import { Heart, ShoppingCart, Star, Eye, Minus, Plus, ShoppingBag } from 'lucide-react';
 import { useDictionary } from '@/components/i18n/DictionaryProvider';
 import { productHref } from '@/service/CatalogService/catalog.constants';
 import { formatPrice } from '@/utils/money';
+import { useCartStore } from '@/store/cartStore';
 import type { IProduct } from '@/types';
 
 const ProductCard: React.FC<{ product: IProduct; showBadge?: boolean }> = ({ product, showBadge = false }) => {
     const { dict: t, locale } = useDictionary();
+    const addToCart = useCartStore((state) => state.addToCart);
     const isOutOfStock = product.stock <= 0;
     const [quantity, setQuantity] = useState(1);
+
+    const handleAddToCart = () => {
+        addToCart({
+            productId: product._id,
+            variantId: product.variants[0],
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            quantity,
+            stock: product.stock,
+        });
+        toast.success(t.common.addedToCart);
+    };
 
     const href = productHref(product._id);
     const price = (value: number) => formatPrice(value, locale, t.common.currency);
@@ -132,6 +148,7 @@ const ProductCard: React.FC<{ product: IProduct; showBadge?: boolean }> = ({ pro
                         <button
                             type="button"
                             aria-label={t.common.addToCart}
+                            onClick={handleAddToCart}
                             className="flex flex-1 items-center justify-center gap-1.5 border border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-full px-4 py-1.5 h-9 transition-colors font-bold text-sm bg-transparent"
                         >
                             <ShoppingBag size={14} />

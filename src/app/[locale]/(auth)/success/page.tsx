@@ -1,6 +1,3 @@
-"use client";
-
-import React from 'react';
 import LocaleLink from '@/components/i18n/LocaleLink';
 import { PartyPopper } from 'lucide-react';
 

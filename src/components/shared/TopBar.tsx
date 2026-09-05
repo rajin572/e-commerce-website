@@ -11,11 +11,13 @@ import { AllImages } from '../../../public/images/AllImages';
 import Cookies from 'js-cookie';
 import Container from '../ui/CustomUi/Container';
 import { NavDropdown, DropdownItem } from './NavDropdown';
+import { useCartStore } from '@/store/cartStore';
 
 const TopBar = ({ onCartClick }: { onCartClick?: () => void }) => {
     const t = useT();
     const [searchQuery, setSearchQuery] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const cartCount = useCartStore((state) => (state.hasHydrated ? state.items.reduce((sum, item) => sum + item.quantity, 0) : 0));
 
     React.useEffect(() => {
         const token = Cookies.get('eCommerce_access_token');
@@ -95,7 +97,9 @@ const TopBar = ({ onCartClick }: { onCartClick?: () => void }) => {
 
                         <button onClick={onCartClick} className="flex items-center gap-1.5 hover:text-primary transition-colors relative">
                             <ShoppingCart size={18} />
-                            <span className="absolute -top-2 -right-2 bg-primary text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
+                            {cartCount > 0 && (
+                                <span className="absolute -top-2 -right-2 bg-primary text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">{cartCount}</span>
+                            )}
                         </button>
 
                         <div className="hidden lg:block">

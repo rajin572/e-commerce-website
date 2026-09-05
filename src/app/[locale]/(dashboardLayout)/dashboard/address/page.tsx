@@ -1,6 +1,3 @@
-"use client";
-
-import React from 'react';
 import { MapPin, Plus, Edit, Trash2 } from 'lucide-react';
 
 export default function AddressPage() {

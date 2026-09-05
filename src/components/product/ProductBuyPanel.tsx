@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "sonner";
 import { Heart, MessageCircle, Minus, Plus, ShoppingCart } from "lucide-react";
 import { useDictionary } from "@/components/i18n/DictionaryProvider";
 import { format } from "@/i18n/config";
 import { getWhatsappNumber } from "@/helpers/config/envConfig";
 import { useRouter } from "next/navigation";
 import { formatPrice } from "@/utils/money";
+import { useCartStore } from "@/store/cartStore";
 import type { IProduct } from "@/types";
 
 interface ProductBuyPanelProps {
@@ -21,11 +23,24 @@ interface ProductBuyPanelProps {
 const ProductBuyPanel = ({ product }: ProductBuyPanelProps) => {
   const { dict: t, locale } = useDictionary();
   const router = useRouter();
+  const addToCart = useCartStore((state) => state.addToCart);
   const [variant, setVariant] = useState(product.variants[0]);
   const [quantity, setQuantity] = useState(1);
 
   const isOutOfStock = product.stock <= 0;
   const price = formatPrice(product.price, locale, t.common.currency);
+
+  const addCurrentSelectionToCart = () => {
+    addToCart({
+      productId: product._id,
+      variantId: variant,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      quantity,
+      stock: product.stock,
+    });
+  };
 
   const whatsappHref = `https://wa.me/${getWhatsappNumber()}?text=${encodeURIComponent(
     format(t.product.whatsappMessage, {
@@ -88,6 +103,10 @@ const ProductBuyPanel = ({ product }: ProductBuyPanelProps) => {
         <button
           type="button"
           disabled={isOutOfStock}
+          onClick={() => {
+            addCurrentSelectionToCart();
+            toast.success(t.common.addedToCart);
+          }}
           className="grow md:grow-0 md:w-48 h-12 bg-primary hover:bg-primary-dark text-primary-foreground rounded-md font-semibold flex items-center justify-center gap-2 transition-colors disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
         >
           <ShoppingCart size={20} />
@@ -98,7 +117,7 @@ const ProductBuyPanel = ({ product }: ProductBuyPanelProps) => {
           type="button"
           disabled={isOutOfStock}
           onClick={() => {
-            // In a real app, this would also add the item to cart or store it in checkout state.
+            addCurrentSelectionToCart();
             router.push(`/${locale}/checkout`);
           }}
           className="grow md:grow-0 md:w-40 h-12 bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-md font-semibold transition-colors disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"

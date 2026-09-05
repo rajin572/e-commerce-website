@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Home, MapPin, Heart, User, ShoppingCart } from 'lucide-react';
 import { useT } from '@/components/i18n/DictionaryProvider';
 import Cookies from 'js-cookie';
+import { useCartStore } from '@/store/cartStore';
 
 interface BottomNavBarProps {
     onCartClick?: () => void;
@@ -15,6 +16,7 @@ const BottomNavBar: React.FC<BottomNavBarProps> = ({ onCartClick }) => {
     const pathname = usePathname();
     const t = useT();
     const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+    const cartCount = useCartStore((state) => (state.hasHydrated ? state.items.reduce((sum, item) => sum + item.quantity, 0) : 0));
 
     React.useEffect(() => {
         if (Cookies.get('eCommerce_access_token')) {
@@ -25,8 +27,8 @@ const BottomNavBar: React.FC<BottomNavBarProps> = ({ onCartClick }) => {
     const tabs = [
         { name: t.common?.home || "Home", route: "/", icon: <Home size={20} /> },
         { name: t.nav?.trackOrder || "Track Order", route: "/track-order", icon: <MapPin size={20} /> },
-        { name: "Cart", route: "/cart", icon: <ShoppingCart size={20} />, badge: 2, isAction: true },
-        { name: "Wishlist", route: isLoggedIn ? "/dashboard/wishlist" : "/wishlist", icon: <Heart size={20} />, badge: 0 },
+        { name: t.nav?.cart || "Cart", route: "/cart", icon: <ShoppingCart size={20} />, badge: cartCount > 0 ? cartCount : undefined, isAction: true },
+        { name: t.nav?.wishlist || "Wishlist", route: isLoggedIn ? "/dashboard/wishlist" : "/wishlist", icon: <Heart size={20} /> },
         { name: t.nav?.myAccount || "Account", route: isLoggedIn ? "/dashboard/profile" : "/sign-in", icon: <User size={20} /> },
     ];
 

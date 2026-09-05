@@ -13,26 +13,34 @@ export interface CartItem {
 
 interface CartState {
   items: CartItem[];
+  hasHydrated: boolean;
+  setHasHydrated: (value: boolean) => void;
   addToCart: (item: CartItem) => void;
-  removeFromCart: (productId: string) => void;
-  updateQuantity: (productId: string, quantity: number) => void;
+  removeFromCart: (productId: string, variantId?: string) => void;
+  updateQuantity: (productId: string, quantity: number, variantId?: string) => void;
   clearCart: () => void;
   getTotalItems: () => number;
   getTotalPrice: () => number;
 }
 
+const isSameLine = (item: CartItem, productId: string, variantId?: string) =>
+  item.productId === productId && item.variantId === variantId;
+
 export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
       items: [],
+      hasHydrated: false,
+
+      setHasHydrated: (value) => set({ hasHydrated: value }),
 
       addToCart: (item) => {
         set((state) => {
-          const existingItem = state.items.find((i) => i.productId === item.productId);
+          const existingItem = state.items.find((i) => isSameLine(i, item.productId, item.variantId));
           if (existingItem) {
             return {
               items: state.items.map((i) =>
-                i.productId === item.productId
+                isSameLine(i, item.productId, item.variantId)
                   ? { ...i, quantity: Math.min(i.quantity + item.quantity, item.stock) }
                   : i
               ),
@@ -42,16 +50,18 @@ export const useCartStore = create<CartState>()(
         });
       },
 
-      removeFromCart: (productId) => {
+      removeFromCart: (productId, variantId) => {
         set((state) => ({
-          items: state.items.filter((i) => i.productId !== productId),
+          items: state.items.filter((i) => !isSameLine(i, productId, variantId)),
         }));
       },
 
-      updateQuantity: (productId, quantity) => {
+      updateQuantity: (productId, quantity, variantId) => {
         set((state) => ({
           items: state.items.map((i) =>
-            i.productId === productId ? { ...i, quantity } : i
+            isSameLine(i, productId, variantId)
+              ? { ...i, quantity: Math.max(1, Math.min(quantity, i.stock)) }
+              : i
           ),
         }));
       },
@@ -64,6 +74,9 @@ export const useCartStore = create<CartState>()(
     }),
     {
       name: 'e-commerce-cart-storage',
+      onRehydrateStorage: () => (state) => {
+        state?.setHasHydrated(true);
+      },
     }
   )
 );

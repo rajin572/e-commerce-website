@@ -1,6 +1,3 @@
-"use client";
-
-import React from 'react';
 import LocaleLink from '@/components/i18n/LocaleLink';
 
 export default function OrdersPage() {
@@ -34,7 +31,7 @@ export default function OrdersPage() {
                                         </span>
                                     </td>
                                     <td className="p-4 text-right">
-                                        <LocaleLink href="/track-order" className="text-primary hover:underline font-medium px-3 py-1.5 border border-primary/20 rounded-md hover:bg-primary/5 transition-colors">
+                                        <LocaleLink href={`/dashboard/orders/AST-102${item}`} className="text-primary hover:underline font-medium px-3 py-1.5 border border-primary/20 rounded-md hover:bg-primary/5 transition-colors">
                                             View Details
                                         </LocaleLink>
                                     </td>

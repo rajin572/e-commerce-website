@@ -134,6 +134,7 @@ const Footer = () => {
                             <ul className="flex flex-col gap-3 text-sm text-primary-foreground/80 font-medium">
                                 <li><LocaleLink href="/about" className="hover:text-white transition-colors">{t.footer?.aboutUs || "About Us"}</LocaleLink></li>
                                 <li><LocaleLink href="/return-policy" className="hover:text-white transition-colors">{t.footer?.returnPolicy || "Return Policy"}</LocaleLink></li>
+                                <li><LocaleLink href="/delivery" className="hover:text-white transition-colors">{t.footer?.delivery || "Delivery Information"}</LocaleLink></li>
                                 <li><LocaleLink href="/contact" className="hover:text-white transition-colors">{t.footer?.contactUs || "Contact Us"}</LocaleLink></li>
                                 <li><LocaleLink href="/terms" className="hover:text-white transition-colors">{t.footer?.terms || "Terms & Conditions"}</LocaleLink></li>
                                 <li><LocaleLink href="/faq" className="hover:text-white transition-colors">{t.footer?.faq || "FAQ"}</LocaleLink></li>

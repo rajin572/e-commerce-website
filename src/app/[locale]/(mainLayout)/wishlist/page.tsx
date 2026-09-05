@@ -1,5 +1,5 @@
 import { getProducts } from '@/service/CatalogService/catalogApi';
-import WishlistClient from '../../(dashboardLayout)/dashboard/wishlist/WishlistClient';
+import WishlistClient from '@/components/dashboard/WishlistClient';
 
 export default async function WishlistPage() {
     // TODO: wire to `getWishlist()` once GET /wishlist exists; until then the

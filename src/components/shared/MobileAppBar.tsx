@@ -8,6 +8,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import { AllImages } from '../../../public/images/AllImages';
 import { NavDropdown, DropdownItem } from './NavDropdown';
 import Cookies from 'js-cookie';
+import { useCartStore } from '@/store/cartStore';
 
 interface MobileAppBarProps {
     onMenuClick: () => void;
@@ -18,6 +19,7 @@ const MobileAppBar: React.FC<MobileAppBarProps> = ({ onMenuClick, onCartClick })
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const cartCount = useCartStore((state) => (state.hasHydrated ? state.items.reduce((sum, item) => sum + item.quantity, 0) : 0));
 
     React.useEffect(() => {
         if (Cookies.get('eCommerce_access_token')) {
@@ -58,7 +60,9 @@ const MobileAppBar: React.FC<MobileAppBarProps> = ({ onMenuClick, onCartClick })
                         </button>
                         <button onClick={onCartClick} className="p-1 relative">
                             <ShoppingCart size={22} />
-                            <span className="absolute top-0 right-0 bg-primary text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
+                            {cartCount > 0 && (
+                                <span className="absolute top-0 right-0 bg-primary text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">{cartCount}</span>
+                            )}
                         </button>
                         <div className="flex items-center">
                             <NavDropdown

@@ -9,7 +9,9 @@ import {
   Heart,
   MapPin,
   User,
-  LogOut
+  LogOut,
+  Star,
+  Ticket
 } from "lucide-react";
 import { AllImages } from "../../../public/images/AllImages";
 import {
@@ -27,6 +29,8 @@ const NAV_ITEMS = [
   { label: "My Orders", href: "/dashboard/orders", icon: ShoppingBag },
   { label: "Wishlist", href: "/dashboard/wishlist", icon: Heart },
   { label: "Saved Addresses", href: "/dashboard/address", icon: MapPin },
+  { label: "My Reviews", href: "/dashboard/reviews", icon: Star },
+  { label: "My Coupons", href: "/dashboard/coupons", icon: Ticket },
   { label: "Profile Settings", href: "/dashboard/profile", icon: User },
 ] as const;
 

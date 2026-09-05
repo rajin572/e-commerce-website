@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import Image from "next/image";
+import { toast } from "sonner";
 import LocaleLink from "@/components/i18n/LocaleLink";
 import { ChevronDown, Filter, LayoutGrid, List, PackageSearch } from "lucide-react";
 import ProductCard from "@/components/shared/ProductCard";
@@ -11,6 +12,7 @@ import { useDictionary } from "@/components/i18n/DictionaryProvider";
 import { format } from "@/i18n/config";
 import { productHref } from "@/service/CatalogService/catalog.constants";
 import { formatCount, formatPrice } from "@/utils/money";
+import { useCartStore } from "@/store/cartStore";
 import type { IProduct, TAvailabilityFilter, TCatalogSort } from "@/types";
 
 const PAGE_SIZE = 12;
@@ -57,6 +59,7 @@ const sortProducts = (products: IProduct[], sort: TCatalogSort): IProduct[] => {
  */
 const CatalogBrowser = ({ products, navLinks, navTitle }: CatalogBrowserProps) => {
   const { dict: t, locale } = useDictionary();
+  const addToCart = useCartStore((state) => state.addToCart);
 
   const priceCeiling = useMemo(() => {
     if (products.length === 0) return 1000;
@@ -341,6 +344,18 @@ const CatalogBrowser = ({ products, navLinks, navTitle }: CatalogBrowserProps) =
                     <button
                       type="button"
                       disabled={product.stock <= 0}
+                      onClick={() => {
+                        addToCart({
+                          productId: product._id,
+                          variantId: product.variants[0],
+                          name: product.name,
+                          price: product.price,
+                          image: product.image,
+                          quantity: 1,
+                          stock: product.stock,
+                        });
+                        toast.success(t.common.addedToCart);
+                      }}
                       className="w-max px-6 py-2 bg-primary hover:bg-primary-dark text-primary-foreground rounded font-medium transition-colors text-sm disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
                     >
                       {product.stock > 0 ? t.common.addToCart : t.common.outOfStock}

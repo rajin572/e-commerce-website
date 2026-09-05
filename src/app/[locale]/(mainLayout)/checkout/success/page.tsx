@@ -1,12 +1,9 @@
-"use client";
-
-import React from 'react';
 import LocaleLink from '@/components/i18n/LocaleLink';
 import { CheckCircle, Truck, ArrowRight, UserPlus } from 'lucide-react';
-import { useT } from '@/components/i18n/DictionaryProvider';
+import { getDictionary } from '@/i18n/dictionaries';
 
-const CheckoutSuccessPage = () => {
-    const t = useT();
+const CheckoutSuccessPage = async () => {
+    const t = await getDictionary();
     const orderNumber = "ORD-7392-BD";
 
     return (
